@@ -3,33 +3,34 @@
 import Link from "next/link"
 import { Shield, Award, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { FadeIn } from "@/components/ui/fade-in"
+import { Card, CardContent } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
 const stats = [
   { value: "10,000+", label: "Watches Sold" },
-  { value: "50+", label: "Premium Brands" },
-  { value: "120+", label: "Countries Served" },
-  { value: "99.8%", label: "Satisfaction Rate" },
+  { value: "50+", label: "Brands" },
+  { value: "120+", label: "Countries" },
+  { value: "99.8%", label: "Satisfaction" },
 ]
 
 const values = [
   {
     icon: Shield,
-    title: "Authentication Guarantee",
+    title: "Authentication",
     description:
-      "Every watch undergoes a multi-point inspection by our certified watchmakers. We verify serial numbers, movements, and provenance to ensure absolute authenticity before any timepiece reaches our marketplace.",
+      "Every watch undergoes multi-point inspection by certified watchmakers. We verify serial numbers, movements, and provenance.",
   },
   {
     icon: Award,
     title: "Expert Curation",
     description:
-      "Our team of certified watchmakers and horological experts hand-select each timepiece in our collection. Only watches that meet our exacting standards for condition, authenticity, and desirability are presented to our clients.",
+      "Our team hand-selects each timepiece. Only watches meeting our standards for condition and authenticity are listed.",
   },
   {
     icon: Lock,
     title: "Secure Transactions",
     description:
-      "Bank-level encryption and buyer protection safeguard every transaction. Our escrow service ensures your payment is secure until you've received and inspected your timepiece, providing complete peace of mind.",
+      "Bank-level encryption and buyer protection on every transaction. Escrow service ensures your payment is secure until delivery.",
   },
 ]
 
@@ -37,128 +38,87 @@ export function AboutContent() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1920&q=80"
-          alt="Luxury timepieces"
+          alt="Watch workshop"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 text-center text-white">
-          <FadeIn direction="up" delay={0.1}>
-            <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4">
-              Our Story
-            </p>
-            <h1 className="font-serif text-5xl md:text-6xl font-bold">
-              About Kronos
-            </h1>
-          </FadeIn>
+        <div className="relative z-10 text-center text-foreground">
+          <h1 className="text-4xl md:text-5xl font-bold">About Top Watches</h1>
+          <p className="text-foreground/70 mt-2">Trusted marketplace for luxury timepieces</p>
         </div>
       </section>
 
-      {/* Brand Story Section */}
-      <section className="py-20">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <FadeIn>
-            <h2 className="font-serif text-3xl font-bold mb-8">
-              A Legacy of Trust
-            </h2>
-          </FadeIn>
-          <div className="space-y-6 text-muted-foreground leading-relaxed">
-            <FadeIn delay={0.1}>
-              <p>
-                Founded with a singular vision &mdash; to create the most trusted
-                destination for luxury timepieces &mdash; Kronos has grown from a
-                passionate idea into a global marketplace connecting discerning
-                collectors with the world&apos;s finest watches.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p>
-                Our team of certified watchmakers personally inspects and
-                authenticates every timepiece that passes through our platform. We
-                believe that acquiring a luxury watch should be an experience
-                marked by confidence, transparency, and unparalleled service.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.3}>
-              <p>
-                From the iconic Rolex Submariner to the legendary Patek Philippe
-                Nautilus, every watch in our collection has been carefully vetted to
-                ensure authenticity, condition, and provenance. We stand behind
-                every sale with our comprehensive guarantee.
-              </p>
-            </FadeIn>
+      {/* Brand Story */}
+      <section className="py-16">
+        <div className="max-w-2xl mx-auto px-4">
+          <h2 className="text-xl font-semibold mb-4">Our Story</h2>
+          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+            <p>
+              Top Watches was founded to create a trusted destination for buying
+              and selling luxury timepieces. We connect collectors with verified
+              watches from the world&apos;s top brands.
+            </p>
+            <p>
+              Our team of certified watchmakers inspects and authenticates every
+              watch on our platform. We prioritize transparency, accuracy, and
+              reliable service.
+            </p>
+            <p>
+              From Rolex to Patek Philippe, every watch in our collection has
+              been verified for authenticity, condition, and provenance.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Statistics Bar */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map((stat, index) => (
-            <FadeIn key={stat.label} delay={index * 0.1}>
-              <p className="font-serif text-4xl md:text-5xl font-bold text-gold">
-                {stat.value}
-              </p>
-              <p className="text-sm uppercase tracking-wider text-muted-foreground mt-2">
+      {/* Statistics */}
+      <section className="py-12 border-y bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <p className="text-3xl font-bold">{stat.value}</p>
+              <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wide">
                 {stat.label}
               </p>
-            </FadeIn>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Values / Trust Section */}
-      <section className="py-20">
+      {/* Values */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <p className="text-sm uppercase tracking-[0.3em] text-gold mb-4">
-                Why Choose Us
-              </p>
-              <h2 className="font-serif text-3xl font-bold">
-                Built on Trust & Expertise
-              </h2>
-            </div>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {values.map((value, index) => (
-              <FadeIn key={value.title} delay={index * 0.15}>
-                <div className="text-center">
-                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gold/10">
-                    <value.icon className="h-8 w-8 text-gold" />
+          <h2 className="text-xl font-semibold mb-6">Why Top Watches</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {values.map((value) => (
+              <Card key={value.title}>
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-md bg-muted">
+                    <value.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="font-serif text-xl font-semibold mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <h3 className="font-medium mb-2">{value.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {value.description}
                   </p>
-                </div>
-              </FadeIn>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 text-center">
-        <FadeIn>
-          <h2 className="font-serif text-3xl font-bold mb-4">
-            Ready to Find Your Timepiece?
-          </h2>
-          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-            Browse our curated collection of authenticated luxury watches from the
-            world&apos;s most prestigious brands.
-          </p>
-          <Button
-            asChild
-            className="bg-gold hover:bg-gold/90 text-white rounded-none px-8 py-6 text-sm uppercase tracking-wider"
-          >
-            <Link href="/collections">Explore Collection</Link>
-          </Button>
-        </FadeIn>
+      {/* CTA */}
+      <section className="py-16 text-center border-t">
+        <h2 className="text-xl font-semibold mb-2">Ready to Browse?</h2>
+        <p className="text-sm text-muted-foreground mb-6">
+          Explore our collection of authenticated luxury watches.
+        </p>
+        <Button asChild className="bg-gold hover:bg-gold/90 text-foreground">
+          <Link href="/collections">Browse All Watches</Link>
+        </Button>
       </section>
     </>
   )

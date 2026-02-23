@@ -23,8 +23,8 @@ export function WatchSpecs({ specs }: WatchSpecsProps) {
           key={row.label}
           className="flex justify-between py-3 border-b border-border"
         >
-          <span className="text-muted-foreground">{row.label}</span>
-          <span className="font-medium text-right">{row.value}</span>
+          <span className="text-foreground/40 text-sm font-mono">{row.label}</span>
+          <span className="text-foreground text-sm font-sans text-right max-w-[60%]">{row.value}</span>
         </div>
       ))}
     </div>

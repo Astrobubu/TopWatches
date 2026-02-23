@@ -13,12 +13,12 @@ export const watches: Watch[] = [
     price: 9150,
     images: [
       img("1662384205880-2c7a9879cc0c"),
-      img("1611243705491-71487c2ed137"),
-      img("1585123413507-d9a511e7a89c"),
-      img("1602103146071-b3b209c8ca9b"),
+      img("1662384197911-e82189f4dc60"),
+      img("1670404160620-a3a86428560e"),
+      img("1730757679771-b53e798846cf"),
     ],
     description:
-      "The Rolex Submariner Date is the archetype of the modern diver's watch. Introduced in 1953, it has evolved into a horological icon recognized worldwide. The current 41mm Oystersteel case houses the Calibre 3235 with a 70-hour power reserve, while the unidirectional Cerachrom bezel insert in black ceramic provides scratch resistance and lasting color fidelity. A watch equally at home 300 meters underwater and at a formal dinner.",
+      "The Rolex Submariner Date is the archetype of the modern diver's watch. Introduced in 1953, it has evolved into a horological icon. The current 41mm Oystersteel case houses the Calibre 3235 with a 70-hour power reserve, while the unidirectional Cerachrom bezel in black ceramic provides scratch resistance. Rated to 300 meters.",
     specs: {
       movement: "Rolex Calibre 3235, automatic",
       caseMaterial: "Oystersteel (904L stainless steel)",
@@ -40,13 +40,13 @@ export const watches: Watch[] = [
     reference: "126234",
     price: 8100,
     images: [
+      img("1619976442556-210d9a914669"),
       img("1649357584808-333476473dce"),
-      img("1619976396248-56d05beb2919"),
       img("1619976491498-f2dadb25fb3b"),
-      img("1640437830882-3b3536cc8324"),
+      img("1620625515032-6ed0c1790c75"),
     ],
     description:
-      "The Datejust is the quintessential Rolex dress watch, first introduced in 1945 as the first self-winding wristwatch with a date display. This 36mm reference pairs an Oystersteel case with a fluted white gold bezel and a striking bright blue dial. Worn on the iconic Jubilee bracelet, it delivers timeless elegance alongside contemporary reliability, powered by the Calibre 3235.",
+      "The Datejust is the quintessential Rolex dress watch, first introduced in 1945. This 36mm reference pairs Oystersteel with a fluted white gold bezel and bright blue dial. Worn on the Jubilee bracelet, powered by Calibre 3235 with 70-hour reserve.",
     specs: {
       movement: "Rolex Calibre 3235, automatic",
       caseMaterial: "Oystersteel and 18k white gold",
@@ -68,13 +68,13 @@ export const watches: Watch[] = [
     reference: "126710BLRO",
     price: 17500,
     images: [
-      img("1625328923319-74cafe485866"),
-      img("1620625515032-6ed0c1790c75"),
       img("1633783168202-47fa299c270d"),
-      img("1594534475808-b18fc33b045e"),
+      img("1614063416832-5434d154ded3"),
+      img("1649357585015-179ed98f513d"),
+      img("1662326564907-b831d4aa2cfe"),
     ],
     description:
-      "Originally developed for Pan Am pilots in the 1950s, the GMT-Master II allows the wearer to read the time in two time zones simultaneously via its rotating 24-hour bezel. The red-and-blue Cerachrom 'Pepsi' bezel has become one of the most coveted configurations in all of horology. Powered by the Calibre 3285 with an independent jumping hour hand, this is the ultimate traveler's watch.",
+      "Originally developed for Pan Am pilots in the 1950s, the GMT-Master II reads time in two zones via its rotating 24-hour bezel. The red-and-blue Cerachrom 'Pepsi' bezel is one of the most coveted in horology. Calibre 3285 with independent jumping hour hand.",
     specs: {
       movement: "Rolex Calibre 3285, automatic",
       caseMaterial: "Oystersteel (904L stainless steel)",
@@ -96,13 +96,13 @@ export const watches: Watch[] = [
     reference: "116500LN",
     price: 32000,
     images: [
+      img("1640416822842-1d1cd0c6b9f1"),
+      img("1695728189457-b6769e702a37"),
       img("1634140704051-58a787556cd1"),
-      img("1657104996708-044ef9812f85"),
-      img("1710671544323-8e448efa283e"),
-      img("1667833966178-f98135a582f8"),
+      img("1662384201132-c181be518cd2"),
     ],
     description:
-      "Named after the Florida racing city, the Cosmograph Daytona is Rolex's legendary chronograph. The white 'Panda' dial with contrasting black sub-dials is arguably the single most desirable modern Rolex configuration. Equipped with the in-house Calibre 4130 — a column-wheel chronograph movement — and a Cerachrom tachymeter bezel, it bridges the gap between motorsport heritage and wrist-worn luxury.",
+      "Named after the Florida racing city, the Cosmograph Daytona is Rolex's legendary chronograph. White 'Panda' dial with black sub-dials, in-house Calibre 4130 column-wheel chronograph, and Cerachrom tachymeter bezel. The most sought-after modern Rolex.",
     specs: {
       movement: "Rolex Calibre 4130, automatic chronograph",
       caseMaterial: "Oystersteel (904L stainless steel)",
@@ -127,12 +127,12 @@ export const watches: Watch[] = [
     price: 130000,
     images: [
       img("1600003014608-c2ccc1570a65"),
-      img("1524805444758-089113d48a6d"),
-      img("1548171916-c0dea7f94ca6"),
-      img("1548171838-1fd4cb4ab854"),
+      img("1526045431048-f857369baa09"),
+      img("1671119720870-df45dcaf81c1"),
+      img("1639006570490-79c0c53f1080"),
     ],
     description:
-      "Designed by Gerald Genta in 1976, the Nautilus is Patek Philippe's iconic luxury sports watch. The 5711/1A with its blue-black graduated dial and distinctive porthole-shaped case has become one of the most sought-after watches ever produced. Following its official discontinuation, secondary market prices have soared. Powered by the ultra-thin Calibre 26-330 SC, it represents the pinnacle of integrated-bracelet sports watch design.",
+      "Designed by Gerald Genta in 1976, the Nautilus is Patek Philippe's iconic luxury sports watch. The 5711/1A with blue-black graduated dial and porthole-shaped case is one of the most sought-after watches ever made. Ultra-thin Calibre 26-330 SC. Discontinued — secondary market prices remain elevated.",
     specs: {
       movement: "Patek Philippe Calibre 26-330 SC, automatic",
       caseMaterial: "Stainless steel",
@@ -160,7 +160,7 @@ export const watches: Watch[] = [
       img("1610897534349-7759782118b9"),
     ],
     description:
-      "The Calatrava is the purest expression of the round dress watch, named after the Calatrava cross that forms Patek Philippe's emblem. The 5227R-001 in warm 18k rose gold features an officer's-style hinged caseback and a silvery-opaline dial of exquisite refinement. Powered by the Calibre 324 SC, it is the watch chosen by collectors who believe less is more.",
+      "The purest expression of the round dress watch. 18k rose gold with officer's-style hinged caseback and silvery-opaline dial. Calibre 324 SC automatic. For collectors who believe less is more.",
     specs: {
       movement: "Patek Philippe Calibre 324 SC, automatic",
       caseMaterial: "18k rose gold",
@@ -185,10 +185,10 @@ export const watches: Watch[] = [
       img("1691865179028-1729b766a5cd"),
       img("1673224993627-59b8819aeff8"),
       img("1637587510640-c62792887407"),
-      img("1640437831350-cacb7fa66989"),
+      img("1639006570490-79c0c53f1080"),
     ],
     description:
-      "Launched in 1997 as the Nautilus's younger sibling, the Aquanaut brings a sportier, more contemporary character with its rounded-octagonal case and tropical-band rubber strap. The 5167R in 18k rose gold elevates the model from sporty to luxurious, with an embossed black dial that echoes a hand-grenade pattern. The Calibre 324 SC beats within, delivering reliable timekeeping in a package built for active lifestyles.",
+      "Launched in 1997 as the Nautilus's younger sibling. Rounded-octagonal case with tropical-band rubber strap. 18k rose gold with embossed black dial. Calibre 324 SC. Built for active lifestyles.",
     specs: {
       movement: "Patek Philippe Calibre 324 SC, automatic",
       caseMaterial: "18k rose gold",
@@ -218,7 +218,7 @@ export const watches: Watch[] = [
       img("1610889672442-5629e6845d17"),
     ],
     description:
-      "Another Gerald Genta masterpiece, the Royal Oak debuted in 1972 and single-handedly created the luxury steel sports watch category. The 15500ST features the signature octagonal bezel with eight hexagonal screws, a 'Grande Tapisserie' patterned blue dial, and the in-house Calibre 4302 with 70 hours of power reserve. Its combination of haute horlogerie finishing on a stainless-steel case remains revolutionary over fifty years later.",
+      "Gerald Genta masterpiece from 1972 that created the luxury steel sports watch category. Octagonal bezel with eight hexagonal screws, 'Grande Tapisserie' blue dial, in-house Calibre 4302 with 70-hour reserve. Revolutionary design, still unmatched.",
     specs: {
       movement: "Audemars Piguet Calibre 4302, automatic",
       caseMaterial: "Stainless steel",
@@ -240,13 +240,13 @@ export const watches: Watch[] = [
     reference: "26470ST.OO.A101CR.01",
     price: 28000,
     images: [
-      img("1524805444758-089113d48a6d"),
-      img("1634140704051-58a787556cd1"),
-      img("1600003014608-c2ccc1570a65"),
-      img("1548171916-c0dea7f94ca6"),
+      img("1594534475808-b18fc33b045e"),
+      img("1602103146071-b3b209c8ca9b"),
+      img("1640437830882-3b3536cc8324"),
+      img("1640437831350-cacb7fa66989"),
     ],
     description:
-      "The Royal Oak Offshore, introduced in 1993, took the original Royal Oak's DNA and amplified it into a bold, oversized chronograph. This 42mm reference in steel with a black ceramic bezel brings a rugged, modern aesthetic while retaining the signature octagonal bezel and tapisserie dial. The Calibre 3126/3840 flyback chronograph is a serious movement for serious collectors.",
+      "Introduced in 1993, the Offshore amplified the Royal Oak into a bold oversized chronograph. 42mm steel with black ceramic bezel. Calibre 3126/3840 flyback chronograph. Tapisserie dial retained from the original.",
     specs: {
       movement: "Audemars Piguet Calibre 3126/3840, automatic chronograph",
       caseMaterial: "Stainless steel with ceramic bezel",
@@ -270,13 +270,13 @@ export const watches: Watch[] = [
     reference: "310.30.42.50.01.001",
     price: 6500,
     images: [
-      img("1600003014608-c2ccc1570a65"),
-      img("1662384205880-2c7a9879cc0c"),
-      img("1611243705491-71487c2ed137"),
-      img("1585123413507-d9a511e7a89c"),
+      img("1547953040-3956660d8788"),
+      img("1652025214381-ce1aa292b850"),
+      img("1548171916-c0dea7f94ca6"),
+      img("1548171838-1fd4cb4ab854"),
     ],
     description:
-      "The only watch to have been worn on the Moon, the Speedmaster Professional is perhaps the most storied chronograph in existence. First worn in space in 1965, it has accompanied every crewed NASA mission since. This current reference preserves the Hesalite crystal and the step dial of the original while housing the Master Chronometer Calibre 3861 with Co-Axial escapement. A living legend that remains remarkably accessible.",
+      "The only watch worn on the Moon. First in space 1965, present on every crewed NASA mission since. Hesalite crystal, step dial, Master Chronometer Calibre 3861 with Co-Axial escapement. A living legend at an accessible price.",
     specs: {
       movement: "Omega Co-Axial Master Chronometer Calibre 3861, manual-wind",
       caseMaterial: "Stainless steel",
@@ -298,13 +298,13 @@ export const watches: Watch[] = [
     reference: "210.30.42.20.03.001",
     price: 5400,
     images: [
+      img("1762708052083-757ae92b7203"),
+      img("1769472564136-b73481c3b8a4"),
       img("1548171916-c0dea7f94ca6"),
       img("1548171838-1fd4cb4ab854"),
-      img("1602103146071-b3b209c8ca9b"),
-      img("1594534475808-b18fc33b045e"),
     ],
     description:
-      "Made famous by James Bond, the Seamaster Diver 300M merges rugged diving capability with refined design. The laser-engraved wave pattern on the blue ceramic dial, helium escape valve, and unidirectional ceramic bezel ring make this a professional-grade dive instrument. The Master Chronometer Calibre 8800 offers anti-magnetic protection up to 15,000 gauss and METAS certification for daily accuracy within 0 to +5 seconds per day.",
+      "Made famous by James Bond. Laser-engraved wave pattern on blue ceramic dial, helium escape valve, unidirectional ceramic bezel. Calibre 8800 with anti-magnetic protection to 15,000 gauss and METAS certification.",
     specs: {
       movement: "Omega Co-Axial Master Chronometer Calibre 8800, automatic",
       caseMaterial: "Stainless steel",
@@ -326,13 +326,13 @@ export const watches: Watch[] = [
     reference: "131.20.41.21.02.002",
     price: 8200,
     images: [
-      img("1600003014755-ba31aa59c4b6"),
-      img("1610897534349-7759782118b9"),
-      img("1604242692760-2f7b0c26856d"),
+      img("1677445166019-4fa91a090e49"),
       img("1524805444758-089113d48a6d"),
+      img("1610889672442-5629e6845d17"),
+      img("1702865053958-71ec751c4118"),
     ],
     description:
-      "Omega's Constellation has represented precision timekeeping since 1952. The current generation features a distinctive half-moon facet on the case and the signature 'claws' on the bezel that once held the sapphire crystal in place on vintage models. This two-tone steel and 18k Sedna gold version with a silver dial offers understated luxury, while the Calibre 8900 Master Chronometer ensures exceptional accuracy and magnetic resistance.",
+      "Omega's Constellation has represented precision since 1952. Half-moon facet case, signature 'claws' bezel. Two-tone steel and 18k Sedna gold with silver dial. Calibre 8900 Master Chronometer for accuracy and magnetic resistance.",
     specs: {
       movement: "Omega Co-Axial Master Chronometer Calibre 8900, automatic",
       caseMaterial: "Stainless steel and 18k Sedna gold",
@@ -356,13 +356,13 @@ export const watches: Watch[] = [
     reference: "WSSA0029",
     price: 7250,
     images: [
-      img("1640437830882-3b3536cc8324"),
-      img("1625328923319-74cafe485866"),
-      img("1640437831350-cacb7fa66989"),
-      img("1637587510640-c62792887407"),
+      img("1687040481503-3595ef7b5672"),
+      img("1581063683670-6df2247f1d8e"),
+      img("1747995525955-92010650c3ae"),
+      img("1724414544029-8dbe037293d7"),
     ],
     description:
-      "The Santos de Cartier was the first purpose-built pilot's wristwatch, created in 1904 by Louis Cartier for his friend, the aviator Alberto Santos-Dumont. Today's Santos preserves the square case, exposed screws, and clean lines that started it all, now with a QuickSwitch interchangeable bracelet system and SmartLink adjustment. The Calibre 1847 MC automatic movement beats inside a case that bridges over a century of aviation and haute joaillerie heritage.",
+      "The first purpose-built pilot's wristwatch, created in 1904 by Louis Cartier for aviator Alberto Santos-Dumont. Square case, exposed screws, clean lines. QuickSwitch interchangeable bracelet, SmartLink adjustment. Calibre 1847 MC automatic.",
     specs: {
       movement: "Cartier Calibre 1847 MC, automatic",
       caseMaterial: "Stainless steel",
@@ -384,13 +384,13 @@ export const watches: Watch[] = [
     reference: "WSTA0065",
     price: 3100,
     images: [
+      img("1466684921455-ee202d43c1aa"),
+      img("1640437831350-cacb7fa66989"),
+      img("1637587510640-c62792887407"),
       img("1673224993627-59b8819aeff8"),
-      img("1691865179028-1729b766a5cd"),
-      img("1649357585015-179ed98f513d"),
-      img("1614063416832-5434d154ded3"),
     ],
     description:
-      "Inspired by the Renault tanks of World War I, the Cartier Tank has been a symbol of refined taste since 1917. The Tank Must brings this storied design to an accessible price point without sacrificing the elegance that has graced the wrists of cultural icons from Andy Warhol to Princess Diana. The elongated rectangular case, railroad-style minute track, and blue cabochon crown embody over a century of Maison Cartier design language.",
+      "Inspired by WWI Renault tanks, the Tank has been a symbol of refined taste since 1917. Elongated rectangular case, railroad minute track, blue cabochon crown. Worn by Andy Warhol and Princess Diana. Quartz Calibre 076.",
     specs: {
       movement: "Cartier Calibre 076, quartz",
       caseMaterial: "Stainless steel",
@@ -420,7 +420,7 @@ export const watches: Watch[] = [
       img("1634140704051-58a787556cd1"),
     ],
     description:
-      "Jack Heuer created the Carrera in 1963 to honor the dangerous Carrera Panamericana road race. Six decades later, the Carrera remains TAG Heuer's flagship chronograph, blending motorsport DNA with dressy sophistication. This reference features a sunray blue dial, three recessed sub-dials, and the TH20-00 automatic chronograph calibre. The alligator strap keeps it lighter and more elegant than its bracelet siblings.",
+      "Created by Jack Heuer in 1963 for the Carrera Panamericana road race. Sunray blue dial, three recessed sub-dials, TH20-00 automatic chronograph calibre with 80-hour reserve. Alligator strap keeps it elegant.",
     specs: {
       movement: "TAG Heuer Calibre TH20-00, automatic chronograph",
       caseMaterial: "Stainless steel",
@@ -442,13 +442,13 @@ export const watches: Watch[] = [
     reference: "CBL2111.BA0644",
     price: 6200,
     images: [
-      img("1620625515032-6ed0c1790c75"),
-      img("1633783168202-47fa299c270d"),
       img("1619976396248-56d05beb2919"),
-      img("1619976491498-f2dadb25fb3b"),
+      img("1620625515032-6ed0c1790c75"),
+      img("1728334386136-2428c3196dc0"),
+      img("1710384317708-fde30d29fb64"),
     ],
     description:
-      "The TAG Heuer Monaco made history in 1969 as one of the first automatic chronograph wristwatches and instantly achieved icon status when Steve McQueen wore it in the film Le Mans. Its bold square case and vivid blue dial are instantly recognizable. This current reference stays true to the original proportions while adding a modern Calibre Heuer 02 movement with an impressive 80-hour power reserve and column-wheel chronograph mechanism.",
+      "Made history in 1969 as one of the first automatic chronographs. Icon status via Steve McQueen in Le Mans. Bold square case, vivid blue dial. Current Calibre Heuer 02 with 80-hour power reserve and column-wheel mechanism.",
     specs: {
       movement: "TAG Heuer Calibre Heuer 02, automatic chronograph",
       caseMaterial: "Stainless steel",
@@ -472,13 +472,13 @@ export const watches: Watch[] = [
     reference: "IW371617",
     price: 8450,
     images: [
-      img("1600003014755-ba31aa59c4b6"),
-      img("1548169874-53e85f753f1e"),
-      img("1604242692760-2f7b0c26856d"),
-      img("1610889672442-5629e6845d17"),
+      img("1524805444758-089113d48a6d"),
+      img("1652025214381-ce1aa292b850"),
+      img("1657104996708-044ef9812f85"),
+      img("1640437830882-3b3536cc8324"),
     ],
     description:
-      "The Portugieser Chronograph is IWC's most beloved model, born from a 1930s request by two Portuguese importers who wanted a large wristwatch with the accuracy of a marine chronometer. The silver-plated dial, blued hands, applied Arabic numerals, and slim leaf-shaped hour and minute hands give it a classical elegance rarely matched in the chronograph world. The in-house Calibre 69355 provides reliability befitting IWC's engineering heritage from Schaffhausen, Switzerland.",
+      "IWC's most beloved model, born from a 1930s request for marine chronometer accuracy in a wristwatch. Silver-plated dial, blued hands, applied Arabic numerals. In-house Calibre 69355 chronograph from Schaffhausen, Switzerland.",
     specs: {
       movement: "IWC Calibre 69355, automatic chronograph",
       caseMaterial: "Stainless steel",
@@ -502,11 +502,11 @@ export const watches: Watch[] = [
     images: [
       img("1602103146071-b3b209c8ca9b"),
       img("1585123413507-d9a511e7a89c"),
+      img("1611243705491-71487c2ed137"),
       img("1662384205880-2c7a9879cc0c"),
-      img("1594534475808-b18fc33b045e"),
     ],
     description:
-      "IWC's Big Pilot lineage traces back to the massive Grosse Fliegeruhr navigation watches of the 1940s. The current 43mm version scales the iconic design into a more wearable format while preserving all the hallmarks: oversized conical crown for gloved operation, triangular luminous index at 12 o'clock, and supremely legible dial layout. The blue dial adds a modern twist, and the in-house Calibre 82100 with Pellaton winding offers seven days of power reserve.",
+      "Lineage traces to 1940s navigation watches. 43mm scales the iconic design into a wearable format. Oversized conical crown for gloved operation, triangular luminous index at 12. Blue dial, Calibre 82100 with Pellaton winding and 7-day reserve.",
     specs: {
       movement: "IWC Calibre 82100, automatic with Pellaton winding",
       caseMaterial: "Stainless steel",

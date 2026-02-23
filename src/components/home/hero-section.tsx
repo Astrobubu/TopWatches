@@ -2,47 +2,36 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { FadeIn } from "@/components/ui/fade-in"
+import { ArrowRight, Search } from "lucide-react"
+import { Input } from "@/components/ui/input"
 
 export function HeroSection() {
   return (
-    <section className="relative h-[80vh] min-h-[600px] flex items-end pb-20 overflow-hidden">
+    <section className="relative h-[100dvh] min-h-[450px] flex items-center overflow-hidden">
       <img
-        src="https://images.unsplash.com/photo-1600003014608-c2ccc1570a65?w=1920&q=80"
-        alt="Luxury timepiece"
+        src="https://swisswatches-magazine.com/uploads/2024/09/rolex-submariner-titlepicture.webp"
+        alt="Rolex Submariner"
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
-        <FadeIn direction="up" delay={0.1}>
-          <p className="text-sm uppercase tracking-[0.3em] mb-4 text-gold">
-            Exceptional Timepieces
-          </p>
-          <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6">
-            Discover Timeless
-            <br />
-            Elegance
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-black/80" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full mt-auto mb-20 lg:mb-32">
+        <div className="max-w-2xl">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif italic text-foreground mb-6 leading-[0.9] tracking-tighter">
+            The<br />Collection.
           </h1>
-          <p className="text-lg text-white/80 mb-8 max-w-xl">
-            The world&apos;s most trusted marketplace for luxury watches.
-            Authenticated, insured, and delivered worldwide.
+          <p className="text-base md:text-lg font-mono text-foreground/60 mb-10 max-w-md">
+            Authenticated luxury timepieces. Acquired directly. Verified by experts.
           </p>
-          <div className="flex gap-4">
-            <Button
-              asChild
-              className="bg-gold hover:bg-gold/90 text-white rounded-none px-8 py-6 text-sm uppercase tracking-wider"
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              href="/collections"
+              className="magnetic-btn bg-primary text-background px-8 py-4 rounded-full font-bold text-sm tracking-wide flex items-center justify-center hover:bg-foreground"
             >
-              <Link href="/collections">Explore Collection</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="border-white text-white hover:bg-white/10 rounded-none px-8 py-6 text-sm uppercase tracking-wider"
-            >
-              <Link href="/about">Our Story</Link>
-            </Button>
+              Enter Boutique
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
           </div>
-        </FadeIn>
+        </div>
       </div>
     </section>
   )

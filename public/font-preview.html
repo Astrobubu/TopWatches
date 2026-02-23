@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Pairing Previews</title>
+
+    <!-- Google Fonts Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preset A Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=IBM+Plex+Mono&family=Outfit:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preset B Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+    <!-- Preset C Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Space+Grotesk:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Preset A Colors */
+            --a-primary: #2E4036;
+            --a-accent: #CC5833;
+            --a-bg: #F2F0E9;
+            --a-text: #1A1A1A;
+            
+            /* Preset B Colors */
+            --b-primary: #0D0D12;
+            --b-accent: #C9A84C;
+            --b-bg: #FAF8F5;
+            --b-text: #2A2A35;
+            
+            /* Preset C Colors */
+            --c-primary: #E8E4DD;
+            --c-accent: #E63B2E;
+            --c-bg: #F5F3EE;
+            --c-text: #111111;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            background: #e0e0e0;
+            padding-bottom: 5rem;
+        }
+
+        .preset-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 80vh;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Nav styling generic */
+        .navbar {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Hero styling generic */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-label {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin: 0 0 2rem 0;
+        }
+
+        .hero-description {
+            max-width: 500px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .data-display {
+            font-size: 0.9rem;
+            padding: 1rem 1.5rem;
+            display: inline-flex;
+            gap: 2rem;
+            border-radius: 99px;
+            align-items: center;
+        }
+
+        .noise {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            opacity: 0.05;
+            z-index: 1;
+        }
+
+        /* =========================================
+           PRESET A: Organic Tech
+           ========================================= */
+        .preset-a {
+            background-color: var(--a-bg);
+            color: var(--a-text);
+        }
+        .preset-a .navbar { font-family: 'Outfit', sans-serif; }
+        .preset-a .logo { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--a-primary); letter-spacing: -0.02em; }
+        .preset-a .hero-label { font-family: 'Outfit', sans-serif; font-weight: 600; color: var(--a-accent); }
+        .preset-a .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-style: italic; color: var(--a-primary); }
+        .preset-a .hero-description { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .preset-a .data-display { font-family: 'IBM Plex Mono', monospace; background-color: var(--a-primary); color: var(--a-bg); }
+
+        /* =========================================
+           PRESET B: Midnight Luxe
+           ========================================= */
+        .preset-b {
+            background-color: var(--b-primary);
+            color: var(--b-bg);
+        }
+        .preset-b .navbar { font-family: 'Inter', sans-serif; }
+        .preset-b .logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -0.04em; }
+        .preset-b .hero-label { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--b-accent); letter-spacing: 0.3em; }
+        .preset-b .hero-title { font-family: 'Playfair Display', serif; font-weight: 600; font-style: italic; }
+        .preset-b .hero-description { font-family: 'Inter', sans-serif; color: var(--b-bg); opacity: 0.8; }
+        .preset-b .data-display { font-family: 'JetBrains Mono', monospace; background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+
+        /* =========================================
+           PRESET C: Brutalist Signal
+           ========================================= */
+        .preset-c {
+            background-color: var(--c-bg);
+            color: var(--c-text);
+            border-radius: 0; /* Brutalist - no curves */
+            border: 2px solid var(--c-text);
+        }
+        .preset-c .navbar { font-family: 'Space Grotesk', sans-serif; border-bottom: 2px solid var(--c-text); padding: 1.5rem 2rem; }
+        .preset-c .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -0.05em; }
+        .preset-c .hero-label { font-family: 'Space Grotesk', sans-serif; font-weight: 700; background: var(--c-accent); color: var(--c-bg); display: inline-block; padding: 0.25rem 0.75rem; }
+        .preset-c .hero-title { font-family: 'DM Serif Display', serif; font-style: italic; font-weight: 400; font-size: 6rem; letter-spacing: -0.02em; }
+        .preset-c .hero-description { font-family: 'Space Grotesk', sans-serif; }
+        .preset-c .data-display { font-family: 'Space Mono', monospace; background-color: var(--c-text); color: var(--c-bg); border-radius: 0; font-size: 1rem; }
+
+        .header-title {
+            text-align: center;
+            font-family: sans-serif;
+            padding: 3rem 0 1rem;
+            margin: 0;
+            color: #333;
+        }
+        .header-subtitle {
+            text-align: center;
+            font-family: sans-serif;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="header-title">Font Pairing Previews</h1>
+    <p class="header-subtitle">Based on your "GEMINI.md" Design Presets</p>
+
+    <!-- Preset A -->
+    <div class="preset-container preset-a">
+        <svg class="noise" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+            <filter id="noiseFilterA"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilterA)"/>
+        </svg>
+
+        <nav class="navbar">
+            <div class="logo">TopWatches</div>
+            <div class="nav-links">
+                <div>Collections</div>
+                <div>Philosophy</div>
+                <div>Cart [0]</div>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <div class="hero-label">Organic Tech</div>
+            <h1 class="hero-title">The anatomy of<br>modern time.</h1>
+            <p class="hero-description">A bridge between biological research labs and avant-garde luxury magazines. Clinical, pristine, and grounded in nature.</p>
+            <div>
+                <div class="data-display">
+                    <span>SKU: TW-098X</span>
+                    <span>$12,450 USD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Preset B -->
+    <div class="preset-container preset-b">
+        <svg class="noise" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+            <filter id="noiseFilterB"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/></filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilterB)"/>
+        </svg>
+
+        <nav class="navbar">
+            <div class="logo">TOPWATCHES</div>
+            <div class="nav-links">
+                <div>Collections</div>
+                <div>Atelier</div>
+                <div>Cart (0)</div>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <div class="hero-label">Midnight Luxe</div>
+            <h1 class="hero-title">Elegance in the<br>shadows.</h1>
+            <p class="hero-description">A private members' club meets a high-end watchmaker's atelier. Obsessively detailed, dramatic, and exclusively reserved.</p>
+            <div>
+                <div class="data-display">
+                    <span>REF. 116610LN</span>
+                    <span>$14,200 USD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Preset C -->
+    <div class="preset-container preset-c">
+        <svg class="noise" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+            <filter id="noiseFilterC"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter>
+            <rect width="100%" height="100%" filter="url(#noiseFilterC)"/>
+        </svg>
+
+        <nav class="navbar">
+            <div class="logo">TopWatches //</div>
+            <div class="nav-links">
+                <div>Archive</div>
+                <div>Signal</div>
+                <div>[ Cart: 0 ]</div>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <div class="hero-label">Brutalist Signal</div>
+            <h1 class="hero-title">Pure metrics.<br>Zero noise.</h1>
+            <p class="hero-description">A control room for the future. No decoration, just pure information density and raw precision engineering.</p>
+            <div>
+                <div class="data-display">
+                    <span>DATA: TW-88.SYS</span>
+                    <span>VAL: 9,800 USD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

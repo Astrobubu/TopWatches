@@ -1,12 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
 interface ImageGalleryProps {
@@ -18,27 +12,15 @@ export function ImageGallery({ images, modelName }: ImageGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   return (
-    <div className="space-y-4">
-      {/* Main image - clickable to open dialog */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <div className="relative aspect-square overflow-hidden bg-muted cursor-zoom-in">
-            <img
-              src={images[selectedIndex]}
-              alt={modelName}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </DialogTrigger>
-        <DialogContent className="max-w-4xl p-0">
-          <DialogTitle className="sr-only">{modelName}</DialogTitle>
-          <img
-            src={images[selectedIndex]}
-            alt={modelName}
-            className="w-full h-auto"
-          />
-        </DialogContent>
-      </Dialog>
+    <div className="space-y-3">
+      {/* Main image */}
+      <div className="relative aspect-square overflow-hidden bg-background" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+        <img
+          src={images[selectedIndex]}
+          alt={modelName}
+          className="w-full h-full object-cover"
+        />
+      </div>
 
       {/* Thumbnails */}
       <div className="grid grid-cols-4 gap-2">
@@ -46,12 +28,11 @@ export function ImageGallery({ images, modelName }: ImageGalleryProps) {
           <button
             key={i}
             onClick={() => setSelectedIndex(i)}
-            className={cn(
-              "aspect-square overflow-hidden border-2 transition-colors",
-              i === selectedIndex
-                ? "border-gold"
-                : "border-transparent hover:border-border"
-            )}
+            className="aspect-square overflow-hidden bg-background transition-colors"
+            style={{
+              borderRadius: 'calc(var(--card-radius) * 0.5)',
+              border: `2px solid ${i === selectedIndex ? 'var(--primary)' : 'var(--border)'}`,
+            }}
           >
             <img
               src={img}

@@ -1,44 +1,41 @@
 "use client"
 
 import { Shield, Truck, RotateCcw } from "lucide-react"
-import { FadeIn } from "@/components/ui/fade-in"
+import { Card, CardContent } from "@/components/ui/card"
 
 const pillars = [
   {
     icon: Shield,
-    title: "Certified Authentic",
-    description:
-      "Every timepiece undergoes rigorous authentication by our expert watchmakers",
+    title: "Authenticated",
+    description: "Every watch is verified by certified watchmakers before listing",
   },
   {
     icon: Truck,
-    title: "Worldwide Shipping",
-    description:
-      "Fully insured delivery to over 120 countries with real-time tracking",
+    title: "Insured Shipping",
+    description: "Fully insured delivery to over 120 countries with tracking",
   },
   {
     icon: RotateCcw,
-    title: "Easy Returns",
-    description:
-      "14-day hassle-free return policy with full money-back guarantee",
+    title: "14-Day Returns",
+    description: "Full money-back guarantee within 14 days of delivery",
   },
 ]
 
 export function TrustSection() {
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-12 border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-          {pillars.map((pillar, index) => (
-            <FadeIn key={pillar.title} delay={index * 0.15}>
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gold/10">
-                <pillar.icon className="h-6 w-6 text-gold" />
-              </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">
-                {pillar.title}
-              </h3>
-              <p className="text-muted-foreground">{pillar.description}</p>
-            </FadeIn>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {pillars.map((pillar) => (
+            <Card key={pillar.title} className="text-center">
+              <CardContent className="pt-6">
+                <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-md bg-muted">
+                  <pillar.icon className="h-5 w-5 text-foreground" />
+                </div>
+                <h3 className="font-medium mb-1">{pillar.title}</h3>
+                <p className="text-sm text-muted-foreground">{pillar.description}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

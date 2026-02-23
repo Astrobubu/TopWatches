@@ -3,13 +3,6 @@
 import { watches } from "@/data/watches"
 import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel"
 
 interface RelatedWatchesProps {
   currentWatch: Watch
@@ -22,27 +15,18 @@ export function RelatedWatches({ currentWatch }: RelatedWatchesProps) {
         w.id !== currentWatch.id &&
         (w.brand === currentWatch.brand || w.category === currentWatch.category)
     )
-    .slice(0, 6)
+    .slice(0, 4)
 
   if (related.length === 0) return null
 
   return (
-    <section className="py-16">
-      <h2 className="font-serif text-2xl font-bold mb-8">You May Also Like</h2>
-      <Carousel opts={{ align: "start" }} className="w-full">
-        <CarouselContent className="-ml-4">
-          {related.map((watch) => (
-            <CarouselItem
-              key={watch.id}
-              className="pl-4 basis-full sm:basis-1/2 lg:basis-1/4"
-            >
-              <WatchCard watch={watch} />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+    <section className="py-12 border-t border-border mt-12">
+      <h2 className="font-serif italic text-2xl text-foreground mb-8">You May Also Like</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {related.map((watch) => (
+          <WatchCard key={watch.id} watch={watch} />
+        ))}
+      </div>
     </section>
   )
 }

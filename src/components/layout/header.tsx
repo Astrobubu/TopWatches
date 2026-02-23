@@ -1,137 +1,85 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
-import { Heart, ShoppingBag, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { SearchBar } from "@/components/layout/search-bar";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { Menu, X } from "lucide-react"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 80)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between gap-4">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="font-serif font-bold text-2xl tracking-wider shrink-0"
-          >
-            KRONOS
+    <>
+      <nav
+        className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl transition-all duration-500 ease-out px-5 md:px-6 py-3 flex items-center justify-between ${scrolled
+          ? "bg-background/80 backdrop-blur-xl shadow-2xl"
+          : "bg-transparent"
+          }`}
+        style={{ borderRadius: 'var(--pill-radius)', border: scrolled ? 'var(--border-w) solid var(--border)' : '1px solid transparent' }}
+      >
+        {/* Logo */}
+        <Link href="/" className="font-sans font-bold text-xl md:text-2xl tracking-tight text-primary hover:text-accent transition-colors">
+          TopWatches
+        </Link>
+
+        {/* Desktop Links & Switcher */}
+        <div className="hidden md:flex items-center gap-8 text-sm font-sans font-medium text-foreground/80">
+          <Link href="/collections" className="hover:text-primary transition-colors">
+            Collections
           </Link>
-
-          {/* Center: Search bar - desktop only */}
-          <div className="hidden md:flex flex-1 justify-center">
-            <SearchBar />
-          </div>
-
-          {/* Right: Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/collections">Collections</Link>
-            </Button>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/about">About</Link>
-            </Button>
-            <ThemeToggle />
-            <Button variant="ghost" size="icon" aria-label="Wishlist">
-              <Heart className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" aria-label="Cart">
-              <ShoppingBag className="h-5 w-5" />
-            </Button>
-          </div>
-
-          {/* Right: Mobile nav */}
-          <div className="flex md:hidden items-center gap-1">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label="Open menu"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
+          <Link href="/about" className="hover:text-primary transition-colors">
+            About
+          </Link>
+          <ThemeSwitcher />
         </div>
-      </div>
 
-      {/* Mobile menu sheet */}
-      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-        <SheetContent side="left" className="w-72">
-          <SheetHeader>
-            <SheetTitle className="font-serif font-bold text-2xl tracking-wider">
-              KRONOS
-            </SheetTitle>
-          </SheetHeader>
+        {/* Desktop CTA */}
+        <Link
+          href="/collections"
+          className="hidden md:inline-flex bg-primary text-primary-foreground px-5 py-2 text-sm font-bold hover:bg-foreground hover:text-background transition-colors"
+          style={{ borderRadius: 'var(--pill-radius)' }}
+        >
+          Shop Now
+        </Link>
 
-          <nav className="flex flex-col gap-1 px-4 mt-4">
-            {/* Mobile search */}
-            <div className="mb-4">
-              <SearchBar />
-            </div>
+        {/* Mobile Toggle & Switcher */}
+        <div className="md:hidden flex items-center gap-4">
+          <ThemeSwitcher />
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2 text-foreground"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+      </nav>
 
-            <Button
-              variant="ghost"
-              className="justify-start"
-              asChild
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Link href="/">Home</Link>
-            </Button>
-            <Button
-              variant="ghost"
-              className="justify-start"
-              asChild
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Link href="/collections">Collections</Link>
-            </Button>
-            <Button
-              variant="ghost"
-              className="justify-start"
-              asChild
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Link href="/about">About</Link>
-            </Button>
-
-            <div className="my-2 h-px bg-border" />
-
-            <Button
-              variant="ghost"
-              className="justify-start gap-2"
-              asChild
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Link href="#">
-                <Heart className="h-4 w-4" />
-                Wishlist
-              </Link>
-            </Button>
-            <Button
-              variant="ghost"
-              className="justify-start gap-2"
-              asChild
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <Link href="#">
-                <ShoppingBag className="h-4 w-4" />
-                Cart
-              </Link>
-            </Button>
-          </nav>
-        </SheetContent>
-      </Sheet>
-    </header>
-  );
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 text-xl font-sans font-medium text-foreground">
+          <Link href="/collections" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors">
+            Collections
+          </Link>
+          <Link href="/about" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors">
+            About
+          </Link>
+          <Link
+            href="/collections"
+            onClick={() => setMobileOpen(false)}
+            className="bg-primary text-primary-foreground px-8 py-3 font-bold hover:bg-foreground hover:text-background transition-colors mt-4"
+            style={{ borderRadius: 'var(--pill-radius)' }}
+          >
+            Shop Now
+          </Link>
+        </div>
+      )}
+    </>
+  )
 }
