@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { FadeIn } from "@/components/ui/fade-in"
 
 const categories = [
   {
@@ -35,30 +38,34 @@ export function CategoriesSection() {
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
-            Browse Categories
-          </p>
-          <h2 className="font-serif text-3xl font-bold">Find Your Style</h2>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-10">
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
+              Browse Categories
+            </p>
+            <h2 className="font-serif text-3xl font-bold">Find Your Style</h2>
+          </div>
+        </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {categories.map((cat) => (
-            <Link key={cat.slug} href={`/collections?category=${cat.slug}`}>
-              <div className="relative h-80 overflow-hidden group">
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
-                <div className="relative z-10 h-full flex flex-col justify-end p-6 text-white">
-                  <h3 className="font-serif text-2xl font-bold">{cat.name}</h3>
-                  <p className="text-sm text-white/70 mt-1">
-                    {cat.count} watches
-                  </p>
+          {categories.map((cat, index) => (
+            <FadeIn key={cat.slug} delay={index * 0.1}>
+              <Link href={`/collections?category=${cat.slug}`}>
+                <div className="relative h-80 overflow-hidden group">
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <h3 className="font-serif text-2xl font-bold">{cat.name}</h3>
+                    <p className="text-sm text-white/70 mt-1">
+                      {cat.count} watches
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </FadeIn>
           ))}
         </div>
       </div>

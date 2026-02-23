@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { FadeIn } from "@/components/ui/fade-in"
 
 export function HeroSection() {
   return (
@@ -11,33 +14,35 @@ export function HeroSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
-        <p className="text-sm uppercase tracking-[0.3em] mb-4 text-gold">
-          Exceptional Timepieces
-        </p>
-        <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6">
-          Discover Timeless
-          <br />
-          Elegance
-        </h1>
-        <p className="text-lg text-white/80 mb-8 max-w-xl">
-          The world&apos;s most trusted marketplace for luxury watches.
-          Authenticated, insured, and delivered worldwide.
-        </p>
-        <div className="flex gap-4">
-          <Button
-            asChild
-            className="bg-gold hover:bg-gold/90 text-white rounded-none px-8 py-6 text-sm uppercase tracking-wider"
-          >
-            <Link href="/collections">Explore Collection</Link>
-          </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="border-white text-white hover:bg-white/10 rounded-none px-8 py-6 text-sm uppercase tracking-wider"
-          >
-            <Link href="/about">Our Story</Link>
-          </Button>
-        </div>
+        <FadeIn direction="up" delay={0.1}>
+          <p className="text-sm uppercase tracking-[0.3em] mb-4 text-gold">
+            Exceptional Timepieces
+          </p>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6">
+            Discover Timeless
+            <br />
+            Elegance
+          </h1>
+          <p className="text-lg text-white/80 mb-8 max-w-xl">
+            The world&apos;s most trusted marketplace for luxury watches.
+            Authenticated, insured, and delivered worldwide.
+          </p>
+          <div className="flex gap-4">
+            <Button
+              asChild
+              className="bg-gold hover:bg-gold/90 text-white rounded-none px-8 py-6 text-sm uppercase tracking-wider"
+            >
+              <Link href="/collections">Explore Collection</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="border-white text-white hover:bg-white/10 rounded-none px-8 py-6 text-sm uppercase tracking-wider"
+            >
+              <Link href="/about">Our Story</Link>
+            </Button>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )
