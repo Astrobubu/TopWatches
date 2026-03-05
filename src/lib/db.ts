@@ -21,6 +21,8 @@ function toWatch(row: any, images: any[]): Watch {
 }
 
 export async function getWatches(): Promise<Watch[]> {
+  if (!supabase) return []
+
   const { data: watches, error } = await supabase
     .from("watches")
     .select("*")
@@ -44,6 +46,8 @@ export async function getWatches(): Promise<Watch[]> {
 }
 
 export async function getWatch(id: string): Promise<Watch | null> {
+  if (!supabase) return null
+
   const { data: watch, error } = await supabase
     .from("watches")
     .select("*")
@@ -64,6 +68,7 @@ export async function createWatch(
   watch: Omit<Watch, "images"> & { images: string[] }
 ): Promise<Watch> {
   const admin = createAdminClient()
+  if (!admin) throw new Error("Supabase not configured")
 
   const { error: watchError } = await admin.from("watches").insert({
     id: watch.id,
@@ -101,6 +106,7 @@ export async function updateWatch(
   data: Partial<Omit<Watch, "images">> & { images?: string[] }
 ): Promise<Watch> {
   const admin = createAdminClient()
+  if (!admin) throw new Error("Supabase not configured")
 
   const { images, ...watchData } = data
 
@@ -130,6 +136,7 @@ export async function updateWatch(
 
 export async function deleteWatch(id: string): Promise<void> {
   const admin = createAdminClient()
+  if (!admin) throw new Error("Supabase not configured")
   const { error } = await admin.from("watches").delete().eq("id", id)
   if (error) throw error
 }
