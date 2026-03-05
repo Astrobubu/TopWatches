@@ -5,6 +5,9 @@ import { watches } from "@/data/watches"
 export async function POST() {
   try {
     const admin = createAdminClient()
+    if (!admin) {
+      return NextResponse.json({ error: "Supabase not configured" }, { status: 500 })
+    }
 
     // Check if watches already exist
     const { count } = await admin
