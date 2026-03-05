@@ -19,7 +19,7 @@ const NoiseOverlay = () => (
 );
 
 export const metadata: Metadata = {
-  title: "TopWatches | Luxury Watch Marketplace",
+  title: "Golden Watches | Luxury Watch Marketplace",
   description: "Buy and sell luxury watches from Rolex, Patek Philippe, Audemars Piguet, Omega and more",
 };
 

@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { watches } from "@/data/watches"
 import { WatchCard } from "@/components/watches/watch-card"
+import type { Watch } from "@/lib/types"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Camera, ClipboardList, ArrowRight, Upload, Loader2, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -22,6 +22,14 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
     const [progress, setProgress] = useState(0)
     const [recommendationId, setRecommendationId] = useState<string | null>(null)
     const [uploaded, setUploaded] = useState(false)
+    const [watches, setWatches] = useState<Watch[]>([])
+
+    useEffect(() => {
+        fetch("/api/watches")
+            .then((res) => res.json())
+            .then((data) => { if (Array.isArray(data)) setWatches(data) })
+            .catch(() => {})
+    }, [])
 
     // Reset state when opening/closing
     useEffect(() => {
@@ -82,7 +90,8 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
                         <div className="grid grid-cols-2 gap-4">
                             <button
                                 onClick={() => handleGenderSelect("male")}
-                                className="group p-8 rounded-2xl border border-border bg-card hover:border-primary hover:bg-secondary transition-all flex flex-col items-center gap-4"
+                                className="group p-8 rounded-2xl bg-card hover:bg-secondary transition-all flex flex-col items-center gap-4"
+                                style={{ boxShadow: 'var(--soft-shadow)' }}
                             >
                                 <div className="w-16 h-16 rounded-full bg-border flex items-center justify-center text-foreground group-hover:bg-primary group-hover:text-background transition-colors">
                                     <span className="font-serif italic text-2xl">M</span>
@@ -91,7 +100,8 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
                             </button>
                             <button
                                 onClick={() => handleGenderSelect("female")}
-                                className="group p-8 rounded-2xl border border-border bg-card hover:border-primary hover:bg-secondary transition-all flex flex-col items-center gap-4"
+                                className="group p-8 rounded-2xl bg-card hover:bg-secondary transition-all flex flex-col items-center gap-4"
+                                style={{ boxShadow: 'var(--soft-shadow)' }}
                             >
                                 <div className="w-16 h-16 rounded-full bg-border flex items-center justify-center text-foreground group-hover:bg-primary group-hover:text-background transition-colors">
                                     <span className="font-serif italic text-2xl">W</span>
@@ -114,7 +124,7 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
 
                         {!uploaded ? (
                             <div
-                                className="border-2 border-dashed border-border rounded-2xl p-10 text-center hover:border-primary/50 hover:bg-secondary/50 transition-colors cursor-pointer"
+                                className="border-2 border-dashed border-foreground/10 rounded-2xl p-10 text-center hover:border-primary/50 hover:bg-secondary/50 transition-colors cursor-pointer"
                                 onClick={() => {
                                     setUploaded(true)
                                     setTimeout(handleSimulateProcess, 800)
@@ -125,7 +135,7 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
                                 <p className="font-mono text-xs text-foreground/40">JPG, PNG, HEIC up to 5MB</p>
                             </div>
                         ) : (
-                            <div className="border-2 border-border rounded-2xl p-10 text-center bg-secondary flex flex-col items-center justify-center">
+                            <div className="border-2 border-foreground/10 rounded-2xl p-10 text-center bg-secondary flex flex-col items-center justify-center">
                                 <CheckCircle2 className="w-10 h-10 text-green-500 mb-4 animate-in zoom-in" />
                                 <p className="font-sans text-foreground">Image uploaded successfully.</p>
                             </div>
@@ -147,7 +157,8 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
                             {['Minimalist', 'Sporty', 'Classic', 'Avant-Garde', 'Vintage', 'Diamond-set'].map(opt => (
                                 <button
                                     key={opt}
-                                    className="p-4 rounded-xl border border-border bg-card hover:border-primary/50 text-foreground/70 hover:text-foreground transition-colors text-sm font-sans text-left"
+                                    className="p-4 rounded-xl bg-card hover:bg-secondary text-foreground/70 hover:text-foreground transition-colors text-sm font-sans text-left"
+                                    style={{ boxShadow: 'var(--soft-shadow)' }}
                                     onClick={(e) => {
                                         e.currentTarget.classList.toggle('border-primary')
                                         e.currentTarget.classList.toggle('bg-primary/10')
@@ -193,14 +204,15 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
                             <h3 className="font-serif italic text-3xl text-foreground">Your Curated Timepiece</h3>
                         </div>
 
-                        <div className="bg-card rounded-2xl p-4 border border-border">
+                        <div className="bg-card rounded-2xl p-4" style={{ boxShadow: 'var(--soft-shadow)' }}>
                             <WatchCard watch={watch} />
                         </div>
 
                         <div className="mt-6 flex gap-3">
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="flex-1 py-3.5 rounded-xl border border-border text-foreground font-sans font-semibold hover:bg-secondary transition-colors"
+                                className="flex-1 py-3.5 rounded-xl text-foreground font-sans font-semibold hover:bg-secondary transition-colors"
+                                style={{ boxShadow: 'var(--soft-shadow)' }}
                             >
                                 Close
                             </button>
@@ -222,7 +234,7 @@ export function ConciergeSystem({ isOpen, setIsOpen, initialFlow }: ConciergeSys
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogContent className="sm:max-w-md bg-background border-border text-foreground p-6 rounded-3xl" showCloseButton={false}>
+            <DialogContent className="sm:max-w-md bg-background text-foreground p-6 rounded-3xl" style={{ boxShadow: '0 8px 40px rgba(44, 40, 36, 0.2)', border: 'none' }} showCloseButton={false}>
                 {renderContent()}
             </DialogContent>
         </Dialog>

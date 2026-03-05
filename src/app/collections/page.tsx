@@ -1,10 +1,10 @@
 "use client"
 
-import { Suspense, useCallback, useMemo } from "react"
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
-import { SlidersHorizontal, X } from "lucide-react"
+import { SlidersHorizontal, X, Loader2 } from "lucide-react"
 
-import { watches } from "@/data/watches"
+import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
 import { FilterSidebar } from "@/components/collections/filter-sidebar"
 import { SortDropdown } from "@/components/collections/sort-dropdown"
@@ -52,6 +52,18 @@ function buildSearchParams(filters: FilterState, sort: string): string {
 function CollectionsContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const [watches, setWatches] = useState<Watch[]>([])
+  const [loadingWatches, setLoadingWatches] = useState(true)
+
+  useEffect(() => {
+    fetch("/api/watches")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) setWatches(data)
+      })
+      .catch(() => {})
+      .finally(() => setLoadingWatches(false))
+  }, [])
 
   const filters = useMemo(() => parseFiltersFromParams(searchParams), [searchParams])
   const sort = searchParams.get("sort") ?? "featured"
@@ -78,7 +90,7 @@ function CollectionsContent() {
 
   const filteredWatches = useMemo(
     () => sortWatches(filterWatches(watches, filters), sort),
-    [filters, sort]
+    [watches, filters, sort]
   )
 
   const hasActiveFilters =
@@ -109,7 +121,7 @@ function CollectionsContent() {
               if (sidebar) sidebar.classList.toggle("hidden")
             }}
             className="lg:hidden flex items-center gap-2 bg-card text-foreground text-sm px-4 py-2 hover:border-primary/40 transition-colors"
-            style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}
+            style={{ borderRadius: 'var(--card-radius)', boxShadow: 'var(--soft-shadow)' }}
           >
             <SlidersHorizontal className="w-4 h-4" />
             Filters
@@ -127,7 +139,7 @@ function CollectionsContent() {
       </div>
 
       {/* Mobile filter sidebar (hidden by default) */}
-      <div id="mobile-filters" className="hidden lg:hidden mb-6 bg-card p-6" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+      <div id="mobile-filters" className="hidden lg:hidden mb-6 bg-card p-6" style={{ borderRadius: 'var(--card-radius)', boxShadow: 'var(--soft-shadow)' }}>
         <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
       </div>
 

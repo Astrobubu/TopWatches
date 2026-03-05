@@ -22,11 +22,11 @@ export function Header() {
           ? "bg-background/80 backdrop-blur-xl shadow-2xl"
           : "bg-transparent"
           }`}
-        style={{ borderRadius: 'var(--pill-radius)', border: scrolled ? 'var(--border-w) solid var(--border)' : '1px solid transparent' }}
+        style={{ borderRadius: 'var(--pill-radius)', boxShadow: scrolled ? '0 4px 30px rgba(44, 40, 36, 0.1)' : 'none' }}
       >
         {/* Logo */}
-        <Link href="/" className="font-sans font-bold text-xl md:text-2xl tracking-tight text-primary hover:text-accent transition-colors">
-          TopWatches
+        <Link href="/" className={`font-sans font-bold text-xl md:text-2xl tracking-tight transition-colors ${scrolled ? "text-primary hover:text-accent" : "text-foreground hover:text-primary"}`}>
+          Golden Watches
         </Link>
 
         {/* Desktop Links & Switcher */}
@@ -37,7 +37,7 @@ export function Header() {
           <Link href="/about" className="hover:text-primary transition-colors">
             About
           </Link>
-          <ThemeSwitcher />
+          <ThemeSwitcher className="hidden" />
         </div>
 
         {/* Desktop CTA */}
@@ -51,7 +51,7 @@ export function Header() {
 
         {/* Mobile Toggle & Switcher */}
         <div className="md:hidden flex items-center gap-4">
-          <ThemeSwitcher />
+          <ThemeSwitcher className="hidden" />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 text-foreground"

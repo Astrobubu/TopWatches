@@ -43,7 +43,7 @@ export function ConditionBadge({ condition }: { condition: string }) {
 
             {/* Tooltip */}
             {showTooltip && (
-                <div className="absolute bottom-full left-0 mb-2 w-64 bg-secondary border border-border rounded-xl p-3 shadow-xl z-50 pointer-events-none">
+                <div className="absolute bottom-full left-0 mb-2 w-64 bg-secondary rounded-xl p-3 z-50 pointer-events-none" style={{ boxShadow: '0 8px 32px rgba(44, 40, 36, 0.15)' }}>
                     <p className="text-xs text-foreground/80 leading-relaxed">{info.tagline}</p>
                     <p className="text-[10px] text-primary mt-1.5 font-mono tracking-wider">Click for full guide →</p>
                 </div>

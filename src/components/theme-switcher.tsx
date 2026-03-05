@@ -13,7 +13,7 @@ const themes = [
     { name: "Ocean Depth", value: "theme-ocean-depth", desc: "Deep Naval", color: "#38BDF8" },
 ]
 
-export function ThemeSwitcher() {
+export function ThemeSwitcher({ className }: { className?: string }) {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = React.useState(false)
     const [isOpen, setIsOpen] = React.useState(false)
@@ -40,7 +40,7 @@ export function ThemeSwitcher() {
     }
 
     return (
-        <div className="relative" ref={dropdownRef}>
+        <div className={`relative ${className || ''}`} ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-2 flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors"
@@ -51,7 +51,7 @@ export function ThemeSwitcher() {
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-56 py-2 bg-card/95 backdrop-blur-xl shadow-xl z-50" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+                <div className="absolute right-0 mt-2 w-56 py-2 bg-card/95 backdrop-blur-xl z-50" style={{ borderRadius: 'var(--card-radius)', boxShadow: '0 8px 32px rgba(44, 40, 36, 0.15)' }}>
                     <div className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 font-mono">
                         Design Presets
                     </div>

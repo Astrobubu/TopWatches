@@ -36,16 +36,24 @@
    ═══════════════════════════════════════════════ */
 :root,
 .theme-organic-tech {
-  --bg: #F2F0E9;
-  --text: #1A1A1A;
-  --primary: #2E4036;
-  --primary-fg: #F2F0E9;
-  --secondary: #E5E2D8;
-  --accent: #CC5833;
-  --muted: #E8E5DA;
-  --muted-fg: #6B7280;
-  --card: #FAF8F5;
-  --border: #D1D5DB;
+  --bg: #F5F0E8;
+  --text: #2C2824;
+  --primary: #C4A265;
+  --primary-fg: #F5F0E8;
+  --secondary: #EDE7DB;
+  --accent: #C4A265;
+  --muted: #EAE4D8;
+  --muted-fg: #7A746C;
+  --card: #FFFDF9;
+  --border: transparent;
+
+  --dark-section-bg: #1C1815;
+  --dark-section-text: #F5F0E8;
+  --dark-section-card: #2A2520;
+  --dark-section-muted: #3A352F;
+
+  --soft-shadow: 0 2px 20px rgba(44, 40, 36, 0.08);
+  --soft-shadow-hover: 0 8px 32px rgba(44, 40, 36, 0.12);
 
   --font-sans-active: "Plus Jakarta Sans", "Outfit", system-ui, sans-serif;
   --font-serif-active: "Cormorant Garamond", "Georgia", serif;
@@ -54,7 +62,7 @@
   --card-radius: 1.5rem;
   --container-radius: 2rem;
   --pill-radius: 99px;
-  --border-w: 1px;
+  --border-w: 0px;
   --dirham-filter: brightness(0);
   color-scheme: light;
 }
@@ -75,6 +83,12 @@
   --muted-fg: rgba(250, 248, 245, 0.5);
   --card: #13131A;
   --border: #2A2A35;
+  --dark-section-bg: #06060A;
+  --dark-section-text: #FAF8F5;
+  --dark-section-card: #0D0D12;
+  --dark-section-muted: #1a1a24;
+  --soft-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  --soft-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.4);
 
   --font-sans-active: "Inter", system-ui, sans-serif;
   --font-serif-active: "Playfair Display", "Georgia", serif;
@@ -104,6 +118,12 @@
   --muted-fg: #666666;
   --card: #FAFAFA;
   --border: #111111;
+  --dark-section-bg: #111111;
+  --dark-section-text: #F5F3EE;
+  --dark-section-card: #1A1A1A;
+  --dark-section-muted: #2A2A2A;
+  --soft-shadow: none;
+  --soft-shadow-hover: none;
 
   --font-sans-active: "Space Grotesk", system-ui, sans-serif;
   --font-serif-active: "DM Serif Display", "Georgia", serif;
@@ -133,6 +153,12 @@
   --muted-fg: #9CA3AF;
   --card: #111827;
   --border: #374151;
+  --dark-section-bg: #030304;
+  --dark-section-text: #E5E7EB;
+  --dark-section-card: #09090B;
+  --dark-section-muted: #111827;
+  --soft-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  --soft-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.5);
 
   --font-sans-active: "Outfit", system-ui, sans-serif;
   --font-serif-active: "Orbitron", "Inter", sans-serif;
@@ -162,6 +188,12 @@
   --muted-fg: #9CA3AF;
   --card: #FFFFFF;
   --border: #E5E7EB;
+  --dark-section-bg: #1C1915;
+  --dark-section-text: #FDFCF0;
+  --dark-section-card: #2A2620;
+  --dark-section-muted: #3A352F;
+  --soft-shadow: 0 2px 20px rgba(55, 65, 81, 0.08);
+  --soft-shadow-hover: 0 8px 32px rgba(55, 65, 81, 0.12);
 
   --font-sans-active: "Lora", "Georgia", serif;
   --font-serif-active: "Crimson Pro", "Georgia", serif;
@@ -191,6 +223,12 @@
   --muted-fg: #94A3B8;
   --card: #0F172A;
   --border: #334155;
+  --dark-section-bg: #060E1A;
+  --dark-section-text: #F3F4F6;
+  --dark-section-card: #0B192C;
+  --dark-section-muted: #1E293B;
+  --soft-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  --soft-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.4);
 
   --font-sans-active: "Montserrat", system-ui, sans-serif;
   --font-serif-active: "Libre Baskerville", "Georgia", serif;
@@ -202,6 +240,58 @@
   --border-w: 1.5px;
   --dirham-filter: brightness(0) invert(1);
   color-scheme: dark;
+}
+
+/* ═══════════════════ DARK SECTION OVERRIDE ═══════════════════ */
+.dark-section {
+  --bg: var(--dark-section-bg);
+  --text: var(--dark-section-text);
+  --card: var(--dark-section-card);
+  --muted: var(--dark-section-muted);
+  --muted-fg: rgba(245, 240, 232, 0.5);
+  --border: transparent;
+
+  /* Override Tailwind color variables directly */
+  --color-background: var(--dark-section-bg);
+  --color-foreground: var(--dark-section-text);
+  --color-card: var(--dark-section-card);
+  --color-card-foreground: var(--dark-section-text);
+  --color-muted: var(--dark-section-muted);
+  --color-muted-foreground: rgba(245, 240, 232, 0.5);
+  --color-secondary: var(--dark-section-muted);
+  --color-secondary-foreground: var(--dark-section-text);
+  --color-popover: var(--dark-section-card);
+  --color-popover-foreground: var(--dark-section-text);
+  --color-border: transparent;
+  --color-input: transparent;
+
+  background-color: var(--dark-section-bg);
+  color: var(--dark-section-text);
+}
+
+/* Dark section link utility */
+.dark-section-link {
+  color: var(--dark-section-text);
+  opacity: 0.4;
+}
+.dark-section-link:hover {
+  color: var(--primary);
+  opacity: 1;
+}
+
+/* CSS-only fade-in for dark sections (no GSAP dependency) */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dark-section-animate {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+/* Fix overflow-hidden + border-radius anti-aliasing artifact */
+.rounded-clip {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
 }
 
 /* ═══════════════════ BASE STYLES ═══════════════════ */

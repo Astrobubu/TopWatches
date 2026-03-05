@@ -1,13 +1,16 @@
-import { watches } from "@/data/watches"
+import { getAllWatches } from "@/lib/get-watches"
 import { WatchCard } from "@/components/watches/watch-card"
 import type { Metadata } from "next"
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
     title: "For Her | Ladies Collection | TopWatches",
     description: "Explore our curated collection of luxury women's timepieces.",
 }
 
-export default function ForHerPage() {
+export default async function ForHerPage() {
+    const watches = await getAllWatches()
     const forHerWatches = watches.filter((w) => parseInt(w.specs.caseSize) < 39)
 
     return (

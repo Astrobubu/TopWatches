@@ -8,9 +8,9 @@ interface WatchCardProps {
 export function WatchCard({ watch }: WatchCardProps) {
   return (
     <Link href={`/watches/${watch.id}`} className="group block">
-      <div className="bg-card overflow-hidden transition-all duration-500 hover:-translate-y-1" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+      <div className="bg-card overflow-hidden transition-all duration-500 hover:-translate-y-1" style={{ borderRadius: 'var(--card-radius)', boxShadow: 'var(--soft-shadow, 0 2px 20px rgba(44,40,36,0.08))' }}>
         {/* Image */}
-        <div className="relative overflow-hidden aspect-square bg-background">
+        <div className="relative overflow-hidden aspect-square bg-card">
           <img
             src={watch.images[0]}
             alt={`${watch.brand} ${watch.model}`}
@@ -18,7 +18,7 @@ export function WatchCard({ watch }: WatchCardProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
           {/* Condition badge */}
-          <span className="absolute top-3 right-3 bg-background/70 backdrop-blur-sm text-foreground/70 text-[10px] uppercase tracking-widest font-mono px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)', border: 'var(--border-w) solid var(--border)' }}>
+          <span className="absolute top-3 right-3 bg-background/70 backdrop-blur-sm text-foreground/70 text-[10px] uppercase tracking-widest font-mono px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
             {watch.condition}
           </span>
         </div>

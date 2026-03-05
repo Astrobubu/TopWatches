@@ -1,4 +1,3 @@
-import { watches } from "@/data/watches"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ImageGallery } from "@/components/watches/image-gallery"
@@ -6,11 +5,10 @@ import { WatchSpecs } from "@/components/watches/watch-specs"
 import { RelatedWatches } from "@/components/watches/related-watches"
 import { ConditionBadge } from "@/components/watches/condition-badge"
 import { WhatsAppOrder } from "@/components/watches/whatsapp-order"
+import { getWatchById } from "@/lib/get-watches"
 import type { Metadata } from "next"
 
-export function generateStaticParams() {
-  return watches.map((w) => ({ id: w.id }))
-}
+export const dynamic = "force-dynamic"
 
 export async function generateMetadata({
   params,
@@ -18,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>
 }): Promise<Metadata> {
   const { id } = await params
-  const watch = watches.find((w) => w.id === id)
+  const watch = await getWatchById(id)
   return {
     title: watch
       ? `${watch.brand} ${watch.model} | TopWatches`
@@ -32,7 +30,7 @@ export default async function WatchDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const watch = watches.find((w) => w.id === id)
+  const watch = await getWatchById(id)
   if (!watch) return notFound()
 
   return (
@@ -74,12 +72,12 @@ export default async function WatchDetailPage({
 
           <div className="flex items-center gap-2">
             <ConditionBadge condition={watch.condition} />
-            <span className="text-foreground/50 text-[10px] uppercase tracking-widest font-mono px-3 py-1" style={{ borderRadius: 'var(--pill-radius)', border: 'var(--border-w) solid var(--border)' }}>
+            <span className="text-foreground/50 text-[10px] uppercase tracking-widest font-mono px-3 py-1 bg-muted/50" style={{ borderRadius: 'var(--pill-radius)' }}>
               {watch.category}
             </span>
           </div>
 
-          <div className="border-t border-border pt-6">
+          <div className="border-t border-foreground/10 pt-6">
             <p className="font-serif italic text-4xl text-foreground flex items-center gap-2">
               <span className="font-mono text-base text-muted-foreground not-italic">AED</span>
               {watch.price.toLocaleString()}
@@ -88,14 +86,14 @@ export default async function WatchDetailPage({
 
           <WhatsAppOrder watch={watch} />
 
-          <div className="border-t border-border pt-6">
+          <div className="border-t border-foreground/10 pt-6">
             <h3 className="font-sans font-bold text-sm text-foreground mb-3">Description</h3>
             <p className="text-sm text-foreground/50 leading-relaxed">
               {watch.description}
             </p>
           </div>
 
-          <div className="border-t border-border pt-6">
+          <div className="border-t border-foreground/10 pt-6">
             <h3 className="font-sans font-bold text-sm text-foreground mb-4">Specifications</h3>
             <WatchSpecs specs={watch.specs} />
           </div>

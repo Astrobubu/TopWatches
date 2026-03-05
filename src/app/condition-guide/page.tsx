@@ -85,7 +85,8 @@ export default function ConditionGuidePage() {
                 {conditions.map((c) => (
                     <div
                         key={c.grade}
-                        className="bg-card rounded-2xl border border-border p-6 md:p-10 hover:border-border/80 transition-colors"
+                        className="bg-card rounded-2xl p-6 md:p-10 transition-all"
+                        style={{ boxShadow: 'var(--soft-shadow)' }}
                     >
                         <div className="flex flex-col md:flex-row md:items-start gap-6">
                             <div className="flex-1">

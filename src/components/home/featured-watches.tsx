@@ -1,13 +1,25 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { watches } from "@/data/watches"
 import { WatchCard } from "@/components/watches/watch-card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import type { Watch } from "@/lib/types"
 
 export function FeaturedWatches() {
-  const featuredWatches = watches.filter((w) => w.featured).slice(0, 8)
+  const [featuredWatches, setFeaturedWatches] = useState<Watch[]>([])
+
+  useEffect(() => {
+    fetch("/api/watches")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setFeaturedWatches(data.filter((w: Watch) => w.featured).slice(0, 8))
+        }
+      })
+      .catch(() => {})
+  }, [])
 
   return (
     <section className="py-12">
