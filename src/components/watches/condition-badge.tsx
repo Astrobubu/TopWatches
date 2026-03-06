@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import { useTranslation } from "@/lib/i18n/context"
 
 const conditionInfo: Record<string, { tagline: string; color: string }> = {
     new: {
@@ -24,6 +25,7 @@ const conditionInfo: Record<string, { tagline: string; color: string }> = {
 
 export function ConditionBadge({ condition }: { condition: string }) {
     const [showTooltip, setShowTooltip] = useState(false)
+    const { t } = useTranslation()
     const info = conditionInfo[condition] || conditionInfo["good"]
 
     return (
@@ -38,7 +40,7 @@ export function ConditionBadge({ condition }: { condition: string }) {
                     className="w-1.5 h-1.5 rounded-full"
                     style={{ backgroundColor: info.color }}
                 />
-                {condition}
+                {t(`conditions.${condition}`)}
             </Link>
 
             {/* Tooltip */}

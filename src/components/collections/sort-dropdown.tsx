@@ -7,28 +7,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useTranslation } from "@/lib/i18n/context"
 
 interface SortDropdownProps {
   value: string
   onChange: (value: string) => void
 }
 
-const SORT_OPTIONS = [
-  { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "newest", label: "Newest" },
-  { value: "brand", label: "Brand: A-Z" },
-]
-
 export function SortDropdown({ value, onChange }: SortDropdownProps) {
+  const { t } = useTranslation()
+
+  const sortOptions = [
+    { value: "featured", label: t("sort.featured") },
+    { value: "price-asc", label: t("sort.priceLow") },
+    { value: "price-desc", label: t("sort.priceHigh") },
+    { value: "newest", label: t("sort.newest") },
+    { value: "brand", label: t("sort.brandAZ") },
+  ]
+
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Sort by" />
+        <SelectValue placeholder={t("sort.sortBy")} />
       </SelectTrigger>
       <SelectContent>
-        {SORT_OPTIONS.map((option) => (
+        {sortOptions.map((option) => (
           <SelectItem key={option.value} value={option.value}>
             {option.label}
           </SelectItem>

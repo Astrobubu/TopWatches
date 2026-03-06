@@ -4,6 +4,7 @@ import { Suspense, useCallback, useEffect, useMemo, useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { SlidersHorizontal, X, Loader2 } from "lucide-react"
 
+import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
 import { FilterSidebar } from "@/components/collections/filter-sidebar"
@@ -50,6 +51,7 @@ function buildSearchParams(filters: FilterState, sort: string): string {
 }
 
 function CollectionsContent() {
+  const { t } = useTranslation()
   const searchParams = useSearchParams()
   const router = useRouter()
   const [watches, setWatches] = useState<Watch[]>([])
@@ -104,10 +106,10 @@ function CollectionsContent() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Page header */}
       <div className="mb-8">
-        <h3 className="font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">The Collection</h3>
-        <h1 className="font-serif italic text-3xl md:text-4xl text-foreground">All Watches</h1>
+        <h3 className="font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">{t("collections.theCollection")}</h3>
+        <h1 className="font-serif italic text-3xl md:text-4xl text-foreground">{t("collections.allWatches")}</h1>
         <p className="font-mono text-xs text-foreground/40 mt-2">
-          {filteredWatches.length} results
+          {filteredWatches.length} {t("collections.results")}
         </p>
       </div>
 
@@ -124,14 +126,14 @@ function CollectionsContent() {
             style={{ borderRadius: 'var(--card-radius)', boxShadow: 'var(--soft-shadow)' }}
           >
             <SlidersHorizontal className="w-4 h-4" />
-            Filters
+            {t("collections.filters")}
           </button>
           {hasActiveFilters && (
             <button
               onClick={clearAll}
               className="text-xs text-primary hover:text-foreground transition-colors flex items-center gap-1"
             >
-              <X className="w-3 h-3" /> Clear All
+              <X className="w-3 h-3" /> {t("filters.clearAll")}
             </button>
           )}
         </div>
@@ -160,9 +162,9 @@ function CollectionsContent() {
             </div>
           ) : (
             <div className="text-center py-20">
-              <p className="text-foreground/40 text-lg font-sans">No watches match your filters</p>
+              <p className="text-foreground/40 text-lg font-sans">{t("collections.noMatch")}</p>
               <button onClick={clearAll} className="text-primary text-sm mt-3 hover:underline">
-                Clear all filters
+                {t("collections.clearAllFilters")}
               </button>
             </div>
           )}

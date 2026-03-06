@@ -1,17 +1,21 @@
-import { getAllWatches } from "@/lib/get-watches"
+"use client"
+
+import { useEffect, useState } from "react"
+import { useTranslation } from "@/lib/i18n/context"
+import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
-import type { Metadata } from "next"
 
-export const dynamic = "force-dynamic"
+export default function ForHerPage() {
+    const { t } = useTranslation()
+    const [forHerWatches, setForHerWatches] = useState<Watch[]>([])
 
-export const metadata: Metadata = {
-    title: "For Her | Ladies Collection | TopWatches",
-    description: "Explore our curated collection of luxury women's timepieces.",
-}
-
-export default async function ForHerPage() {
-    const watches = await getAllWatches()
-    const forHerWatches = watches.filter((w) => parseInt(w.specs.caseSize) < 39)
+    useEffect(() => {
+        fetch("/api/watches")
+            .then((r) => r.json())
+            .then((watches: Watch[]) =>
+                setForHerWatches(watches.filter((w) => parseInt(w.specs.caseSize) < 39))
+            )
+    }, [])
 
     return (
         <div className="min-h-screen bg-background">
@@ -24,10 +28,10 @@ export default async function ForHerPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/80" />
                 <div className="relative z-10 text-center px-4 max-w-3xl mx-auto mt-10">
-                    <h3 className="font-mono text-primary text-xs tracking-[0.3em] mb-4 uppercase">Ladies Collection</h3>
-                    <h1 className="font-serif italic text-5xl md:text-7xl text-foreground mb-6 leading-tight">For Her.</h1>
+                    <h3 className="font-mono text-primary text-xs tracking-[0.3em] mb-4 uppercase">{t("forHer.subtitle")}</h3>
+                    <h1 className="font-serif italic text-5xl md:text-7xl text-foreground mb-6 leading-tight">{t("forHer.title")}</h1>
                     <p className="font-sans text-foreground/60 text-base md:text-lg max-w-xl mx-auto">
-                        Elegance perfectly proportioned. Discover our selection of refined timepieces under 39mm, crafted for the discerning woman.
+                        {t("forHer.description")}
                     </p>
                 </div>
             </section>
@@ -35,7 +39,7 @@ export default async function ForHerPage() {
             {/* Grid Section */}
             <section className="max-w-7xl mx-auto px-6 md:px-16 py-20 lg:py-32">
                 <div className="flex items-center justify-between mb-12">
-                    <p className="font-mono text-sm text-foreground/40">{forHerWatches.length} Timepieces</p>
+                    <p className="font-mono text-sm text-foreground/40">{forHerWatches.length} {t("forHer.count")}</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {forHerWatches.map((watch) => (

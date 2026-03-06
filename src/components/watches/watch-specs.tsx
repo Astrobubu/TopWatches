@@ -1,19 +1,24 @@
+"use client"
+
 import type { Watch } from "@/lib/types"
+import { useTranslation } from "@/lib/i18n/context"
 
 interface WatchSpecsProps {
   specs: Watch["specs"]
 }
 
 export function WatchSpecs({ specs }: WatchSpecsProps) {
+  const { t } = useTranslation()
+
   const specRows = [
-    { label: "Movement", value: specs.movement },
-    { label: "Case Material", value: specs.caseMaterial },
-    { label: "Case Size", value: specs.caseSize },
-    { label: "Water Resistance", value: specs.waterResistance },
-    { label: "Dial Color", value: specs.dialColor },
-    { label: "Bracelet", value: specs.bracelet },
-    { label: "Power Reserve", value: specs.powerReserve },
-    { label: "Year", value: specs.year.toString() },
+    { label: t("specs.movement"), value: specs.movement },
+    { label: t("specs.caseMaterial"), value: specs.caseMaterial },
+    { label: t("specs.caseSize"), value: specs.caseSize },
+    { label: t("specs.waterResistance"), value: specs.waterResistance },
+    { label: t("specs.dialColor"), value: specs.dialColor },
+    { label: t("specs.bracelet"), value: specs.bracelet },
+    { label: t("specs.powerReserve"), value: specs.powerReserve },
+    { label: t("specs.year"), value: specs.year.toString() },
   ]
 
   return (

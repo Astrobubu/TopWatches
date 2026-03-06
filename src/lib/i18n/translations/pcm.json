@@ -1,0 +1,199 @@
+{
+  "brand": "Golden Watches",
+  "tagline": "We don pick am. We don check am. We don deliver am. Your correct marketplace for pre-owned luxury timepieces.",
+
+  "nav": {
+    "collections": "Collections",
+    "about": "About Us",
+    "shopNow": "Shop Now",
+    "allWatches": "All Watches",
+    "aboutUs": "About Us"
+  },
+
+  "hero": {
+    "line1": "Come get wetin",
+    "line2": "Dey Special.",
+    "subtitle": "Luxury watches wey we don check well-well from the finest makers for world.",
+    "cta": "Enter the Collection"
+  },
+
+  "home": {
+    "curatedSelection": "Hand-Picked Selection",
+    "finestTimepieces": "Our Best Timepieces",
+    "viewAll": "See All",
+    "curated": "Hand-Picked",
+    "findYourFit": "Find Wetin Fit You",
+    "forHim": "For Bros",
+    "forHer": "For Sisi",
+    "above39mm": "39mm and above",
+    "under39mm": "Under 39mm",
+    "authorizedBrands": "Brands Wey We Carry",
+    "featuredWatches": "Top Watches Wey Dey"
+  },
+
+  "concierge": {
+    "title": "Personal Concierge",
+    "subtitle": "You no sure wetin go suit you?",
+    "description": "Make our concierge help you find the correct timepiece. Choose how you wan start.",
+    "uploadTitle": "Show Us Your Style",
+    "uploadDesc": "Upload photo of your cloth, watch wey you like, or any fashion look.",
+    "uploadBtn": "Upload Image",
+    "questionnaireTitle": "Answer Small Questions",
+    "questionnaireDesc": "Tell us about your wrist size, budget, and wetin you like.",
+    "questionnaireBtn": "Start Questionnaire",
+    "whoStyling": "Na who we dey style?",
+    "selectToRefine": "Pick one make we fit give you better recommendation.",
+    "showUsStyle": "Show Us Your Style",
+    "uploadPhotoDesc": "Upload photo of your outfit, watch wey you like, or your general look.",
+    "clickToBrowse": "Click to browse or drag image come here",
+    "fileTypes": "JPG, PNG, HEIC up to 5MB",
+    "uploadSuccess": "Image don upload well.",
+    "stylePreferences": "Style Wey You Like",
+    "selectVibes": "Pick the vibes wey dey move you.",
+    "minimalist": "Simple",
+    "sporty": "Sporty",
+    "classic": "Classic",
+    "avantGarde": "Avant-Garde",
+    "vintage": "Old School",
+    "diamondSet": "Diamond-set",
+    "findMyWatch": "Find My Watch",
+    "analyzing": "We Dey Check Your Profile...",
+    "matching": "Dey match am",
+    "perfectMatch": "Correct Match",
+    "curatedTimepiece": "The Timepiece Wey We Pick For You",
+    "close": "Close",
+    "startOver": "Start Again"
+  },
+
+  "collections": {
+    "theCollection": "The Collection",
+    "allWatches": "All Watches",
+    "results": "results",
+    "filters": "Filters",
+    "clearAll": "Clear All",
+    "noMatch": "No watch match wetin you filter",
+    "clearAllFilters": "Clear all filters"
+  },
+
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear All",
+    "brand": "Brand",
+    "priceRange": "Price Range",
+    "min": "Min",
+    "to": "to",
+    "max": "Max",
+    "category": "Category",
+    "condition": "Condition"
+  },
+
+  "sort": {
+    "sortBy": "Sort by",
+    "featured": "Featured",
+    "priceLow": "Price: Small go Big",
+    "priceHigh": "Price: Big come Small",
+    "newest": "Newest",
+    "brandAZ": "Brand: A-Z"
+  },
+
+  "categories": {
+    "dress": "Dress",
+    "sport": "Sport",
+    "dive": "Dive",
+    "chronograph": "Chronograph",
+    "pilot": "Pilot"
+  },
+
+  "conditions": {
+    "new": "New",
+    "unworn": "Never Wear",
+    "excellent": "Excellent",
+    "good": "Good"
+  },
+
+  "specs": {
+    "title": "Specifications",
+    "movement": "Movement",
+    "caseMaterial": "Case Material",
+    "caseSize": "Case Size",
+    "waterResistance": "Water Resistance",
+    "dialColor": "Dial Color",
+    "bracelet": "Bracelet",
+    "powerReserve": "Power Reserve",
+    "year": "Year"
+  },
+
+  "detail": {
+    "home": "Home",
+    "description": "Description",
+    "specifications": "Specifications"
+  },
+
+  "forHim": {
+    "subtitle": "Men Collection",
+    "title": "For Bros.",
+    "description": "Strong presence. Top-level engineering. Check out our hand-picked timepieces wey dey 39mm and above, wey we design for the modern gentleman.",
+    "count": "Timepieces"
+  },
+
+  "forHer": {
+    "subtitle": "Ladies Collection",
+    "title": "For Sisi.",
+    "description": "Elegance wey dey well proportioned. Discover our refined timepieces wey dey under 39mm, wey dem craft for woman wey get eye for quality.",
+    "count": "Timepieces"
+  },
+
+  "about": {
+    "title": "About Top Watches",
+    "location": "Gold Souq, Dubai — We dey trusted from day one",
+    "ourStory": "Our Story",
+    "storyP1": "Top Watches start for the heart of Dubai Gold Souq to create trusted place wey people fit buy and sell luxury timepieces. We dey inside Al Dukhan Building, we dey connect collectors with verified watches from the best brands for world.",
+    "storyP2": "Our team of certified watchmakers dey inspect and authenticate every watch wey pass through our shop. We put transparency, accuracy, and reliable service first — whether you come visit us or you shop online.",
+    "storyP3": "From Rolex to Patek Philippe, every watch for our collection don pass verification for authenticity, condition, and where e come from.",
+    "watchesSold": "Watches Wey We Don Sell",
+    "brands": "Brands",
+    "countries": "Countries",
+    "satisfaction": "Satisfaction",
+    "whyUs": "Why Top Watches",
+    "authTitle": "Authentication",
+    "authDesc": "Every watch go pass multi-point inspection by certified watchmakers. We dey verify serial numbers, movements, and where e come from.",
+    "curationTitle": "Expert Curation",
+    "curationDesc": "Our team dey hand-pick each timepiece. Only watches wey meet our standards for condition and authenticity go show.",
+    "secureTitle": "Secure Transactions",
+    "secureDesc": "Bank-level encryption and buyer protection dey every transaction. Escrow service make sure say your payment dey safe until delivery.",
+    "visitUs": "Come Visit Us",
+    "visitLocation": "Gold Souq, Dubai",
+    "visitAddress": "Al Dukhan Building — Shop No. 3, Gold Souq, near Gold Center, Al Daghaya, Al Sabkha, Dubai, United Arab Emirates",
+    "readyBrowse": "You Ready to Check Am?",
+    "exploreCollection": "Explore our collection of authenticated luxury watches.",
+    "browseAll": "Browse All Watches"
+  },
+
+  "footer": {
+    "authenticated": "Authenticated",
+    "authDesc": "Every watch don pass verification by certified watchmakers.",
+    "insuredShipping": "Insured Shipping",
+    "shippingDesc": "Delivery wey get full insurance with real-time tracking.",
+    "returns": "14-Day Returns",
+    "returnsDesc": "Full money-back guarantee. No wahala at all.",
+    "navigation": "Navigation",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "authenticity": "Authenticity Guarantee",
+    "copyright": "© 2026 Golden Watches. All rights reserved."
+  },
+
+  "reviews": {
+    "verified": "Verified Reviews",
+    "title": "Wetin Our People Dey Talk",
+    "reviewsCount": "reviews",
+    "seeAll": "See all reviews for Google"
+  },
+
+  "related": {
+    "title": "You Fit Also Like"
+  },
+
+  "currency": "AED"
+}

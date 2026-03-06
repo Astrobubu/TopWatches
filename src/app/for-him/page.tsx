@@ -1,17 +1,21 @@
-import { getAllWatches } from "@/lib/get-watches"
+"use client"
+
+import { useEffect, useState } from "react"
+import { useTranslation } from "@/lib/i18n/context"
+import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
-import type { Metadata } from "next"
 
-export const dynamic = "force-dynamic"
+export default function ForHimPage() {
+    const { t } = useTranslation()
+    const [forHimWatches, setForHimWatches] = useState<Watch[]>([])
 
-export const metadata: Metadata = {
-    title: "For Him | Gents Collection | TopWatches",
-    description: "Explore our curated collection of luxury men's timepieces.",
-}
-
-export default async function ForHimPage() {
-    const watches = await getAllWatches()
-    const forHimWatches = watches.filter((w) => parseInt(w.specs.caseSize) >= 39)
+    useEffect(() => {
+        fetch("/api/watches")
+            .then((r) => r.json())
+            .then((watches: Watch[]) =>
+                setForHimWatches(watches.filter((w) => parseInt(w.specs.caseSize) >= 39))
+            )
+    }, [])
 
     return (
         <div className="min-h-screen bg-background">
@@ -24,10 +28,10 @@ export default async function ForHimPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
                 <div className="relative z-10 text-center px-4 max-w-3xl mx-auto mt-10">
-                    <h3 className="font-mono text-primary text-xs tracking-[0.3em] mb-4 uppercase">Gents Collection</h3>
-                    <h1 className="font-serif italic text-5xl md:text-7xl text-foreground mb-6 leading-tight">For Him.</h1>
+                    <h3 className="font-mono text-primary text-xs tracking-[0.3em] mb-4 uppercase">{t("forHim.subtitle")}</h3>
+                    <h1 className="font-serif italic text-5xl md:text-7xl text-foreground mb-6 leading-tight">{t("forHim.title")}</h1>
                     <p className="font-sans text-foreground/60 text-base md:text-lg max-w-xl mx-auto">
-                        Substantial presence. Engineering excellence. Explore our hand-picked selection of timepieces 39mm and above, designed for the modern gentleman.
+                        {t("forHim.description")}
                     </p>
                 </div>
             </section>
@@ -35,7 +39,7 @@ export default async function ForHimPage() {
             {/* Grid Section */}
             <section className="max-w-7xl mx-auto px-6 md:px-16 py-20 lg:py-32">
                 <div className="flex items-center justify-between mb-12">
-                    <p className="font-mono text-sm text-foreground/40">{forHimWatches.length} Timepieces</p>
+                    <p className="font-mono text-sm text-foreground/40">{forHimWatches.length} {t("forHim.count")}</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {forHimWatches.map((watch) => (

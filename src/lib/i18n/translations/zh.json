@@ -1,0 +1,199 @@
+{
+  "brand": "Golden Watches",
+  "tagline": "精选。认证。送达。您值得信赖的二手奢华腕表交易平台。",
+
+  "nav": {
+    "collections": "系列",
+    "about": "关于我们",
+    "shopNow": "立即选购",
+    "allWatches": "全部腕表",
+    "aboutUs": "关于我们"
+  },
+
+  "hero": {
+    "line1": "拥有",
+    "line2": "非凡之作。",
+    "subtitle": "经过认证的奢华腕表，源自世界顶级品牌。",
+    "cta": "浏览系列"
+  },
+
+  "home": {
+    "curatedSelection": "精选推荐",
+    "finestTimepieces": "我们的臻品腕表",
+    "viewAll": "查看全部",
+    "curated": "精选",
+    "findYourFit": "找到适合您的",
+    "forHim": "男士系列",
+    "forHer": "女士系列",
+    "above39mm": "39毫米及以上",
+    "under39mm": "39毫米以下",
+    "authorizedBrands": "授权品牌",
+    "featuredWatches": "精选腕表"
+  },
+
+  "concierge": {
+    "title": "私人顾问",
+    "subtitle": "不确定哪款适合您？",
+    "description": "让我们的顾问为您找到完美的腕表。选择您想要的开始方式。",
+    "uploadTitle": "展示您的风格",
+    "uploadDesc": "上传您的服装照片、喜欢的腕表照片，或任何时尚造型。",
+    "uploadBtn": "上传图片",
+    "questionnaireTitle": "回答几个问题",
+    "questionnaireDesc": "告诉我们您的手腕尺寸、预算和风格偏好。",
+    "questionnaireBtn": "开始问卷",
+    "whoStyling": "我们为谁搭配？",
+    "selectToRefine": "选择以帮助我们优化推荐。",
+    "showUsStyle": "展示您的风格",
+    "uploadPhotoDesc": "上传您的穿搭照片、喜欢的腕表照片，或您的整体审美风格。",
+    "clickToBrowse": "点击浏览或拖拽图片至此处",
+    "fileTypes": "支持 JPG、PNG、HEIC 格式，最大 5MB",
+    "uploadSuccess": "图片上传成功。",
+    "stylePreferences": "风格偏好",
+    "selectVibes": "选择与您产生共鸣的风格。",
+    "minimalist": "极简",
+    "sporty": "运动",
+    "classic": "经典",
+    "avantGarde": "前卫",
+    "vintage": "复古",
+    "diamondSet": "镶钻",
+    "findMyWatch": "为我找表",
+    "analyzing": "正在分析您的偏好...",
+    "matching": "正在匹配条件",
+    "perfectMatch": "完美匹配",
+    "curatedTimepiece": "为您甄选的腕表",
+    "close": "关闭",
+    "startOver": "重新开始"
+  },
+
+  "collections": {
+    "theCollection": "腕表系列",
+    "allWatches": "全部腕表",
+    "results": "个结果",
+    "filters": "筛选",
+    "clearAll": "清除全部",
+    "noMatch": "没有符合筛选条件的腕表",
+    "clearAllFilters": "清除所有筛选条件"
+  },
+
+  "filters": {
+    "title": "筛选",
+    "clearAll": "清除全部",
+    "brand": "品牌",
+    "priceRange": "价格范围",
+    "min": "最低",
+    "to": "至",
+    "max": "最高",
+    "category": "类别",
+    "condition": "成色"
+  },
+
+  "sort": {
+    "sortBy": "排序方式",
+    "featured": "推荐",
+    "priceLow": "价格：从低到高",
+    "priceHigh": "价格：从高到低",
+    "newest": "最新上架",
+    "brandAZ": "品牌：A-Z"
+  },
+
+  "categories": {
+    "dress": "正装表",
+    "sport": "运动表",
+    "dive": "潜水表",
+    "chronograph": "计时码表",
+    "pilot": "飞行员表"
+  },
+
+  "conditions": {
+    "new": "全新",
+    "unworn": "未佩戴",
+    "excellent": "品相极佳",
+    "good": "品相良好"
+  },
+
+  "specs": {
+    "title": "规格参数",
+    "movement": "机芯",
+    "caseMaterial": "表壳材质",
+    "caseSize": "表壳尺寸",
+    "waterResistance": "防水性能",
+    "dialColor": "表盘颜色",
+    "bracelet": "表带",
+    "powerReserve": "动力储备",
+    "year": "年份"
+  },
+
+  "detail": {
+    "home": "首页",
+    "description": "描述",
+    "specifications": "规格参数"
+  },
+
+  "forHim": {
+    "subtitle": "男士系列",
+    "title": "致他。",
+    "description": "强大的存在感。卓越的工程技艺。探索我们精心挑选的39毫米及以上腕表，专为现代绅士打造。",
+    "count": "款腕表"
+  },
+
+  "forHer": {
+    "subtitle": "女士系列",
+    "title": "致她。",
+    "description": "优雅，恰到好处。探索我们精选的39毫米以下精致腕表，为品味独到的女性而生。",
+    "count": "款腕表"
+  },
+
+  "about": {
+    "title": "关于 Top Watches",
+    "location": "迪拜黄金市场 — 始终值得信赖",
+    "ourStory": "我们的故事",
+    "storyP1": "Top Watches 创立于迪拜黄金市场的核心地带，致力于打造一个值得信赖的奢华腕表买卖平台。我们位于 Al Dukhan 大厦，为藏家提供来自世界顶级品牌的认证腕表。",
+    "storyP2": "我们的认证制表师团队对每一枚经手的腕表进行检验和鉴定。无论您亲临门店还是在线选购，我们始终以透明、精准和可靠的服务为先。",
+    "storyP3": "从劳力士到百达翡丽，我们系列中的每一枚腕表都经过真伪、成色和来源的严格验证。",
+    "watchesSold": "已售腕表",
+    "brands": "个品牌",
+    "countries": "个国家",
+    "satisfaction": "满意度",
+    "whyUs": "为什么选择 Top Watches",
+    "authTitle": "权威认证",
+    "authDesc": "每枚腕表均由认证制表师进行多点检验。我们核实序列号、机芯及来源。",
+    "curationTitle": "专家甄选",
+    "curationDesc": "我们的团队精心挑选每一枚腕表。只有符合成色和真伪标准的腕表才会上架。",
+    "secureTitle": "安全交易",
+    "secureDesc": "每笔交易均享有银行级加密和买家保障。托管服务确保您的付款在交付前安全无忧。",
+    "visitUs": "到店参观",
+    "visitLocation": "迪拜黄金市场",
+    "visitAddress": "Al Dukhan 大厦 — 3号店铺，黄金市场，靠近黄金中心，Al Daghaya，Al Sabkha，迪拜，阿拉伯联合酋长国",
+    "readyBrowse": "准备好浏览了吗？",
+    "exploreCollection": "探索我们经过认证的奢华腕表系列。",
+    "browseAll": "浏览全部腕表"
+  },
+
+  "footer": {
+    "authenticated": "权威认证",
+    "authDesc": "每枚腕表均由认证制表师验证。",
+    "insuredShipping": "保险配送",
+    "shippingDesc": "全程保险配送，支持实时追踪。",
+    "returns": "14天退货",
+    "returnsDesc": "全额退款保障，零阻碍。",
+    "navigation": "导航",
+    "legal": "法律条款",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "authenticity": "真伪保证",
+    "copyright": "© 2026 Golden Watches. 保留所有权利。"
+  },
+
+  "reviews": {
+    "verified": "认证评价",
+    "title": "客户评价",
+    "reviewsCount": "条评价",
+    "seeAll": "在 Google 上查看所有评价"
+  },
+
+  "related": {
+    "title": "您可能还喜欢"
+  },
+
+  "currency": "AED"
+}

@@ -1,6 +1,7 @@
 "use client"
 
 import { Star } from "lucide-react"
+import { useTranslation } from "@/lib/i18n/context"
 
 const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/topwatchesdubai"
 
@@ -63,14 +64,15 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export function GoogleReviews() {
+  const { t } = useTranslation()
   return (
     <section
       className="dark-section py-20 md:py-28 px-6 md:px-16"
       style={{ backgroundColor: 'var(--dark-section-bg)', color: 'var(--dark-section-text)' }}
     >
       <div className="max-w-7xl mx-auto text-center mb-12 md:mb-16 dark-section-animate">
-        <h3 className="font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">Verified Reviews</h3>
-        <h2 className="font-serif italic text-3xl md:text-5xl mb-4">What Our Clients Say</h2>
+        <h3 className="font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">{t("reviews.verified")}</h3>
+        <h2 className="font-serif italic text-3xl md:text-5xl mb-4">{t("reviews.title")}</h2>
         <div className="flex items-center justify-center gap-3 mt-4">
           <div className="flex items-center gap-2">
             <svg viewBox="0 0 24 24" className="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +83,7 @@ export function GoogleReviews() {
             </svg>
             <span className="font-sans font-bold text-lg">4.8</span>
             <StarRating rating={5} />
-            <span className="opacity-40 text-sm font-sans">({reviews.length} reviews)</span>
+            <span className="opacity-40 text-sm font-sans">({reviews.length} {t("reviews.reviewsCount")})</span>
           </div>
         </div>
         <p className="font-mono text-[11px] opacity-40 mt-3">
@@ -133,7 +135,7 @@ export function GoogleReviews() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 font-sans text-sm text-primary hover:opacity-80 transition-opacity"
         >
-          See all reviews on Google
+          {t("reviews.seeAll")}
           <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" /></svg>
         </a>
       </div>

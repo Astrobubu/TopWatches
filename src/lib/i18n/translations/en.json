@@ -1,0 +1,199 @@
+{
+  "brand": "Golden Watches",
+  "tagline": "Curated. Authenticated. Delivered. Your trusted marketplace for pre-owned luxury timepieces.",
+
+  "nav": {
+    "collections": "Collections",
+    "about": "About",
+    "shopNow": "Shop Now",
+    "allWatches": "All Watches",
+    "aboutUs": "About Us"
+  },
+
+  "hero": {
+    "line1": "Acquire the",
+    "line2": "Exceptional.",
+    "subtitle": "Authenticated luxury watches from the world's finest maisons.",
+    "cta": "Enter the Collection"
+  },
+
+  "home": {
+    "curatedSelection": "Curated Selection",
+    "finestTimepieces": "Our Finest Timepieces",
+    "viewAll": "View All",
+    "curated": "Curated",
+    "findYourFit": "Find Your Fit",
+    "forHim": "For Him",
+    "forHer": "For Her",
+    "above39mm": "39mm and above",
+    "under39mm": "Under 39mm",
+    "authorizedBrands": "Authorized Brands",
+    "featuredWatches": "Featured Watches"
+  },
+
+  "concierge": {
+    "title": "Personal Concierge",
+    "subtitle": "Not sure what suits you?",
+    "description": "Let our concierge find the perfect timepiece for you. Choose how you'd like to begin.",
+    "uploadTitle": "Show Us Your Style",
+    "uploadDesc": "Upload a photo of your clothes, a watch you like, or even a fashion look.",
+    "uploadBtn": "Upload Image",
+    "questionnaireTitle": "Answer a Few Questions",
+    "questionnaireDesc": "Tell us about your wrist size, budget, and style preferences.",
+    "questionnaireBtn": "Start Questionnaire",
+    "whoStyling": "Who are we styling?",
+    "selectToRefine": "Select to help us refine your recommendations.",
+    "showUsStyle": "Show Us Your Style",
+    "uploadPhotoDesc": "Upload a photo of your outfit, a watch you like, or your general aesthetic.",
+    "clickToBrowse": "Click to browse or drag image here",
+    "fileTypes": "JPG, PNG, HEIC up to 5MB",
+    "uploadSuccess": "Image uploaded successfully.",
+    "stylePreferences": "Style Preferences",
+    "selectVibes": "Select the vibes that resonate with you.",
+    "minimalist": "Minimalist",
+    "sporty": "Sporty",
+    "classic": "Classic",
+    "avantGarde": "Avant-Garde",
+    "vintage": "Vintage",
+    "diamondSet": "Diamond-set",
+    "findMyWatch": "Find My Watch",
+    "analyzing": "Analyzing Profile...",
+    "matching": "Matching constraints",
+    "perfectMatch": "Perfect Match",
+    "curatedTimepiece": "Your Curated Timepiece",
+    "close": "Close",
+    "startOver": "Start Over"
+  },
+
+  "collections": {
+    "theCollection": "The Collection",
+    "allWatches": "All Watches",
+    "results": "results",
+    "filters": "Filters",
+    "clearAll": "Clear All",
+    "noMatch": "No watches match your filters",
+    "clearAllFilters": "Clear all filters"
+  },
+
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear All",
+    "brand": "Brand",
+    "priceRange": "Price Range",
+    "min": "Min",
+    "to": "to",
+    "max": "Max",
+    "category": "Category",
+    "condition": "Condition"
+  },
+
+  "sort": {
+    "sortBy": "Sort by",
+    "featured": "Featured",
+    "priceLow": "Price: Low to High",
+    "priceHigh": "Price: High to Low",
+    "newest": "Newest",
+    "brandAZ": "Brand: A-Z"
+  },
+
+  "categories": {
+    "dress": "Dress",
+    "sport": "Sport",
+    "dive": "Dive",
+    "chronograph": "Chronograph",
+    "pilot": "Pilot"
+  },
+
+  "conditions": {
+    "new": "New",
+    "unworn": "Unworn",
+    "excellent": "Excellent",
+    "good": "Good"
+  },
+
+  "specs": {
+    "title": "Specifications",
+    "movement": "Movement",
+    "caseMaterial": "Case Material",
+    "caseSize": "Case Size",
+    "waterResistance": "Water Resistance",
+    "dialColor": "Dial Color",
+    "bracelet": "Bracelet",
+    "powerReserve": "Power Reserve",
+    "year": "Year"
+  },
+
+  "detail": {
+    "home": "Home",
+    "description": "Description",
+    "specifications": "Specifications"
+  },
+
+  "forHim": {
+    "subtitle": "Gents Collection",
+    "title": "For Him.",
+    "description": "Substantial presence. Engineering excellence. Explore our hand-picked selection of timepieces 39mm and above, designed for the modern gentleman.",
+    "count": "Timepieces"
+  },
+
+  "forHer": {
+    "subtitle": "Ladies Collection",
+    "title": "For Her.",
+    "description": "Elegance perfectly proportioned. Discover our selection of refined timepieces under 39mm, crafted for the discerning woman.",
+    "count": "Timepieces"
+  },
+
+  "about": {
+    "title": "About Top Watches",
+    "location": "Gold Souq, Dubai — Trusted since day one",
+    "ourStory": "Our Story",
+    "storyP1": "Top Watches was founded in the heart of Dubai's Gold Souq to create a trusted destination for buying and selling luxury timepieces. Located in the Al Dukhan Building, we connect collectors with verified watches from the world's top brands.",
+    "storyP2": "Our team of certified watchmakers inspects and authenticates every watch that passes through our shop. We prioritize transparency, accuracy, and reliable service — whether you visit us in person or shop online.",
+    "storyP3": "From Rolex to Patek Philippe, every watch in our collection has been verified for authenticity, condition, and provenance.",
+    "watchesSold": "Watches Sold",
+    "brands": "Brands",
+    "countries": "Countries",
+    "satisfaction": "Satisfaction",
+    "whyUs": "Why Top Watches",
+    "authTitle": "Authentication",
+    "authDesc": "Every watch undergoes multi-point inspection by certified watchmakers. We verify serial numbers, movements, and provenance.",
+    "curationTitle": "Expert Curation",
+    "curationDesc": "Our team hand-selects each timepiece. Only watches meeting our standards for condition and authenticity are listed.",
+    "secureTitle": "Secure Transactions",
+    "secureDesc": "Bank-level encryption and buyer protection on every transaction. Escrow service ensures your payment is secure until delivery.",
+    "visitUs": "Visit Us",
+    "visitLocation": "Gold Souq, Dubai",
+    "visitAddress": "Al Dukhan Building — Shop No. 3, Gold Souq, near Gold Center, Al Daghaya, Al Sabkha, Dubai, United Arab Emirates",
+    "readyBrowse": "Ready to Browse?",
+    "exploreCollection": "Explore our collection of authenticated luxury watches.",
+    "browseAll": "Browse All Watches"
+  },
+
+  "footer": {
+    "authenticated": "Authenticated",
+    "authDesc": "Every watch verified by certified watchmakers.",
+    "insuredShipping": "Insured Shipping",
+    "shippingDesc": "Fully insured delivery with real-time tracking.",
+    "returns": "14-Day Returns",
+    "returnsDesc": "Full money-back guarantee. Zero friction.",
+    "navigation": "Navigation",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "authenticity": "Authenticity Guarantee",
+    "copyright": "© 2026 Golden Watches. All rights reserved."
+  },
+
+  "reviews": {
+    "verified": "Verified Reviews",
+    "title": "What Our Clients Say",
+    "reviewsCount": "reviews",
+    "seeAll": "See all reviews on Google"
+  },
+
+  "related": {
+    "title": "You May Also Like"
+  },
+
+  "currency": "AED"
+}

@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react"
 import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
+import { useTranslation } from "@/lib/i18n/context"
 
 interface RelatedWatchesProps {
   currentWatch: Watch
 }
 
 export function RelatedWatches({ currentWatch }: RelatedWatchesProps) {
+  const { t } = useTranslation()
   const [related, setRelated] = useState<Watch[]>([])
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export function RelatedWatches({ currentWatch }: RelatedWatchesProps) {
 
   return (
     <section className="py-12 border-t border-foreground/10 mt-12">
-      <h2 className="font-serif italic text-2xl text-foreground mb-8">You May Also Like</h2>
+      <h2 className="font-serif italic text-2xl text-foreground mb-8">{t("related.title")}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {related.map((watch) => (
           <WatchCard key={watch.id} watch={watch} />

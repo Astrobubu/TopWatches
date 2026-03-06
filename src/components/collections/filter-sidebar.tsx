@@ -14,6 +14,7 @@ import {
   DEFAULT_MIN_PRICE,
   DEFAULT_MAX_PRICE,
 } from "@/lib/filters"
+import { useTranslation } from "@/lib/i18n/context"
 
 interface FilterSidebarProps {
   filters: FilterState
@@ -76,6 +77,11 @@ function CheckboxFilter({
 }
 
 export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
+  const { t } = useTranslation()
+
+  const categoryOptions = CATEGORY_OPTIONS.map(o => ({ ...o, label: t(`categories.${o.value}`) }))
+  const conditionOptions = CONDITION_OPTIONS.map(o => ({ ...o, label: t(`conditions.${o.value}`) }))
+
   function toggleArrayFilter(
     key: "brands" | "categories" | "conditions",
     value: string
@@ -121,7 +127,7 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
   return (
     <div className="w-full lg:w-72 space-y-1">
       <div className="flex items-center justify-between mb-2">
-        <h2 className="text-lg font-semibold">Filters</h2>
+        <h2 className="text-lg font-semibold">{t("filters.title")}</h2>
         {hasFilters && (
           <Button
             variant="ghost"
@@ -129,14 +135,14 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
             onClick={clearAll}
             className="text-xs text-muted-foreground"
           >
-            Clear All
+            {t("filters.clearAll")}
           </Button>
         )}
       </div>
 
       <Separator />
 
-      <FilterSection title="Brand">
+      <FilterSection title={t("filters.brand")}>
         <CheckboxFilter
           options={BRAND_OPTIONS}
           selected={filters.brands}
@@ -146,21 +152,21 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
 
       <Separator />
 
-      <FilterSection title="Price Range">
+      <FilterSection title={t("filters.priceRange")}>
         <div className="flex items-center gap-2">
           <Input
             type="number"
-            placeholder="Min"
+            placeholder={t("filters.min")}
             value={
               filters.minPrice > DEFAULT_MIN_PRICE ? filters.minPrice : ""
             }
             onChange={(e) => handleMinPriceChange(e.target.value)}
             className="h-8 text-sm"
           />
-          <span className="text-muted-foreground text-sm">to</span>
+          <span className="text-muted-foreground text-sm">{t("filters.to")}</span>
           <Input
             type="number"
-            placeholder="Max"
+            placeholder={t("filters.max")}
             value={
               filters.maxPrice < DEFAULT_MAX_PRICE ? filters.maxPrice : ""
             }
@@ -172,9 +178,9 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
 
       <Separator />
 
-      <FilterSection title="Category">
+      <FilterSection title={t("filters.category")}>
         <CheckboxFilter
-          options={CATEGORY_OPTIONS}
+          options={categoryOptions}
           selected={filters.categories}
           onToggle={(v) => toggleArrayFilter("categories", v)}
         />
@@ -182,9 +188,9 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
 
       <Separator />
 
-      <FilterSection title="Condition">
+      <FilterSection title={t("filters.condition")}>
         <CheckboxFilter
-          options={CONDITION_OPTIONS}
+          options={conditionOptions}
           selected={filters.conditions}
           onToggle={(v) => toggleArrayFilter("conditions", v)}
         />

@@ -9,6 +9,7 @@ import { brands } from "@/data/brands"
 import { WatchCard } from "@/components/watches/watch-card"
 import { ConciergeSystem } from "@/components/home/concierge-system"
 import { GoogleReviews } from "@/components/home/google-reviews"
+import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -16,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function HomePage() {
   const mainRef = useRef<HTMLDivElement>(null)
   const [watches, setWatches] = useState<Watch[]>([])
+  const { t } = useTranslation()
 
   useEffect(() => {
     fetch("/api/watches")
@@ -86,11 +88,11 @@ export default function HomePage() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pb-16 md:pb-24">
           <div>
             <h1 className="hero-elem text-4xl sm:text-5xl md:text-7xl leading-[1.1] text-foreground">
-              <span className="font-sans font-bold block tracking-tight">Acquire the</span>
-              <span className="font-serif italic font-light block">Exceptional.</span>
+              <span className="font-sans font-bold block tracking-tight">{t("hero.line1")}</span>
+              <span className="font-serif italic font-light block">{t("hero.line2")}</span>
             </h1>
             <p className="hero-elem text-foreground/50 text-sm md:text-lg max-w-md mt-6 mb-8 font-sans font-light">
-              Authenticated luxury watches from the world's finest maisons.
+              {t("hero.subtitle")}
             </p>
             <div className="hero-elem">
               <Link
@@ -98,7 +100,7 @@ export default function HomePage() {
                 className="magnetic-btn group relative overflow-hidden inline-flex items-center justify-center gap-3 bg-foreground text-background px-7 py-3.5 font-sans font-semibold text-sm md:text-base"
                 style={{ borderRadius: 'var(--pill-radius)' }}
               >
-                <span className="relative z-10">Enter the Collection</span>
+                <span className="relative z-10">{t("hero.cta")}</span>
                 <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
               </Link>
@@ -114,11 +116,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 md:mb-14">
             <div>
-              <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">Curated Selection</h3>
-              <h2 className="anim-item font-serif italic text-3xl md:text-4xl">Our Finest Timepieces</h2>
+              <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">{t("home.curatedSelection")}</h3>
+              <h2 className="anim-item font-serif italic text-3xl md:text-4xl">{t("home.finestTimepieces")}</h2>
             </div>
             <Link href="/collections" className="anim-item font-sans text-sm text-primary hover:opacity-80 transition-opacity flex items-center gap-1">
-              View All <ArrowRight className="w-4 h-4" />
+              {t("home.viewAll")} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -132,8 +134,8 @@ export default function HomePage() {
       {/* ═══════════════════ FOR HIM & HER SPLIT (light bg) ═══════════════════ */}
       <section className="anim-section py-20 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">Curated</h3>
-          <h2 className="anim-item font-serif italic text-3xl md:text-5xl text-foreground">Find Your Fit</h2>
+          <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">{t("home.curated")}</h3>
+          <h2 className="anim-item font-serif italic text-3xl md:text-5xl text-foreground">{t("home.findYourFit")}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[500px] md:h-[600px] anim-item">
@@ -146,8 +148,8 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-10 flex items-end justify-between">
               <div>
-                <h3 className="font-serif italic text-4xl text-foreground mb-2">For Him</h3>
-                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">39mm and above</p>
+                <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHim")}</h3>
+                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.above39mm")}</p>
               </div>
               <div className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center text-foreground group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
                 <ArrowRight className="w-5 h-5" />
@@ -164,8 +166,8 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-10 flex items-end justify-between">
               <div>
-                <h3 className="font-serif italic text-4xl text-foreground mb-2">For Her</h3>
-                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">Under 39mm</p>
+                <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHer")}</h3>
+                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.under39mm")}</p>
               </div>
               <div className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center text-foreground group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
                 <ArrowRight className="w-5 h-5" />
@@ -181,10 +183,10 @@ export default function HomePage() {
       {/* ═══════════════════ PERSONAL CONCIERGE (light bg) ═══════════════════ */}
       <section className="anim-section py-20 md:py-32 px-6 md:px-16">
         <div className="max-w-5xl mx-auto text-center mb-12 md:mb-16">
-          <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-3 uppercase">Personal Concierge</h3>
-          <h2 className="anim-item font-serif italic text-3xl md:text-5xl text-foreground mb-4">Not sure what suits you?</h2>
+          <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-3 uppercase">{t("concierge.title")}</h3>
+          <h2 className="anim-item font-serif italic text-3xl md:text-5xl text-foreground mb-4">{t("concierge.subtitle")}</h2>
           <p className="anim-item font-sans text-foreground/50 max-w-lg mx-auto">
-            Let our concierge find the perfect timepiece for you. Choose how you'd like to begin.
+            {t("concierge.description")}
           </p>
         </div>
 
@@ -208,12 +210,12 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-full bg-foreground/10 backdrop-blur-md flex items-center justify-center text-foreground mb-4 group-hover:scale-110 transition-transform">
                 <Camera className="w-5 h-5" />
               </div>
-              <h3 className="font-sans font-bold text-2xl text-foreground mb-2">Show Us Your Style</h3>
+              <h3 className="font-sans font-bold text-2xl text-foreground mb-2">{t("concierge.uploadTitle")}</h3>
               <p className="text-foreground/70 text-sm leading-relaxed mb-6 max-w-sm">
-                Upload a photo of your clothes, a watch you like, or even a fashion look.
+                {t("concierge.uploadDesc")}
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-foreground text-sm font-sans font-semibold">Upload Image</span>
+                <span className="text-foreground text-sm font-sans font-semibold">{t("concierge.uploadBtn")}</span>
                 <div className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
                   <ArrowRight className="w-4 h-4" />
                 </div>
@@ -240,12 +242,12 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-full bg-foreground/10 backdrop-blur-md flex items-center justify-center text-foreground mb-4 group-hover:scale-110 transition-transform">
                 <ClipboardList className="w-5 h-5" />
               </div>
-              <h3 className="font-sans font-bold text-2xl text-foreground mb-2">Answer a Few Questions</h3>
+              <h3 className="font-sans font-bold text-2xl text-foreground mb-2">{t("concierge.questionnaireTitle")}</h3>
               <p className="text-foreground/70 text-sm leading-relaxed mb-6 max-w-sm">
-                Tell us about your wrist size, budget, and style preferences.
+                {t("concierge.questionnaireDesc")}
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-foreground text-sm font-sans font-semibold">Start Questionnaire</span>
+                <span className="text-foreground text-sm font-sans font-semibold">{t("concierge.questionnaireBtn")}</span>
                 <div className="w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
                   <ArrowRight className="w-4 h-4" />
                 </div>
@@ -261,7 +263,7 @@ export default function HomePage() {
         style={{ backgroundColor: 'var(--dark-section-bg)', color: 'var(--dark-section-text)' }}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-16 dark-section-animate">
-          <h3 className="font-mono text-center text-xs tracking-[0.3em] mb-10 uppercase" style={{ color: 'var(--primary)', opacity: 0.6 }}>Authorized Brands</h3>
+          <h3 className="font-mono text-center text-xs tracking-[0.3em] mb-10 uppercase" style={{ color: 'var(--primary)', opacity: 0.6 }}>{t("home.authorizedBrands")}</h3>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
             {brands.map(brand => (
               <Link

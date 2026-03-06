@@ -1,11 +1,16 @@
+"use client"
+
 import Link from "next/link"
 import type { Watch } from "@/lib/types"
+import { useTranslation } from "@/lib/i18n/context"
 
 interface WatchCardProps {
   watch: Watch
 }
 
 export function WatchCard({ watch }: WatchCardProps) {
+  const { t } = useTranslation()
+
   return (
     <Link href={`/watches/${watch.id}`} className="group block">
       <div className="bg-card overflow-hidden transition-all duration-500 hover:-translate-y-1" style={{ borderRadius: 'var(--card-radius)', boxShadow: 'var(--soft-shadow, 0 2px 20px rgba(44,40,36,0.08))' }}>
@@ -19,7 +24,7 @@ export function WatchCard({ watch }: WatchCardProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
           {/* Condition badge */}
           <span className="absolute top-3 right-3 bg-background/70 backdrop-blur-sm text-foreground/70 text-[10px] uppercase tracking-widest font-mono px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
-            {watch.condition}
+            {t(`conditions.${watch.condition}`)}
           </span>
         </div>
 
@@ -32,7 +37,7 @@ export function WatchCard({ watch }: WatchCardProps) {
             {watch.model}
           </h3>
           <p className="font-serif italic text-lg text-foreground flex items-center gap-1">
-            <span className="font-mono text-xs text-muted-foreground not-italic">AED</span>
+            <span className="font-mono text-xs text-muted-foreground not-italic">{t("currency")}</span>
             {watch.price.toLocaleString()}
           </p>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ThemeProvider } from "@/components/theme-provider"
+import { I18nProvider } from "@/lib/i18n/context"
 import "./globals.css";
 
 const NoiseOverlay = () => (
@@ -46,10 +47,12 @@ export default function RootLayout({
           themes={["theme-organic-tech", "theme-midnight-luxe", "theme-brutalist-signal", "theme-neon-cyberpunk", "theme-minimalist-sand", "theme-ocean-depth"]}
           enableSystem={false}
         >
-          <NoiseOverlay />
-          <Header />
-          <main className="min-h-screen pt-20">{children}</main>
-          <Footer />
+          <I18nProvider>
+            <NoiseOverlay />
+            <Header />
+            <main className="min-h-screen pt-20">{children}</main>
+            <Footer />
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

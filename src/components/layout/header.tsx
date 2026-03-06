@@ -4,10 +4,13 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import { useTranslation } from "@/lib/i18n/context"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
@@ -26,17 +29,18 @@ export function Header() {
       >
         {/* Logo */}
         <Link href="/" className={`font-sans font-bold text-xl md:text-2xl tracking-tight transition-colors ${scrolled ? "text-primary hover:text-accent" : "text-foreground hover:text-primary"}`}>
-          Golden Watches
+          {t("brand")}
         </Link>
 
         {/* Desktop Links & Switcher */}
         <div className="hidden md:flex items-center gap-8 text-sm font-sans font-medium text-foreground/80">
           <Link href="/collections" className="hover:text-primary transition-colors">
-            Collections
+            {t("nav.collections")}
           </Link>
           <Link href="/about" className="hover:text-primary transition-colors">
-            About
+            {t("nav.about")}
           </Link>
+          <LanguageSwitcher />
           <ThemeSwitcher className="hidden" />
         </div>
 
@@ -46,11 +50,12 @@ export function Header() {
           className="hidden md:inline-flex bg-primary text-primary-foreground px-5 py-2 text-sm font-bold hover:bg-foreground hover:text-background transition-colors"
           style={{ borderRadius: 'var(--pill-radius)' }}
         >
-          Shop Now
+          {t("nav.shopNow")}
         </Link>
 
         {/* Mobile Toggle & Switcher */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-2">
+          <LanguageSwitcher />
           <ThemeSwitcher className="hidden" />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -65,10 +70,10 @@ export function Header() {
       {mobileOpen && (
         <div className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 text-xl font-sans font-medium text-foreground">
           <Link href="/collections" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors">
-            Collections
+            {t("nav.collections")}
           </Link>
           <Link href="/about" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors">
-            About
+            {t("nav.about")}
           </Link>
           <Link
             href="/collections"
@@ -76,7 +81,7 @@ export function Header() {
             className="bg-primary text-primary-foreground px-8 py-3 font-bold hover:bg-foreground hover:text-background transition-colors mt-4"
             style={{ borderRadius: 'var(--pill-radius)' }}
           >
-            Shop Now
+            {t("nav.shopNow")}
           </Link>
         </div>
       )}
