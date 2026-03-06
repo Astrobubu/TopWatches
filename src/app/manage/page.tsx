@@ -45,6 +45,8 @@ export default function ManagePage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [searching, setSearching] = useState(false)
   const [searchError, setSearchError] = useState("")
+  const [searchResults, setSearchResults] = useState<any[]>([])
+  const [showResultPicker, setShowResultPicker] = useState(false)
 
   // Form state
   const [formData, setFormData] = useState({
@@ -133,12 +135,16 @@ export default function ManagePage() {
     setSearchQuery("")
     setImageSearchQuery("")
     setSearchError("")
+    setSearchResults([])
+    setShowResultPicker(false)
   }
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) return
     setSearching(true)
     setSearchError("")
+    setSearchResults([])
+    setShowResultPicker(false)
 
     try {
       const res = await fetch("/api/import/search", {
@@ -154,37 +160,56 @@ export default function ManagePage() {
         return
       }
 
-      // Fill form with results
-      setFormData((prev) => ({
-        ...prev,
-        brand: data.brand || prev.brand,
-        model: data.model || prev.model,
-        reference: data.reference || prev.reference,
-        description: data.description || prev.description,
-        id: generateId(
-          data.brand || prev.brand,
-          data.model || prev.model,
-          data.reference || prev.reference
-        ),
-        specs: {
-          movement: data.specs?.movement || prev.specs.movement,
-          caseMaterial: data.specs?.caseMaterial || prev.specs.caseMaterial,
-          caseSize: data.specs?.caseSize || prev.specs.caseSize,
-          waterResistance: data.specs?.waterResistance || prev.specs.waterResistance,
-          dialColor: data.specs?.dialColor || prev.specs.dialColor,
-          bracelet: data.specs?.bracelet || prev.specs.bracelet,
-          powerReserve: data.specs?.powerReserve || prev.specs.powerReserve,
-          year: data.specs?.year || prev.specs.year,
-        },
-      }))
+      const results = data.results || []
+      if (results.length === 0) {
+        setSearchError("No results found. Try a different search term.")
+        return
+      }
 
-      // Auto-search for images
-      setImageSearchQuery(`${data.brand || ""} ${data.model || ""} ${data.reference || ""}`.trim())
+      if (results.length === 1) {
+        // Single result — auto-fill
+        selectResult(results[0])
+      } else {
+        // Multiple results — show picker
+        setSearchResults(results)
+        setShowResultPicker(true)
+      }
     } catch {
       setSearchError("Network error. Please try again.")
     } finally {
       setSearching(false)
     }
+  }
+
+  const selectResult = (data: any) => {
+    setShowResultPicker(false)
+    setSearchResults([])
+
+    setFormData((prev) => ({
+      ...prev,
+      brand: data.brand || prev.brand,
+      model: data.model || prev.model,
+      reference: data.reference || prev.reference,
+      description: data.description || prev.description,
+      id: generateId(
+        data.brand || prev.brand,
+        data.model || prev.model,
+        data.reference || prev.reference
+      ),
+      specs: {
+        movement: data.specs?.movement || prev.specs.movement,
+        caseMaterial: data.specs?.caseMaterial || prev.specs.caseMaterial,
+        caseSize: data.specs?.caseSize || prev.specs.caseSize,
+        waterResistance: data.specs?.waterResistance || prev.specs.waterResistance,
+        dialColor: data.specs?.dialColor || prev.specs.dialColor,
+        bracelet: data.specs?.bracelet || prev.specs.bracelet,
+        powerReserve: data.specs?.powerReserve || prev.specs.powerReserve,
+        year: data.specs?.year || prev.specs.year,
+      },
+    }))
+
+    // Auto-search for images
+    setImageSearchQuery(`${data.brand || ""} ${data.model || ""} ${data.reference || ""}`.trim())
   }
 
   const handleImageSearch = async () => {
@@ -507,6 +532,48 @@ export default function ManagePage() {
           </div>
           {searchError && (
             <p className="text-destructive text-xs mt-2 font-mono">{searchError}</p>
+          )}
+
+          {/* Multiple Results Picker */}
+          {showResultPicker && searchResults.length > 0 && (
+            <div className="mt-4 space-y-2">
+              <p className="text-xs font-mono text-foreground/50 uppercase tracking-wider">
+                {searchResults.length} results found — select one:
+              </p>
+              <div className="grid gap-2 max-h-[300px] overflow-y-auto">
+                {searchResults.map((r, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => selectResult(r)}
+                    className="w-full text-left p-3 bg-secondary/50 hover:bg-secondary transition-colors flex items-start justify-between gap-3"
+                    style={{ borderRadius: "var(--card-radius)", border: "var(--border-w) solid var(--border)" }}
+                  >
+                    {r.thumbnail && (
+                      <img
+                        src={r.thumbnail}
+                        alt={r.reference}
+                        className="w-12 h-12 object-contain shrink-0 rounded bg-white"
+                      />
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="font-sans font-semibold text-sm text-foreground truncate">
+                        {r.brand} {r.model}
+                      </p>
+                      <p className="font-mono text-xs text-foreground/50 mt-0.5">
+                        Ref: {r.reference}
+                      </p>
+                      {r.specs?.caseSize && (
+                        <p className="font-mono text-[10px] text-foreground/40 mt-0.5">
+                          {[r.specs.caseSize, r.specs.caseMaterial, r.specs.dialColor].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
+                    </div>
+                    <ChevronLeft className="w-4 h-4 text-foreground/30 rotate-180 shrink-0 mt-1" />
+                  </button>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       )}
