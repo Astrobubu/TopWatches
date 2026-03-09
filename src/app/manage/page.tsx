@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import {
   Search,
   Plus,
@@ -12,7 +12,10 @@ import {
   Download,
   ImageIcon,
   ChevronLeft,
+  ChevronRight,
   Star,
+  Upload,
+  ZoomIn,
 } from "lucide-react"
 import type { Watch } from "@/lib/types"
 
@@ -76,6 +79,16 @@ export default function ManagePage() {
   const [selectedImages, setSelectedImages] = useState<string[]>([])
   const [searchingImages, setSearchingImages] = useState(false)
   const [imageSearchQuery, setImageSearchQuery] = useState("")
+  const [imagePage, setImagePage] = useState(1)
+  const [hasMoreImages, setHasMoreImages] = useState(false)
+  const [loadingMoreImages, setLoadingMoreImages] = useState(false)
+
+  // Zoom modal state
+  const [zoomImage, setZoomImage] = useState<string | null>(null)
+
+  // Upload state
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [uploading, setUploading] = useState(false)
 
   // Saving state
   const [saving, setSaving] = useState(false)
@@ -137,6 +150,8 @@ export default function ManagePage() {
     setSearchError("")
     setSearchResults([])
     setShowResultPicker(false)
+    setImagePage(1)
+    setHasMoreImages(false)
   }
 
   const handleSearch = async () => {
@@ -167,10 +182,8 @@ export default function ManagePage() {
       }
 
       if (results.length === 1) {
-        // Single result — auto-fill
         selectResult(results[0])
       } else {
-        // Multiple results — show picker
         setSearchResults(results)
         setShowResultPicker(true)
       }
@@ -208,30 +221,46 @@ export default function ManagePage() {
       },
     }))
 
-    // Auto-search for images
     setImageSearchQuery(`${data.brand || ""} ${data.model || ""} ${data.reference || ""}`.trim())
   }
 
-  const handleImageSearch = async () => {
+  const handleImageSearch = async (page: number = 1) => {
     const query = imageSearchQuery || `${formData.brand} ${formData.model}`.trim()
     if (!query) return
 
-    setSearchingImages(true)
+    if (page === 1) {
+      setSearchingImages(true)
+      setImageResults([])
+    } else {
+      setLoadingMoreImages(true)
+    }
+
     try {
       const res = await fetch("/api/import/images", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, preferWhiteBackground: true }),
+        body: JSON.stringify({ query, page }),
       })
 
       if (res.ok) {
         const data = await res.json()
-        setImageResults(data.images || [])
+        if (page === 1) {
+          setImageResults(data.images || [])
+        } else {
+          setImageResults((prev) => {
+            const existingUrls = new Set(prev.map((img: ImageResult) => img.url))
+            const newImages = (data.images || []).filter((img: ImageResult) => !existingUrls.has(img.url))
+            return [...prev, ...newImages]
+          })
+        }
+        setImagePage(page)
+        setHasMoreImages(data.hasMore ?? false)
       }
     } catch {
       console.error("Image search failed")
     } finally {
       setSearchingImages(false)
+      setLoadingMoreImages(false)
     }
   }
 
@@ -239,6 +268,59 @@ export default function ManagePage() {
     setSelectedImages((prev) =>
       prev.includes(url) ? prev.filter((u) => u !== url) : [...prev, url]
     )
+  }
+
+  const handleFileUpload = async (files: FileList | null) => {
+    if (!files || files.length === 0) return
+    setUploading(true)
+
+    try {
+      for (const file of Array.from(files)) {
+        if (!file.type.startsWith("image/")) continue
+
+        const formDataUpload = new FormData()
+        formDataUpload.append("file", file)
+        formDataUpload.append("watchId", formData.id || "temp")
+
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          body: formDataUpload,
+        })
+
+        if (res.ok) {
+          const data = await res.json()
+          if (data.url) {
+            setSelectedImages((prev) => [...prev, data.url])
+          }
+        } else {
+          // Fallback: convert to base64 data URL for preview
+          const reader = new FileReader()
+          reader.onload = (e) => {
+            const dataUrl = e.target?.result as string
+            if (dataUrl) {
+              setSelectedImages((prev) => [...prev, dataUrl])
+            }
+          }
+          reader.readAsDataURL(file)
+        }
+      }
+    } catch {
+      // Fallback to data URLs
+      for (const file of Array.from(files)) {
+        if (!file.type.startsWith("image/")) continue
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          const dataUrl = e.target?.result as string
+          if (dataUrl) {
+            setSelectedImages((prev) => [...prev, dataUrl])
+          }
+        }
+        reader.readAsDataURL(file)
+      }
+    } finally {
+      setUploading(false)
+      if (fileInputRef.current) fileInputRef.current.value = ""
+    }
   }
 
   const handleSave = async () => {
@@ -320,6 +402,31 @@ export default function ManagePage() {
     } catch {
       alert("Seed failed")
     }
+  }
+
+  // ─── ZOOM MODAL ────────────────────────────────────────────
+  const ZoomModal = () => {
+    if (!zoomImage) return null
+    return (
+      <div
+        className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-zoom-out"
+        onClick={() => setZoomImage(null)}
+      >
+        <button
+          onClick={() => setZoomImage(null)}
+          className="absolute top-4 right-4 z-50 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+        >
+          <X className="w-6 h-6 text-white" />
+        </button>
+        <img
+          src={zoomImage}
+          alt="Zoomed preview"
+          className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+          onClick={(e) => e.stopPropagation()}
+          style={{ cursor: "default" }}
+        />
+      </div>
+    )
   }
 
   // ─── LIST VIEW ─────────────────────────────────────────────
@@ -472,6 +579,8 @@ export default function ManagePage() {
   // ─── ADD / EDIT VIEW ───────────────────────────────────────
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ZoomModal />
+
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <button
@@ -841,25 +950,37 @@ export default function ManagePage() {
               Selected Images ({selectedImages.length})
             </h3>
             <p className="font-mono text-xs text-foreground/40 mb-4">
-              Click to remove. Drag to reorder.
+              Click to remove. Click zoom icon to preview.
             </p>
 
             {selectedImages.length > 0 ? (
               <div className="grid grid-cols-3 gap-2">
                 {selectedImages.map((url, i) => (
                   <div
-                    key={url}
-                    className="relative group aspect-square bg-background overflow-hidden cursor-pointer"
+                    key={`${url}-${i}`}
+                    className="relative group aspect-square bg-background overflow-hidden"
                     style={{ borderRadius: "0.5rem" }}
-                    onClick={() => toggleImage(url)}
                   >
                     <img
                       src={url}
                       alt={`Selected ${i + 1}`}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-destructive/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <X className="w-6 h-6 text-white" />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => setZoomImage(url)}
+                        className="p-1.5 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+                        title="Zoom"
+                      >
+                        <ZoomIn className="w-4 h-4 text-white" />
+                      </button>
+                      <button
+                        onClick={() => toggleImage(url)}
+                        className="p-1.5 bg-destructive/60 hover:bg-destructive rounded-full transition-colors"
+                        title="Remove"
+                      >
+                        <X className="w-4 h-4 text-white" />
+                      </button>
                     </div>
                     {i === 0 && (
                       <span className="absolute top-1 left-1 bg-primary text-primary-foreground text-[9px] font-mono px-1.5 py-0.5 rounded">
@@ -876,46 +997,78 @@ export default function ManagePage() {
               </div>
             )}
 
-            {/* Manual URL input */}
-            <div className="mt-4">
-              <label className="block font-mono text-[10px] text-foreground/50 uppercase tracking-wider mb-1">
-                Add Image URL Manually
-              </label>
-              <div className="flex gap-2">
+            {/* Upload & Manual URL */}
+            <div className="mt-4 space-y-3">
+              {/* File Upload */}
+              <div>
+                <label className="block font-mono text-[10px] text-foreground/50 uppercase tracking-wider mb-1">
+                  Upload Images
+                </label>
                 <input
-                  type="text"
-                  placeholder="https://..."
-                  id="manual-image-url"
-                  className="flex-1 px-3 py-2 bg-background text-foreground text-sm outline-none focus:ring-2 ring-primary/30"
-                  style={{
-                    borderRadius: "0.5rem",
-                    border: "var(--border-w) solid var(--border)",
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      const input = e.currentTarget
-                      if (input.value.trim()) {
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={(e) => handleFileUpload(e.target.files)}
+                  className="hidden"
+                  id="file-upload"
+                />
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-sans font-medium bg-background text-foreground hover:bg-muted transition-colors border-2 border-dashed border-foreground/20 hover:border-foreground/40"
+                  style={{ borderRadius: "0.5rem" }}
+                >
+                  {uploading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Upload className="w-4 h-4" />
+                  )}
+                  {uploading ? "Uploading..." : "Click to upload images"}
+                </button>
+              </div>
+
+              {/* Manual URL input */}
+              <div>
+                <label className="block font-mono text-[10px] text-foreground/50 uppercase tracking-wider mb-1">
+                  Add Image URL Manually
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="https://..."
+                    id="manual-image-url"
+                    className="flex-1 px-3 py-2 bg-background text-foreground text-sm outline-none focus:ring-2 ring-primary/30"
+                    style={{
+                      borderRadius: "0.5rem",
+                      border: "var(--border-w) solid var(--border)",
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        const input = e.currentTarget
+                        if (input.value.trim()) {
+                          setSelectedImages((prev) => [...prev, input.value.trim()])
+                          input.value = ""
+                        }
+                      }
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      const input = document.getElementById(
+                        "manual-image-url"
+                      ) as HTMLInputElement
+                      if (input?.value.trim()) {
                         setSelectedImages((prev) => [...prev, input.value.trim()])
                         input.value = ""
                       }
-                    }
-                  }}
-                />
-                <button
-                  onClick={() => {
-                    const input = document.getElementById(
-                      "manual-image-url"
-                    ) as HTMLInputElement
-                    if (input?.value.trim()) {
-                      setSelectedImages((prev) => [...prev, input.value.trim()])
-                      input.value = ""
-                    }
-                  }}
-                  className="px-3 py-2 bg-foreground text-background text-sm font-semibold hover:opacity-90"
-                  style={{ borderRadius: "0.5rem" }}
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
+                    }}
+                    className="px-3 py-2 bg-foreground text-background text-sm font-semibold hover:opacity-90"
+                    style={{ borderRadius: "0.5rem" }}
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -932,7 +1085,7 @@ export default function ManagePage() {
               Search Images
             </h3>
             <p className="font-mono text-xs text-foreground/40 mb-4">
-              Searches Watchbase and Bing for product images
+              Searches Watchbase, Bing &amp; Google for product images
             </p>
 
             <div className="flex gap-2 mb-4">
@@ -940,7 +1093,7 @@ export default function ManagePage() {
                 type="text"
                 value={imageSearchQuery}
                 onChange={(e) => setImageSearchQuery(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleImageSearch()}
+                onKeyDown={(e) => e.key === "Enter" && handleImageSearch(1)}
                 placeholder="Search for images..."
                 className="flex-1 px-3 py-2 bg-background text-foreground text-sm outline-none focus:ring-2 ring-primary/30"
                 style={{
@@ -949,7 +1102,7 @@ export default function ManagePage() {
                 }}
               />
               <button
-                onClick={handleImageSearch}
+                onClick={() => handleImageSearch(1)}
                 disabled={searchingImages}
                 className="flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-foreground text-background hover:opacity-90 disabled:opacity-50"
                 style={{ borderRadius: "0.5rem" }}
@@ -963,38 +1116,114 @@ export default function ManagePage() {
             </div>
 
             {imageResults.length > 0 ? (
-              <div className="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto">
-                {imageResults.map((img) => {
-                  const isSelected = selectedImages.includes(img.url)
-                  return (
-                    <div
-                      key={img.url}
-                      className={`relative aspect-square bg-background overflow-hidden cursor-pointer transition-all ${
-                        isSelected
-                          ? "ring-2 ring-primary"
-                          : "hover:ring-2 ring-foreground/20"
-                      }`}
-                      style={{ borderRadius: "0.5rem" }}
-                      onClick={() => toggleImage(img.url)}
-                    >
-                      <img
-                        src={img.thumbnail || img.url}
-                        alt="Search result"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                      {isSelected && (
-                        <div className="absolute top-1 right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                          <Check className="w-3 h-3 text-primary-foreground" />
+              <>
+                <div className="grid grid-cols-3 gap-2 max-h-[600px] overflow-y-auto">
+                  {imageResults.map((img) => {
+                    const isSelected = selectedImages.includes(img.url)
+                    return (
+                      <div
+                        key={img.url}
+                        className={`relative group aspect-square bg-background overflow-hidden transition-all ${
+                          isSelected
+                            ? "ring-2 ring-primary"
+                            : "hover:ring-2 ring-foreground/20"
+                        }`}
+                        style={{ borderRadius: "0.5rem" }}
+                      >
+                        <img
+                          src={img.thumbnail || img.url}
+                          alt="Search result"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.currentTarget
+                            if (target.src !== img.url) {
+                              target.src = img.url
+                            }
+                          }}
+                        />
+                        {/* Hover overlay with zoom + select buttons */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setZoomImage(img.url)
+                            }}
+                            className="p-1.5 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+                            title="Zoom to inspect quality"
+                          >
+                            <ZoomIn className="w-4 h-4 text-white" />
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              toggleImage(img.url)
+                            }}
+                            className={`p-1.5 rounded-full transition-colors ${
+                              isSelected
+                                ? "bg-primary hover:bg-primary/80"
+                                : "bg-white/20 hover:bg-white/40"
+                            }`}
+                            title={isSelected ? "Deselect" : "Select"}
+                          >
+                            {isSelected ? (
+                              <Check className="w-4 h-4 text-primary-foreground" />
+                            ) : (
+                              <Plus className="w-4 h-4 text-white" />
+                            )}
+                          </button>
                         </div>
+                        {isSelected && (
+                          <div className="absolute top-1 right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                            <Check className="w-3 h-3 text-primary-foreground" />
+                          </div>
+                        )}
+                        <span className="absolute bottom-1 left-1 bg-black/60 text-white text-[8px] font-mono px-1 py-0.5 rounded">
+                          {img.source}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                {/* Pagination */}
+                <div className="flex items-center justify-between mt-4 pt-3 border-t border-foreground/10">
+                  <p className="font-mono text-xs text-foreground/40">
+                    {imageResults.length} images · Page {imagePage}
+                  </p>
+                  <div className="flex items-center gap-2">
+                    {imagePage > 1 && (
+                      <button
+                        onClick={() => handleImageSearch(imagePage - 1)}
+                        disabled={loadingMoreImages}
+                        className="flex items-center gap-1 px-3 py-1.5 text-xs font-mono font-medium bg-background text-foreground hover:bg-muted transition-colors"
+                        style={{
+                          borderRadius: "0.5rem",
+                          border: "var(--border-w) solid var(--border)",
+                        }}
+                      >
+                        <ChevronLeft className="w-3 h-3" />
+                        Prev
+                      </button>
+                    )}
+                    <button
+                      onClick={() => handleImageSearch(imagePage + 1)}
+                      disabled={loadingMoreImages}
+                      className="flex items-center gap-1 px-3 py-1.5 text-xs font-mono font-medium bg-foreground text-background hover:opacity-90 transition-opacity disabled:opacity-50"
+                      style={{ borderRadius: "0.5rem" }}
+                    >
+                      {loadingMoreImages ? (
+                        <Loader2 className="w-3 h-3 animate-spin" />
+                      ) : (
+                        <>
+                          Load More
+                          <ChevronRight className="w-3 h-3" />
+                        </>
                       )}
-                      <span className="absolute bottom-1 left-1 bg-black/60 text-white text-[8px] font-mono px-1 py-0.5 rounded">
-                        {img.source}
-                      </span>
-                    </div>
-                  )
-                })}
-              </div>
+                    </button>
+                  </div>
+                </div>
+              </>
             ) : (
               <div className="py-6 text-center text-foreground/20">
                 <Search className="w-6 h-6 mx-auto mb-2" />

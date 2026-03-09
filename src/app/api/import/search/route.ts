@@ -152,11 +152,37 @@ function parseFilterResults(html: string): QuickResult[] {
   return results
 }
 
-async function searchWatchbase(query: string): Promise<SearchResult[]> {
-  const results: SearchResult[] = []
-  const seenRefs = new Set<string>()
+function cleanQuery(query: string): string[] {
+  const q = query.trim()
+  const queries: string[] = [q]
 
-  // Strategy 1: Watchbase filter/results API — fast, returns structured data
+  // Remove standalone generation markers like "2", "II", "III", "41" that aren't part of reference
+  // e.g. "Rolex Datejust 2 126333-0013" -> "Rolex Datejust 126333-0013"
+  const cleaned = q
+    .replace(/\b(I{1,3}|IV|V|VI{0,3})\b/gi, "") // Roman numerals
+    .replace(/\b(\d{1})\b(?!\d*-)/g, "") // Single digits not part of a reference (xxx-xxxx)
+    .replace(/\s{2,}/g, " ")
+    .trim()
+  if (cleaned !== q && cleaned.length > 3) {
+    queries.push(cleaned)
+  }
+
+  // Try just the reference number (last token that looks like a ref)
+  const refMatch = q.match(/\b([a-z]?\d[\w\-\.\/]{3,})\s*$/i) || q.match(/\b(\d{4,}[\w\-\.]*)\b/i)
+  if (refMatch) {
+    queries.push(refMatch[1])
+    // Also try brand + reference only
+    const brand = q.split(/\s+/)[0]
+    if (brand && brand.toLowerCase() !== refMatch[1].toLowerCase()) {
+      queries.push(`${brand} ${refMatch[1]}`)
+    }
+  }
+
+  // Dedupe while preserving order
+  return [...new Set(queries)]
+}
+
+async function fetchFilterResults(query: string): Promise<QuickResult[]> {
   try {
     const filterUrl = `https://watchbase.com/filter/results?q=${encodeURIComponent(query)}&page=1`
     const res = await fetch(filterUrl, {
@@ -169,39 +195,56 @@ async function searchWatchbase(query: string): Promise<SearchResult[]> {
 
     if (res.ok) {
       const data = await res.json()
-      const quickResults = parseFilterResults(data.watchesHtml || "")
-
-      // Fetch full specs for up to 6 results in parallel
-      const detailPromises = quickResults.slice(0, 6).map(async (qr) => {
-        const detail = await fetchAndParsePage(qr.url)
-        if (detail) {
-          detail.thumbnail = qr.thumbnail
-          return detail
-        }
-        // Fall back to quick result data if detail page fails
-        return {
-          brand: qr.brand,
-          model: qr.model,
-          reference: qr.reference,
-          description: qr.description,
-          specs: {},
-          source: "watchbase",
-          url: qr.url,
-          thumbnail: qr.thumbnail,
-        } as SearchResult
-      })
-
-      const detailResults = await Promise.all(detailPromises)
-      for (const r of detailResults) {
-        const key = r.reference.toLowerCase()
-        if (!seenRefs.has(key)) {
-          seenRefs.add(key)
-          results.push(r)
-        }
-      }
+      return parseFilterResults(data.watchesHtml || "")
     }
   } catch {
-    // filter API failed, continue
+    // ignore
+  }
+  return []
+}
+
+async function searchWatchbase(query: string): Promise<SearchResult[]> {
+  const results: SearchResult[] = []
+  const seenRefs = new Set<string>()
+
+  // Try multiple query variations until we get results
+  const queryVariants = cleanQuery(query)
+  let quickResults: QuickResult[] = []
+
+  for (const q of queryVariants) {
+    quickResults = await fetchFilterResults(q)
+    if (quickResults.length > 0) break
+  }
+
+  if (quickResults.length === 0) return results
+
+  // Fetch full specs for up to 6 results in parallel
+  const detailPromises = quickResults.slice(0, 6).map(async (qr) => {
+    const detail = await fetchAndParsePage(qr.url)
+    if (detail) {
+      detail.thumbnail = qr.thumbnail
+      return detail
+    }
+    // Fall back to quick result data if detail page fails
+    return {
+      brand: qr.brand,
+      model: qr.model,
+      reference: qr.reference,
+      description: qr.description,
+      specs: {},
+      source: "watchbase",
+      url: qr.url,
+      thumbnail: qr.thumbnail,
+    } as SearchResult
+  })
+
+  const detailResults = await Promise.all(detailPromises)
+  for (const r of detailResults) {
+    const key = r.reference.toLowerCase()
+    if (!seenRefs.has(key)) {
+      seenRefs.add(key)
+      results.push(r)
+    }
   }
 
   return results

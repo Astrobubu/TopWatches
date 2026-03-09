@@ -119,9 +119,9 @@ function extractCdnImages($: cheerio.CheerioAPI): { url: string; thumbnail: stri
     const src = $(el).attr("src") || $(el).attr("data-src") || ""
     if (src.includes("cdn.watchbase.com") && src.includes("/watch/")) {
       const lgUrl = src.replace(/\/watch\/(?:lg|md|sm|)(?=\/)/, "/watch/lg")
-      const mdUrl = src.replace(/\/watch\/(?:lg|md|sm|)(?=\/)/, "/watch/md")
       if (!images.some((img) => img.url === lgUrl)) {
-        images.push({ url: lgUrl, thumbnail: mdUrl })
+        // Use same URL for thumbnail - CSS handles sizing
+        images.push({ url: lgUrl, thumbnail: lgUrl })
       }
     }
   })
@@ -241,10 +241,11 @@ async function scrapeWatchbaseImages(query: string): Promise<{ exact: ImageResul
   return { exact, related }
 }
 
-async function searchBingImages(query: string): Promise<ImageResult[]> {
+async function searchBingImages(query: string, page: number = 1): Promise<ImageResult[]> {
   try {
-    const searchQuery = `${query} watch white background`
-    const url = `https://www.bing.com/images/search?q=${encodeURIComponent(searchQuery)}&form=HDRSC2&first=1`
+    const searchQuery = `${query} watch official product photo`
+    const first = (page - 1) * 30 + 1
+    const url = `https://www.bing.com/images/search?q=${encodeURIComponent(searchQuery)}&form=HDRSC2&first=${first}`
     const res = await fetch(url, {
       headers: {
         ...FETCH_HEADERS,
@@ -273,7 +274,7 @@ async function searchBingImages(query: string): Promise<ImageResult[]> {
       turls.push(match[1])
     }
 
-    for (let i = 0; i < murls.length && images.length < 12; i++) {
+    for (let i = 0; i < murls.length && images.length < 30; i++) {
       const imageUrl = murls[i]
       // Skip very long URLs (tracking/redirect junk)
       if (imageUrl.length > 500) continue
@@ -284,7 +285,41 @@ async function searchBingImages(query: string): Promise<ImageResult[]> {
         images.push({
           url: imageUrl,
           source: "bing",
+          // Use Bing's CDN thumbnail for display (always loads), full URL for saving
           thumbnail: turls[i] || imageUrl,
+        })
+      }
+    }
+
+    return images
+  } catch {
+    return []
+  }
+}
+
+async function searchGoogleImages(query: string, page: number = 1): Promise<ImageResult[]> {
+  try {
+    const apiKey = process.env.GOOGLE_API_KEY
+    const cx = process.env.GOOGLE_SEARCH_CX
+
+    if (!apiKey || !cx) return []
+
+    const searchQuery = `${query} watch`
+    const start = (page - 1) * 10 + 1
+    const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&searchType=image&q=${encodeURIComponent(searchQuery)}&start=${start}&num=10&imgSize=large`
+
+    const res = await fetch(url)
+    if (!res.ok) return []
+
+    const data = await res.json()
+    const images: ImageResult[] = []
+
+    for (const item of data.items || []) {
+      if (item.link && !item.link.startsWith("data:")) {
+        images.push({
+          url: item.link,
+          source: "google",
+          thumbnail: item.link,
         })
       }
     }
@@ -297,22 +332,24 @@ async function searchBingImages(query: string): Promise<ImageResult[]> {
 
 export async function POST(req: NextRequest) {
   try {
-    const { query } = await req.json()
+    const { query, page = 1 } = await req.json()
 
     if (!query || typeof query !== "string") {
       return NextResponse.json({ error: "query is required" }, { status: 400 })
     }
 
-    // Run Watchbase and Bing in parallel
-    const [watchbase, bing] = await Promise.all([
-      scrapeWatchbaseImages(query),
-      searchBingImages(query),
+    // Run Watchbase, Bing, and Google in parallel
+    const [watchbase, bing, google] = await Promise.all([
+      page === 1 ? scrapeWatchbaseImages(query) : Promise.resolve({ exact: [], related: [] }),
+      searchBingImages(query, page),
+      searchGoogleImages(query, page),
     ])
 
-    // Watchbase exact match first, then Bing results, then Watchbase variants
+    // Watchbase exact match first (page 1 only), then Bing, then Google, then Watchbase variants
     const allImages = [
       ...watchbase.exact,
       ...bing,
+      ...google,
       ...watchbase.related,
     ]
 
@@ -327,6 +364,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       images: uniqueImages,
       total: uniqueImages.length,
+      page,
+      hasMore: bing.length > 0 || google.length > 0,
     })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })

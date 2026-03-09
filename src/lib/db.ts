@@ -70,7 +70,7 @@ export async function createWatch(
   const admin = createAdminClient()
   if (!admin) throw new Error("Supabase not configured")
 
-  const { error: watchError } = await admin.from("watches").insert({
+  const { error: watchError } = await admin.from("watches").upsert({
     id: watch.id,
     brand: watch.brand,
     model: watch.model,
@@ -81,9 +81,12 @@ export async function createWatch(
     category: watch.category,
     condition: watch.condition,
     featured: watch.featured,
-  })
+  }, { onConflict: "id" })
 
   if (watchError) throw watchError
+
+  // Clear existing images before inserting new ones (upsert scenario)
+  await admin.from("watch_images").delete().eq("watch_id", watch.id)
 
   if (watch.images.length > 0) {
     const imageRows = watch.images.map((url, i) => ({
