@@ -36,6 +36,7 @@ interface ImageResult {
   url: string
   source: string
   thumbnail?: string
+  label?: string
 }
 
 export default function ManagePage() {
@@ -92,7 +93,20 @@ export default function ManagePage() {
 
   // Saving state
   const [saving, setSaving] = useState(false)
+  const [saveSuccess, setSaveSuccess] = useState(false)
   const [deleting, setDeleting] = useState<string | null>(null)
+
+  // List filter state
+  const [listFilter, setListFilter] = useState("")
+
+  // Scroll position preservation
+  const listScrollRef = useRef(0)
+
+  // Rolex database search state
+  const [rolexResults, setRolexResults] = useState<ImageResult[]>([])
+  const [rolexSearching, setRolexSearching] = useState(false)
+  const [rolexQuery, setRolexQuery] = useState("")
+  const [rolexError, setRolexError] = useState("")
 
   const fetchWatches = useCallback(async () => {
     setLoading(true)
@@ -325,6 +339,7 @@ export default function ManagePage() {
 
   const handleSave = async () => {
     setSaving(true)
+    setSaveSuccess(false)
     try {
       const watchData = {
         ...formData,
@@ -343,8 +358,9 @@ export default function ManagePage() {
 
       if (res.ok) {
         await fetchWatches()
-        setView("list")
-        resetForm()
+        setSaveSuccess(true)
+        setTimeout(() => setSaveSuccess(false), 3000)
+        // Stay on the same page — don't navigate back to list
       } else {
         const data = await res.json()
         alert(`Save failed: ${data.error}`)
@@ -374,6 +390,7 @@ export default function ManagePage() {
   }
 
   const handleEdit = (watch: Watch) => {
+    listScrollRef.current = window.scrollY
     setFormData({
       id: watch.id,
       brand: watch.brand,
@@ -388,8 +405,47 @@ export default function ManagePage() {
     })
     setSelectedImages([...watch.images])
     setImageResults([])
+    setRolexResults([])
+    setRolexQuery("")
+    setRolexError("")
     setEditingWatch(watch)
     setView("edit")
+    window.scrollTo({ top: 0 })
+  }
+
+  const handleRolexSearch = async (overrideQuery?: string) => {
+    const query = (overrideQuery || rolexQuery).trim() || formData.reference.trim()
+    if (!query) return
+    setRolexSearching(true)
+    setRolexError("")
+    setRolexResults([])
+    try {
+      // Detect if it's a full URL or a reference number
+      const isUrl = query.startsWith("http")
+      const payload = isUrl
+        ? { url: query }
+        : { reference: query, collection: formData.model?.split(" ")[0] }
+
+      const res = await fetch("/api/import/rolex", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setRolexError(data.error || "Search failed")
+        return
+      }
+      if (data.images?.length === 0) {
+        setRolexError("No images found. Try pasting the full rolex.com URL for that watch.")
+        return
+      }
+      setRolexResults(data.images || [])
+    } catch {
+      setRolexError("Network error. Please try again.")
+    } finally {
+      setRolexSearching(false)
+    }
   }
 
   const handleSeed = async () => {
@@ -456,8 +512,10 @@ export default function ManagePage() {
             </button>
             <button
               onClick={() => {
+                listScrollRef.current = window.scrollY
                 resetForm()
                 setView("add")
+                window.scrollTo({ top: 0 })
               }}
               className="flex items-center gap-2 px-4 py-2 text-sm font-sans font-semibold bg-foreground text-background hover:opacity-90 transition-opacity"
               style={{ borderRadius: "var(--pill-radius)" }}
@@ -467,6 +525,36 @@ export default function ManagePage() {
             </button>
           </div>
         </div>
+
+        {/* Filter bar */}
+        {watches.length > 0 && (
+          <div className="mb-4">
+            <div className="flex gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/30" />
+                <input
+                  type="text"
+                  value={listFilter}
+                  onChange={(e) => setListFilter(e.target.value)}
+                  placeholder="Filter by brand, model, reference, size..."
+                  className="w-full pl-10 pr-4 py-2.5 bg-card text-foreground text-sm font-sans placeholder:text-foreground/30 outline-none focus:ring-2 ring-primary/30"
+                  style={{
+                    borderRadius: "var(--pill-radius)",
+                    border: "var(--border-w) solid var(--border)",
+                  }}
+                />
+                {listFilter && (
+                  <button
+                    onClick={() => setListFilter("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 hover:bg-muted rounded"
+                  >
+                    <X className="w-3.5 h-3.5 text-foreground/40" />
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
@@ -482,7 +570,26 @@ export default function ManagePage() {
           </div>
         ) : (
           <div className="grid gap-3">
-            {watches.map((watch) => (
+            {(() => {
+              const q = listFilter.toLowerCase().trim()
+              const filtered = q
+                ? watches.filter((w) =>
+                    [w.brand, w.model, w.reference, w.specs?.caseSize, w.specs?.caseMaterial, w.category, w.condition]
+                      .filter(Boolean)
+                      .some((f) => f!.toLowerCase().includes(q))
+                  )
+                : watches
+              if (filtered.length === 0 && q) {
+                return (
+                  <div className="text-center py-12">
+                    <p className="text-foreground/40 text-sm">No watches match &ldquo;{listFilter}&rdquo;</p>
+                    <button onClick={() => setListFilter("")} className="text-primary text-xs mt-2 hover:underline">
+                      Clear filter
+                    </button>
+                  </div>
+                )
+              }
+              return filtered.map((watch, index) => (
               <div
                 key={watch.id}
                 className="flex items-center gap-4 p-4 bg-card transition-colors hover:bg-muted/50"
@@ -491,6 +598,11 @@ export default function ManagePage() {
                   border: "var(--border-w) solid var(--border)",
                 }}
               >
+                {/* Number */}
+                <span className="font-mono text-xs text-foreground/30 w-6 text-center shrink-0">
+                  {index + 1}
+                </span>
+
                 {/* Thumbnail */}
                 <div
                   className="w-16 h-16 shrink-0 bg-background overflow-hidden"
@@ -523,7 +635,7 @@ export default function ManagePage() {
                     {watch.model}
                   </p>
                   <p className="font-mono text-[10px] text-foreground/40">
-                    Ref. {watch.reference} | {watch.images.length} images
+                    Ref. {watch.reference} | {watch.specs?.caseSize || "—"} | {watch.images.length} images
                   </p>
                 </div>
 
@@ -569,7 +681,8 @@ export default function ManagePage() {
                   </button>
                 </div>
               </div>
-            ))}
+              ))
+            })()}
           </div>
         )}
       </div>
@@ -587,6 +700,12 @@ export default function ManagePage() {
           onClick={() => {
             setView("list")
             resetForm()
+            setRolexResults([])
+            setRolexQuery("")
+            setRolexError("")
+            requestAnimationFrame(() => {
+              window.scrollTo({ top: listScrollRef.current })
+            })
           }}
           className="p-2 hover:bg-card transition-colors rounded-lg"
         >
@@ -1234,19 +1353,177 @@ export default function ManagePage() {
             )}
           </div>
 
+          {/* Rolex Database Search */}
+          <div
+            className="p-6 bg-card"
+            style={{
+              borderRadius: "var(--card-radius)",
+              border: "var(--border-w) solid var(--border)",
+            }}
+          >
+            <div className="flex items-center justify-between mb-1">
+              <h3 className="font-sans font-semibold text-sm text-foreground">
+                Rolex Database
+              </h3>
+              <span className="text-[9px] font-mono text-foreground/30 uppercase tracking-wider px-2 py-0.5 bg-foreground/5 rounded">rolex.com</span>
+            </div>
+            <p className="font-mono text-xs text-foreground/40 mb-4">
+              Scrape official images from rolex.com — paste a reference or full URL
+            </p>
+
+            <div className="flex gap-2 mb-3">
+              <input
+                type="text"
+                value={rolexQuery}
+                onChange={(e) => setRolexQuery(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") handleRolexSearch() }}
+                placeholder="Reference or full rolex.com URL"
+                className="flex-1 px-3 py-2 bg-background text-foreground text-sm outline-none focus:ring-2 ring-primary/30"
+                style={{
+                  borderRadius: "0.5rem",
+                  border: "var(--border-w) solid var(--border)",
+                }}
+              />
+              <button
+                onClick={() => handleRolexSearch()}
+                disabled={rolexSearching}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-foreground text-background hover:opacity-90 disabled:opacity-50"
+                style={{ borderRadius: "0.5rem" }}
+              >
+                {rolexSearching ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Search className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+
+            {/* Auto-fill from current watch reference */}
+            {formData.reference && (
+              <button
+                onClick={() => {
+                  setRolexQuery(formData.reference)
+                  handleRolexSearch(formData.reference)
+                }}
+                disabled={rolexSearching}
+                className="flex items-center gap-2 text-xs font-mono text-primary hover:text-foreground transition-colors mb-4 disabled:opacity-50"
+              >
+                <Download className="w-3 h-3" />
+                Use current reference: {formData.reference}
+              </button>
+            )}
+
+            {rolexError && (
+              <p className="text-destructive text-xs mt-1 mb-3 font-mono">{rolexError}</p>
+            )}
+
+            {rolexResults.length > 0 && (
+              <div className="grid grid-cols-3 gap-2 max-h-[500px] overflow-y-auto">
+                {rolexResults.map((img) => {
+                  const isSelected = selectedImages.includes(img.url)
+                  return (
+                    <div
+                      key={img.url}
+                      className={`relative group aspect-square bg-background overflow-hidden transition-all ${
+                        isSelected
+                          ? "ring-2 ring-primary"
+                          : "hover:ring-2 ring-foreground/20"
+                      }`}
+                      style={{ borderRadius: "0.5rem" }}
+                    >
+                      <img
+                        src={img.thumbnail || img.url}
+                        alt="Rolex product"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        onError={(e) => {
+                          const target = e.currentTarget
+                          if (img.thumbnail && target.src !== img.url) {
+                            target.src = img.url
+                          }
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            setZoomImage(img.url)
+                          }}
+                          className="p-1.5 bg-white/20 hover:bg-white/40 rounded-full transition-colors"
+                          title="Zoom"
+                        >
+                          <ZoomIn className="w-4 h-4 text-white" />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            toggleImage(img.url)
+                          }}
+                          className={`p-1.5 rounded-full transition-colors ${
+                            isSelected
+                              ? "bg-primary hover:bg-primary/80"
+                              : "bg-white/20 hover:bg-white/40"
+                          }`}
+                          title={isSelected ? "Deselect" : "Select"}
+                        >
+                          {isSelected ? (
+                            <Check className="w-4 h-4 text-primary-foreground" />
+                          ) : (
+                            <Plus className="w-4 h-4 text-white" />
+                          )}
+                        </button>
+                      </div>
+                      {isSelected && (
+                        <div className="absolute top-1 right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                          <Check className="w-3 h-3 text-primary-foreground" />
+                        </div>
+                      )}
+                      {img.label && (
+                        <span className="absolute bottom-1 left-1 bg-black/60 text-white text-[8px] font-mono px-1 py-0.5 rounded truncate max-w-[90%]">
+                          {img.label}
+                        </span>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+
+            {!rolexSearching && rolexResults.length === 0 && !rolexError && (
+              <div className="py-6 text-center text-foreground/20">
+                <ImageIcon className="w-6 h-6 mx-auto mb-2" />
+                <p className="text-xs font-mono">
+                  Search Rolex official images by reference
+                </p>
+              </div>
+            )}
+          </div>
+
           {/* Save Button */}
           <button
             onClick={handleSave}
             disabled={saving || !formData.brand || !formData.model}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-sans font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50"
+            className={`w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-sans font-semibold transition-all disabled:opacity-50 ${
+              saveSuccess
+                ? "bg-green-600 text-white"
+                : "bg-primary text-primary-foreground hover:opacity-90"
+            }`}
             style={{ borderRadius: "var(--pill-radius)" }}
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin" />
+            ) : saveSuccess ? (
+              <Check className="w-4 h-4" />
             ) : (
               <Check className="w-4 h-4" />
             )}
-            {view === "edit" ? "Update Watch" : "Save Watch"}
+            {saving
+              ? "Saving..."
+              : saveSuccess
+                ? "Saved!"
+                : view === "edit"
+                  ? "Update Watch"
+                  : "Save Watch"}
           </button>
         </div>
       </div>

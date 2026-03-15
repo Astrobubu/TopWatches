@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react"
-import { type Locale, defaultLocale, getTranslation, rtlLocales } from "./index"
+import { type Locale, locales, defaultLocale, getTranslation, rtlLocales } from "./index"
 
 interface I18nContextType {
   locale: Locale
@@ -24,8 +24,19 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY) as Locale | null
-    if (saved && ["en", "zh", "ar", "ru", "pcm"].includes(saved)) {
+    if (saved && (locales as readonly string[]).includes(saved)) {
       setLocaleState(saved)
+      return
+    }
+    // Auto-detect from browser language
+    const browserLangs = navigator.languages || [navigator.language]
+    for (const lang of browserLangs) {
+      const code = lang.split("-")[0].toLowerCase()
+      if ((locales as readonly string[]).includes(code)) {
+        setLocaleState(code as Locale)
+        localStorage.setItem(STORAGE_KEY, code)
+        return
+      }
     }
   }, [])
 

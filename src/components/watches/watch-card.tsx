@@ -8,8 +8,20 @@ interface WatchCardProps {
   watch: Watch
 }
 
+function extractMM(caseSize: string | undefined): string | null {
+  if (!caseSize) return null
+  const match = caseSize.match(/(\d+(?:\.\d+)?)\s*mm/i)
+  return match ? `${match[1]}mm` : null
+}
+
 export function WatchCard({ watch }: WatchCardProps) {
   const { t } = useTranslation()
+  const mm = extractMM(watch.specs?.caseSize)
+  const details = [
+    watch.specs?.bracelet?.split(",")[0]?.split("(")[0]?.trim(),
+    watch.specs?.caseMaterial?.split(",")[0]?.split("(")[0]?.trim(),
+    watch.reference ? `Ref. ${watch.reference}` : null,
+  ].filter(Boolean)
 
   return (
     <Link href={`/watches/${watch.id}`} className="group block">
@@ -26,6 +38,12 @@ export function WatchCard({ watch }: WatchCardProps) {
           <span className="absolute top-3 right-3 bg-background/70 backdrop-blur-sm text-foreground/70 text-[10px] uppercase tracking-widest font-mono px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
             {t(`conditions.${watch.condition}`)}
           </span>
+          {/* MM size badge */}
+          {mm && (
+            <span className="absolute top-3 left-3 bg-primary/80 backdrop-blur-sm text-primary-foreground text-[10px] uppercase tracking-widest font-mono px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
+              {mm}
+            </span>
+          )}
         </div>
 
         {/* Info */}
@@ -33,9 +51,14 @@ export function WatchCard({ watch }: WatchCardProps) {
           <p className="font-mono text-[10px] text-primary tracking-widest uppercase mb-1">
             {watch.brand}
           </p>
-          <h3 className="font-sans font-semibold text-sm text-foreground leading-tight truncate mb-2">
+          <h3 className="font-sans font-semibold text-sm text-foreground leading-tight truncate mb-1">
             {watch.model}
           </h3>
+          {details.length > 0 && (
+            <p className="font-mono text-[10px] text-foreground/40 truncate mb-2">
+              {details.join(" \u00b7 ")}
+            </p>
+          )}
           <p className="font-serif italic text-lg text-foreground flex items-center gap-1">
             <span className="font-mono text-xs text-muted-foreground not-italic">{t("currency")}</span>
             {watch.price.toLocaleString()}

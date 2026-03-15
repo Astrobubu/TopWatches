@@ -4,6 +4,7 @@ export interface FilterState {
   brands: string[]
   categories: string[]
   conditions: string[]
+  caseSizes: string[]
   minPrice: number
   maxPrice: number
 }
@@ -36,14 +37,37 @@ export const CONDITION_OPTIONS = [
   { value: "good", label: "Good" },
 ]
 
+export const CASE_SIZE_OPTIONS = [
+  { value: "28", label: "28mm" },
+  { value: "31", label: "31mm" },
+  { value: "34", label: "34mm" },
+  { value: "36", label: "36mm" },
+  { value: "38", label: "38mm" },
+  { value: "39", label: "39mm" },
+  { value: "40", label: "40mm" },
+  { value: "41", label: "41mm" },
+  { value: "42", label: "42mm" },
+  { value: "43", label: "43mm" },
+  { value: "44", label: "44mm" },
+  { value: "45", label: "45mm" },
+  { value: "46", label: "46mm" },
+]
+
 export function getDefaultFilters(): FilterState {
   return {
     brands: [],
     categories: [],
     conditions: [],
+    caseSizes: [],
     minPrice: DEFAULT_MIN_PRICE,
     maxPrice: DEFAULT_MAX_PRICE,
   }
+}
+
+function extractMM(caseSize: string | undefined): number | null {
+  if (!caseSize) return null
+  const match = caseSize.match(/(\d+(?:\.\d+)?)\s*mm/i)
+  return match ? Math.round(parseFloat(match[1])) : null
 }
 
 export function brandSlug(brand: string): string {
@@ -69,6 +93,12 @@ export function filterWatches(watches: Watch[], filters: FilterState): Watch[] {
       !filters.conditions.includes(w.condition)
     ) {
       return false
+    }
+    if (filters.caseSizes.length > 0) {
+      const mm = extractMM(w.specs?.caseSize)
+      if (!mm || !filters.caseSizes.includes(String(mm))) {
+        return false
+      }
     }
     if (filters.minPrice > DEFAULT_MIN_PRICE && w.price < filters.minPrice) {
       return false
@@ -99,7 +129,7 @@ export function sortWatches(watches: Watch[], sort: string): Watch[] {
 }
 
 export function getLabelForFilterValue(
-  key: "brands" | "categories" | "conditions",
+  key: "brands" | "categories" | "conditions" | "caseSizes",
   value: string
 ): string {
   const options =
@@ -107,6 +137,8 @@ export function getLabelForFilterValue(
       ? BRAND_OPTIONS
       : key === "categories"
         ? CATEGORY_OPTIONS
-        : CONDITION_OPTIONS
+        : key === "caseSizes"
+          ? CASE_SIZE_OPTIONS
+          : CONDITION_OPTIONS
   return options.find((o) => o.value === value)?.label ?? value
 }

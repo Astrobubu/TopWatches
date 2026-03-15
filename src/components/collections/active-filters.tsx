@@ -44,6 +44,13 @@ export function ActiveFilters({
       label: getLabelForFilterValue("conditions", condition),
     })
   }
+  for (const size of filters.caseSizes) {
+    tags.push({
+      key: "caseSizes",
+      value: size,
+      label: getLabelForFilterValue("caseSizes", size),
+    })
+  }
   if (filters.minPrice > DEFAULT_MIN_PRICE) {
     tags.push({
       key: "minPrice",
