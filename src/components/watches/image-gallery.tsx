@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 interface ImageGalleryProps {
@@ -10,15 +10,50 @@ interface ImageGalleryProps {
 
 export function ImageGallery({ images, modelName }: ImageGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const imgRef = useRef<HTMLImageElement>(null)
+  const [zoomed, setZoomed] = useState(false)
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const img = imgRef.current
+    if (!img) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    img.style.transformOrigin = `${x}% ${y}%`
+  }, [])
+
+  const handleMouseEnter = useCallback(() => {
+    const img = imgRef.current
+    if (img) {
+      img.style.transform = "scale(2.2)"
+      setZoomed(true)
+    }
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    const img = imgRef.current
+    if (img) {
+      img.style.transform = "scale(1)"
+      img.style.transformOrigin = "center center"
+      setZoomed(false)
+    }
+  }, [])
 
   return (
     <div className="space-y-3">
       {/* Main image */}
-      <div className="relative aspect-square overflow-hidden bg-background" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+      <div
+        className="relative aspect-square overflow-hidden bg-background cursor-zoom-in"
+        style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <img
+          ref={imgRef}
           src={images[selectedIndex]}
           alt={modelName}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-200 ease-out"
         />
       </div>
 
