@@ -2,48 +2,53 @@
 
 import { Star } from "lucide-react"
 import { useTranslation } from "@/lib/i18n/context"
+import { useEffect, useState } from "react"
 
 const GOOGLE_MAPS_URL = "https://www.google.com/maps/place/golden+planet+watches+%26+jewellery/@25.270517,55.2963121,788m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3e5f4323f101b867:0x24e1f97091e971b6!8m2!3d25.270517!4d55.298887!16s%2Fg%2F11pxk_xhjz?entry=tts&g_ep=EgoyMDI2MDMxMS4wIPu8ASoASAFQAw%3D%3D&skid=493d17c4-553c-41d6-be1a-55c50691f2dc"
 
-const reviews = [
+interface Review {
+  id?: string
+  name: string
+  rating: number
+  text: string
+  date: string
+  avatar_url?: string | null
+}
+
+// Fallback reviews shown while loading or if Supabase is empty
+const FALLBACK_REVIEWS: Review[] = [
   {
     name: "Mohammed Al Towaiji",
-    avatar: "M",
     rating: 5,
     date: "1 month ago",
     text: "Good and safe and professional, and recommended.",
   },
   {
     name: "Sohaib Danish",
-    avatar: "S",
     rating: 5,
     date: "2 years ago",
     text: "Its best place for dealing used and new watch and diamond jewelry.",
   },
   {
     name: "Abdullah Ahmed",
-    avatar: "A",
     rating: 5,
     date: "1 year ago",
     text: "Best shop in market and good prices.",
   },
   {
     name: "Yasin Mohamadi",
-    avatar: "Y",
     rating: 5,
     date: "3 months ago",
     text: "Great experience, very trustworthy and quick service. Highly recommended for luxury watches in Dubai.",
   },
   {
     name: "Muhammed Faris",
-    avatar: "M",
     rating: 5,
     date: "1 year ago",
     text: "Excellent collection and fair prices. The team is knowledgeable and helped me find exactly what I was looking for.",
   },
   {
     name: "Shark Marketing",
-    avatar: "S",
     rating: 5,
     date: "2 years ago",
     text: "Top-notch service and authentic watches. One of the best watch dealers in Gold Souq, Dubai.",
@@ -65,6 +70,23 @@ function StarRating({ rating }: { rating: number }) {
 
 export function GoogleReviews() {
   const { t } = useTranslation()
+  const [reviews, setReviews] = useState<Review[]>(FALLBACK_REVIEWS)
+
+  useEffect(() => {
+    fetch("/api/reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.reviews && data.reviews.length > 0) {
+          setReviews(data.reviews)
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  const avgRating = reviews.length > 0
+    ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+    : "5.0"
+
   return (
     <section
       className="dark-section py-20 md:py-28 px-6 md:px-16"
@@ -81,20 +103,20 @@ export function GoogleReviews() {
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
               <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
             </svg>
-            <span className="font-sans font-bold text-lg">4.8</span>
-            <StarRating rating={5} />
+            <span className="font-sans font-bold text-lg">{avgRating}</span>
+            <StarRating rating={Math.round(Number(avgRating))} />
             <span className="opacity-40 text-sm font-sans">({reviews.length} {t("reviews.reviewsCount")})</span>
           </div>
         </div>
         <p className="font-mono text-[11px] opacity-40 mt-3">
-          Top Watches — Gold Souq, Dubai
+          Golden Planet Watches & Jewellery — Gold Souq, Dubai
         </p>
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {reviews.map((review, i) => (
           <div
-            key={review.name}
+            key={review.id || review.name}
             className="p-6 dark-section-animate"
             style={{
               borderRadius: 'var(--card-radius)',
@@ -109,7 +131,7 @@ export function GoogleReviews() {
                 className="w-10 h-10 bg-primary/15 text-primary flex items-center justify-center font-sans font-bold text-sm"
                 style={{ borderRadius: 'var(--pill-radius)' }}
               >
-                {review.avatar}
+                {review.name.charAt(0)}
               </div>
               <div className="flex-1">
                 <p className="font-sans font-semibold text-sm">{review.name}</p>
