@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["got-scraping", "header-generator"],
-  outputFileTracingIncludes: {
-    "/api/import/rolex": ["./node_modules/header-generator/data_files/**/*"],
-  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },

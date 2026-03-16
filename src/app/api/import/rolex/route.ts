@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
-import { gotScraping } from "got-scraping"
 import * as cheerio from "cheerio"
+
+const BROWSER_HEADERS = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-US,en;q=0.9",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Cache-Control": "no-cache",
+  "Sec-Fetch-Dest": "document",
+  "Sec-Fetch-Mode": "navigate",
+  "Sec-Fetch-Site": "none",
+  "Sec-Fetch-User": "?1",
+  "Upgrade-Insecure-Requests": "1",
+}
 
 interface RolexImage {
   url: string
@@ -38,13 +50,13 @@ function upgradeToHighRes(url: string): string {
 }
 
 async function scrapeRolexImages(url: string, reference?: string): Promise<RolexImage[]> {
-  const res = await gotScraping({ url, timeout: { request: 20000 } })
+  const res = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(20000) })
 
-  if (res.statusCode !== 200) {
-    throw new Error(`Rolex returned status ${res.statusCode}`)
+  if (!res.ok) {
+    throw new Error(`Rolex returned status ${res.status}`)
   }
 
-  const html = res.body
+  const html = await res.text()
   const $ = cheerio.load(html)
 
   // Extract all media.rolex.com image URLs from the HTML
