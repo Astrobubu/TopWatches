@@ -15,43 +15,25 @@ interface Review {
   avatar_url?: string | null
 }
 
-// Fallback reviews shown while loading or if Supabase is empty
+// Fallback reviews from Google Maps listing
 const FALLBACK_REVIEWS: Review[] = [
   {
-    name: "Mohammed Al Towaiji",
+    name: "Ahmed Alghamdi",
     rating: 5,
     date: "1 month ago",
-    text: "Good and safe and professional, and recommended.",
+    text: "Top-notch dealings and trust",
   },
   {
-    name: "Sohaib Danish",
+    name: "Yunis Swidi",
     rating: 5,
     date: "2 years ago",
-    text: "Its best place for dealing used and new watch and diamond jewelry.",
+    text: "",
   },
   {
-    name: "Abdullah Ahmed",
-    rating: 5,
-    date: "1 year ago",
-    text: "Best shop in market and good prices.",
-  },
-  {
-    name: "Yasin Mohamadi",
-    rating: 5,
-    date: "3 months ago",
-    text: "Great experience, very trustworthy and quick service. Highly recommended for luxury watches in Dubai.",
-  },
-  {
-    name: "Muhammed Faris",
-    rating: 5,
-    date: "1 year ago",
-    text: "Excellent collection and fair prices. The team is knowledgeable and helped me find exactly what I was looking for.",
-  },
-  {
-    name: "Shark Marketing",
-    rating: 5,
-    date: "2 years ago",
-    text: "Top-notch service and authentic watches. One of the best watch dealers in Gold Souq, Dubai.",
+    name: "Pretty Becky",
+    rating: 3,
+    date: "4 years ago",
+    text: "",
   },
 ]
 
