@@ -147,16 +147,14 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[500px] md:h-[600px] anim-item">
           <Link
             href="/for-him"
-            className="group block h-full flex items-end p-10 bg-cover bg-center transition-all duration-500"
-            style={{
-              borderRadius: "var(--container-radius)",
-              backgroundImage: "url('https://i.pinimg.com/1200x/a2/ab/aa/a2abaad39785e84615742e5c50e68772.jpg')",
-            }}
+            className="group relative block h-full flex items-end p-10 transition-all duration-500 overflow-hidden"
+            style={{ borderRadius: "var(--container-radius)" }}
           >
             <div
-              className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"
-              style={{ borderRadius: "var(--container-radius)" }}
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              style={{ backgroundImage: "url('https://i.pinimg.com/1200x/a2/ab/aa/a2abaad39785e84615742e5c50e68772.jpg')" }}
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="relative z-10 w-full flex items-end justify-between">
               <div>
                 <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHim")}</h3>
@@ -170,16 +168,14 @@ export default function HomePage() {
 
           <Link
             href="/for-her"
-            className="group block h-full flex items-end p-10 bg-cover bg-center transition-all duration-500"
-            style={{
-              borderRadius: "var(--container-radius)",
-              backgroundImage: "url('https://hijabi.pk/cdn/shop/files/gemini-image-2_photography_of_the_uploaded_image_is_a_reference_of_hijab_hijab_matching_bracele-0_fbb79dd1-962d-4944-a2c7-d74fecf663d3.jpg?v=1765878218')",
-            }}
+            className="group relative block h-full flex items-end p-10 transition-all duration-500 overflow-hidden"
+            style={{ borderRadius: "var(--container-radius)" }}
           >
             <div
-              className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"
-              style={{ borderRadius: "var(--container-radius)" }}
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              style={{ backgroundImage: "url('https://hijabi.pk/cdn/shop/files/gemini-image-2_photography_of_the_uploaded_image_is_a_reference_of_hijab_hijab_matching_bracele-0_fbb79dd1-962d-4944-a2c7-d74fecf663d3.jpg?v=1765878218')" }}
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="relative z-10 w-full flex items-end justify-between">
               <div>
                 <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHer")}</h3>
