@@ -160,11 +160,11 @@ function CollectionsContent() {
         {/* Watch grid */}
         <div className="flex-1 min-w-0">
           {loadingWatches ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
               {Array.from({ length: 6 }).map((_, i) => <WatchCardSkeleton key={i} />)}
             </div>
           ) : filteredWatches.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredWatches.map((watch) => (
                 <WatchCard key={watch.id} watch={watch} />
               ))}
@@ -192,7 +192,7 @@ export default function CollectionsPage() {
             <div className="h-4 w-32 bg-border animate-pulse rounded mb-3" />
             <div className="h-10 w-64 bg-border animate-pulse rounded" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="space-y-3">
                 <div className="aspect-square bg-card animate-pulse rounded-2xl" />

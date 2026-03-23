@@ -42,7 +42,7 @@ export default function ForHerPage() {
                 <div className="flex items-center justify-between mb-12">
                     <p className="font-mono text-sm text-foreground/40">{forHerWatches.length} {t("forHer.count")}</p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {forHerWatches.length === 0
                         ? Array.from({ length: 8 }).map((_, i) => <WatchCardSkeleton key={i} />)
                         : forHerWatches.map((watch) => (
