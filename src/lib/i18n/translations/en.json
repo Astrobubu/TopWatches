@@ -118,7 +118,7 @@
     "caseMaterial": "Case Material",
     "caseSize": "Case Size",
     "waterResistance": "Water Resistance",
-    "dialColor": "Dial Color",
+    "dialColor": "Dial",
     "bracelet": "Bracelet",
     "powerReserve": "Power Reserve",
     "year": "Year"
@@ -189,7 +189,11 @@
     "verified": "Verified Reviews",
     "title": "What Our Clients Say",
     "reviewsCount": "reviews",
-    "seeAll": "See all reviews on Google"
+    "seeAll": "See all reviews on Google",
+    "popupTitle": "Enjoying Golden Watches?",
+    "popupDesc": "Your review helps other watch enthusiasts find us. It only takes a moment!",
+    "popupCta": "Leave a Review",
+    "popupDismiss": "Maybe Later"
   },
 
   "related": {

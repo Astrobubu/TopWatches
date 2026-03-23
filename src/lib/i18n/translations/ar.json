@@ -118,7 +118,7 @@
     "caseMaterial": "مادة العلبة",
     "caseSize": "حجم العلبة",
     "waterResistance": "مقاومة الماء",
-    "dialColor": "لون الميناء",
+    "dialColor": "الميناء",
     "bracelet": "السوار",
     "powerReserve": "احتياطي الطاقة",
     "year": "السنة"
@@ -189,7 +189,11 @@
     "verified": "تقييمات موثّقة",
     "title": "ماذا يقول عملاؤنا",
     "reviewsCount": "تقييمات",
-    "seeAll": "عرض جميع التقييمات على Google"
+    "seeAll": "عرض جميع التقييمات على Google",
+    "popupTitle": "أعجبتك Golden Watches؟",
+    "popupDesc": "تقييمك يساعد عشّاق الساعات الآخرين في العثور علينا. لن يستغرق سوى لحظة!",
+    "popupCta": "اترك تقييماً",
+    "popupDismiss": "ربما لاحقاً"
   },
 
   "related": {

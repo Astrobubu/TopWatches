@@ -118,7 +118,7 @@
     "caseMaterial": "Case Material",
     "caseSize": "Case Size",
     "waterResistance": "Water Resistance",
-    "dialColor": "Dial Color",
+    "dialColor": "Dial",
     "bracelet": "Bracelet",
     "powerReserve": "Power Reserve",
     "year": "Year"
@@ -189,7 +189,11 @@
     "verified": "Verified Reviews",
     "title": "Wetin Our People Dey Talk",
     "reviewsCount": "reviews",
-    "seeAll": "See all reviews for Google"
+    "seeAll": "See all reviews for Google",
+    "popupTitle": "You Dey Enjoy Golden Watches?",
+    "popupDesc": "Your review go help other watch lovers find us. E no go take long!",
+    "popupCta": "Drop Review",
+    "popupDismiss": "Maybe Later"
   },
 
   "related": {

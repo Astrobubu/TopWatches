@@ -118,7 +118,7 @@
     "caseMaterial": "表壳材质",
     "caseSize": "表壳尺寸",
     "waterResistance": "防水性能",
-    "dialColor": "表盘颜色",
+    "dialColor": "表盘",
     "bracelet": "表带",
     "powerReserve": "动力储备",
     "year": "年份"
@@ -189,7 +189,11 @@
     "verified": "认证评价",
     "title": "客户评价",
     "reviewsCount": "条评价",
-    "seeAll": "在 Google 上查看所有评价"
+    "seeAll": "在 Google 上查看所有评价",
+    "popupTitle": "喜欢 Golden Watches 吗？",
+    "popupDesc": "您的评价能帮助其他表迷找到我们，只需片刻！",
+    "popupCta": "去评价",
+    "popupDismiss": "以后再说"
   },
 
   "related": {

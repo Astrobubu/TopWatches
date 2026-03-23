@@ -1005,7 +1005,7 @@ export default function ManagePage() {
                 ["caseMaterial", "Case Material"],
                 ["caseSize", "Case Size"],
                 ["waterResistance", "Water Resistance"],
-                ["dialColor", "Dial Color"],
+                ["dialColor", "Dial"],
                 ["bracelet", "Bracelet / Strap"],
                 ["powerReserve", "Power Reserve"],
               ] as const

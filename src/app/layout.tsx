@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { ReviewPrompt } from "@/components/review-prompt";
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/lib/i18n/context"
 import "./globals.css";
@@ -53,6 +54,7 @@ export default function RootLayout({
             <Header />
             <main className="min-h-screen pt-20">{children}</main>
             <Footer />
+            <ReviewPrompt />
             <ScrollToTop />
           </I18nProvider>
         </ThemeProvider>

@@ -118,7 +118,7 @@
     "caseMaterial": "Материал корпуса",
     "caseSize": "Размер корпуса",
     "waterResistance": "Водонепроницаемость",
-    "dialColor": "Цвет циферблата",
+    "dialColor": "Циферблат",
     "bracelet": "Браслет",
     "powerReserve": "Запас хода",
     "year": "Год"
@@ -189,7 +189,11 @@
     "verified": "Проверенные отзывы",
     "title": "Что говорят наши клиенты",
     "reviewsCount": "отзывов",
-    "seeAll": "Все отзывы на Google"
+    "seeAll": "Все отзывы на Google",
+    "popupTitle": "Нравится Golden Watches?",
+    "popupDesc": "Ваш отзыв поможет другим ценителям часов найти нас. Это займёт всего минуту!",
+    "popupCta": "Оставить отзыв",
+    "popupDismiss": "Может быть позже"
   },
 
   "related": {
