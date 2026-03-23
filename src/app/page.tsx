@@ -145,14 +145,19 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[500px] md:h-[600px] anim-item">
-          <Link href="/for-him" className="group relative rounded-[var(--container-radius)] overflow-hidden isolate block h-full transition-all duration-500">
-            <img
-              src="https://i.pinimg.com/1200x/a2/ab/aa/a2abaad39785e84615742e5c50e68772.jpg"
-              alt="For Him"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          <Link
+            href="/for-him"
+            className="group block h-full flex items-end p-10 bg-cover bg-center transition-all duration-500"
+            style={{
+              borderRadius: "var(--container-radius)",
+              backgroundImage: "url('https://i.pinimg.com/1200x/a2/ab/aa/a2abaad39785e84615742e5c50e68772.jpg')",
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"
+              style={{ borderRadius: "var(--container-radius)" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-10 flex items-end justify-between">
+            <div className="relative z-10 w-full flex items-end justify-between">
               <div>
                 <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHim")}</h3>
                 <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.above39mm")}</p>
@@ -163,14 +168,19 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link href="/for-her" className="group relative rounded-[var(--container-radius)] overflow-hidden isolate block h-full transition-all duration-500">
-            <img
-              src="https://hijabi.pk/cdn/shop/files/gemini-image-2_photography_of_the_uploaded_image_is_a_reference_of_hijab_hijab_matching_bracele-0_fbb79dd1-962d-4944-a2c7-d74fecf663d3.jpg?v=1765878218"
-              alt="For Her"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          <Link
+            href="/for-her"
+            className="group block h-full flex items-end p-10 bg-cover bg-center transition-all duration-500"
+            style={{
+              borderRadius: "var(--container-radius)",
+              backgroundImage: "url('https://hijabi.pk/cdn/shop/files/gemini-image-2_photography_of_the_uploaded_image_is_a_reference_of_hijab_hijab_matching_bracele-0_fbb79dd1-962d-4944-a2c7-d74fecf663d3.jpg?v=1765878218')",
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"
+              style={{ borderRadius: "var(--container-radius)" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-10 flex items-end justify-between">
+            <div className="relative z-10 w-full flex items-end justify-between">
               <div>
                 <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHer")}</h3>
                 <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.under39mm")}</p>
