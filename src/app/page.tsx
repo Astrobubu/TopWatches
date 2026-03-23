@@ -81,7 +81,7 @@ export default function HomePage() {
           <img
             src="https://swisswatches-magazine.com/uploads/2024/09/rolex-submariner-titlepicture.webp"
             alt="Luxury Watch Background"
-            className="w-full h-full object-cover object-right-top md:object-center opacity-50 mix-blend-luminosity"
+            className="w-full h-full object-cover object-[75%_30%] md:object-center opacity-50 mix-blend-luminosity"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
         </div>
