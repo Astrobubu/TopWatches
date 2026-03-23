@@ -91,7 +91,7 @@ export function GoogleReviews() {
           </div>
         </div>
         <p className="font-mono text-[11px] opacity-40 mt-3">
-          Golden Planet Watches & Jewellery — Gold Souq, Dubai
+          Golden Planet Watches — Gold Souq, Dubai
         </p>
       </div>
 
