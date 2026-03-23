@@ -76,7 +76,7 @@ export default function HomePage() {
   return (
     <div ref={mainRef}>
       {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="relative h-[100dvh] w-full flex items-end -mt-20">
+      <section className="relative h-[100dvh] w-full flex items-end -mt-20 select-none">
         <div className="absolute inset-0 w-full h-full z-0">
           <img
             src="https://swisswatches-magazine.com/uploads/2024/09/rolex-submariner-titlepicture.webp"
@@ -138,7 +138,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════ FOR HIM & HER SPLIT (light bg) ═══════════════════ */}
-      <section className="anim-section py-20 px-6 md:px-16 max-w-7xl mx-auto">
+      <section className="anim-section py-20 px-6 md:px-16 max-w-7xl mx-auto select-none">
         <div className="text-center mb-12">
           <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">{t("home.curated")}</h3>
           <h2 className="anim-item font-serif italic text-3xl md:text-5xl text-foreground">{t("home.findYourFit")}</h2>
@@ -197,7 +197,7 @@ export default function HomePage() {
       <GoogleReviews />
 
       {/* ═══════════════════ PERSONAL CONCIERGE (light bg) ═══════════════════ */}
-      <section className="anim-section py-20 md:py-32 px-6 md:px-16">
+      <section className="anim-section py-20 md:py-32 px-6 md:px-16 select-none">
         <div className="max-w-5xl mx-auto text-center mb-12 md:mb-16">
           <h3 className="anim-item font-mono text-primary text-xs tracking-[0.2em] mb-3 uppercase">{t("concierge.title")}</h3>
           <h2 className="anim-item font-serif italic text-3xl md:text-5xl text-foreground mb-4">{t("concierge.subtitle")}</h2>
