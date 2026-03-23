@@ -4,7 +4,11 @@ import { getWatches, createWatch, updateWatch, deleteWatch } from "@/lib/db"
 export async function GET() {
   try {
     const watches = await getWatches()
-    return NextResponse.json(watches)
+    return NextResponse.json(watches, {
+      headers: {
+        "Cache-Control": "s-maxage=60, stale-while-revalidate=300",
+      },
+    })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }

@@ -4,10 +4,13 @@ import { useEffect, useState } from "react"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
+import { watches as staticWatches } from "@/data/watches"
 
 export default function ForHerPage() {
     const { t } = useTranslation()
-    const [forHerWatches, setForHerWatches] = useState<Watch[]>([])
+    const [forHerWatches, setForHerWatches] = useState<Watch[]>(() =>
+        staticWatches.filter((w) => parseInt(w.specs.caseSize) < 39)
+    )
 
     useEffect(() => {
         fetch("/api/watches")

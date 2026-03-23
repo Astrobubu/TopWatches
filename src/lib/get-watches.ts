@@ -26,24 +26,13 @@ export async function getAllWatches(): Promise<Watch[]> {
   try {
     const { data: watches, error } = await supabase
       .from("watches")
-      .select("*")
+      .select("*, watch_images(*)")
       .order("created_at", { ascending: false })
 
     if (error) throw error
     if (!watches || watches.length === 0) return staticWatches
 
-    const { data: images } = await supabase
-      .from("watch_images")
-      .select("*")
-      .in("watch_id", watches.map((w: any) => w.id))
-
-    const imagesByWatch = (images || []).reduce((acc: any, img: any) => {
-      if (!acc[img.watch_id]) acc[img.watch_id] = []
-      acc[img.watch_id].push(img)
-      return acc
-    }, {})
-
-    return watches.map((w: any) => toWatch(w, imagesByWatch[w.id] || []))
+    return watches.map((w: any) => toWatch(w, w.watch_images || []))
   } catch {
     // Fallback to static data if Supabase is unavailable
     return staticWatches

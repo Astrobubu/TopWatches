@@ -9,6 +9,7 @@ import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
 import { FilterSidebar } from "@/components/collections/filter-sidebar"
 import { SortDropdown } from "@/components/collections/sort-dropdown"
+import { watches as staticWatches } from "@/data/watches"
 import {
   type FilterState,
   DEFAULT_MIN_PRICE,
@@ -57,7 +58,7 @@ function CollectionsContent() {
   const { t } = useTranslation()
   const searchParams = useSearchParams()
   const router = useRouter()
-  const [watches, setWatches] = useState<Watch[]>([])
+  const [watches, setWatches] = useState<Watch[]>(staticWatches)
   const [loadingWatches, setLoadingWatches] = useState(true)
 
   useEffect(() => {

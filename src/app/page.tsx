@@ -11,12 +11,13 @@ import { ConciergeSystem } from "@/components/home/concierge-system"
 import { GoogleReviews } from "@/components/home/google-reviews"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
+import { watches as staticWatches } from "@/data/watches"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function HomePage() {
   const mainRef = useRef<HTMLDivElement>(null)
-  const [watches, setWatches] = useState<Watch[]>([])
+  const [watches, setWatches] = useState<Watch[]>(staticWatches)
   const { t } = useTranslation()
 
   useEffect(() => {
