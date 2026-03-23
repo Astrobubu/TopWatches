@@ -145,7 +145,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[500px] md:h-[600px] anim-item">
-          <Link href="/for-him" className="group relative rounded-[var(--container-radius)] overflow-hidden block h-full transition-all duration-500">
+          <Link href="/for-him" className="group relative rounded-[var(--container-radius)] overflow-hidden isolate block h-full transition-all duration-500">
             <img
               src="https://i.pinimg.com/1200x/a2/ab/aa/a2abaad39785e84615742e5c50e68772.jpg"
               alt="For Him"
@@ -163,7 +163,7 @@ export default function HomePage() {
             </div>
           </Link>
 
-          <Link href="/for-her" className="group relative rounded-[var(--container-radius)] overflow-hidden block h-full transition-all duration-500">
+          <Link href="/for-her" className="group relative rounded-[var(--container-radius)] overflow-hidden isolate block h-full transition-all duration-500">
             <img
               src="https://hijabi.pk/cdn/shop/files/gemini-image-2_photography_of_the_uploaded_image_is_a_reference_of_hijab_hijab_matching_bracele-0_fbb79dd1-962d-4944-a2c7-d74fecf663d3.jpg?v=1765878218"
               alt="For Her"
