@@ -4,13 +4,11 @@ import { useEffect, useState } from "react"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
-import { watches as staticWatches } from "@/data/watches"
+import { WatchCardSkeleton } from "@/components/watches/watch-card-skeleton"
 
 export default function ForHerPage() {
     const { t } = useTranslation()
-    const [forHerWatches, setForHerWatches] = useState<Watch[]>(() =>
-        staticWatches.filter((w) => parseInt(w.specs.caseSize) < 39)
-    )
+    const [forHerWatches, setForHerWatches] = useState<Watch[]>([])
 
     useEffect(() => {
         fetch("/api/watches")
@@ -45,9 +43,12 @@ export default function ForHerPage() {
                     <p className="font-mono text-sm text-foreground/40">{forHerWatches.length} {t("forHer.count")}</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    {forHerWatches.map((watch) => (
-                        <WatchCard key={watch.id} watch={watch} />
-                    ))}
+                    {forHerWatches.length === 0
+                        ? Array.from({ length: 8 }).map((_, i) => <WatchCardSkeleton key={i} />)
+                        : forHerWatches.map((watch) => (
+                            <WatchCard key={watch.id} watch={watch} />
+                        ))
+                    }
                 </div>
             </section>
         </div>

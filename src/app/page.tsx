@@ -7,17 +7,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowRight, Camera, ClipboardList } from "lucide-react"
 import { brands } from "@/data/brands"
 import { WatchCard } from "@/components/watches/watch-card"
+import { WatchCardSkeleton } from "@/components/watches/watch-card-skeleton"
 import { ConciergeSystem } from "@/components/home/concierge-system"
 import { GoogleReviews } from "@/components/home/google-reviews"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
-import { watches as staticWatches } from "@/data/watches"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function HomePage() {
   const mainRef = useRef<HTMLDivElement>(null)
-  const [watches, setWatches] = useState<Watch[]>(staticWatches)
+  const [watches, setWatches] = useState<Watch[]>([])
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -125,9 +125,14 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {curatedWatches.map(w => (
-              <div key={w.id} className="anim-item"><WatchCard watch={w} /></div>
-            ))}
+            {curatedWatches.length === 0
+              ? Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className="anim-item"><WatchCardSkeleton /></div>
+                ))
+              : curatedWatches.map(w => (
+                  <div key={w.id} className="anim-item"><WatchCard watch={w} /></div>
+                ))
+            }
           </div>
         </div>
       </section>

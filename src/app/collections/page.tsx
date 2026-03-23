@@ -7,9 +7,9 @@ import { SlidersHorizontal, X, Loader2 } from "lucide-react"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
 import { WatchCard } from "@/components/watches/watch-card"
+import { WatchCardSkeleton } from "@/components/watches/watch-card-skeleton"
 import { FilterSidebar } from "@/components/collections/filter-sidebar"
 import { SortDropdown } from "@/components/collections/sort-dropdown"
-import { watches as staticWatches } from "@/data/watches"
 import {
   type FilterState,
   DEFAULT_MIN_PRICE,
@@ -58,7 +58,7 @@ function CollectionsContent() {
   const { t } = useTranslation()
   const searchParams = useSearchParams()
   const router = useRouter()
-  const [watches, setWatches] = useState<Watch[]>(staticWatches)
+  const [watches, setWatches] = useState<Watch[]>([])
   const [loadingWatches, setLoadingWatches] = useState(true)
 
   useEffect(() => {
@@ -159,7 +159,11 @@ function CollectionsContent() {
 
         {/* Watch grid */}
         <div className="flex-1 min-w-0">
-          {filteredWatches.length > 0 ? (
+          {loadingWatches ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {Array.from({ length: 6 }).map((_, i) => <WatchCardSkeleton key={i} />)}
+            </div>
+          ) : filteredWatches.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredWatches.map((watch) => (
                 <WatchCard key={watch.id} watch={watch} />
