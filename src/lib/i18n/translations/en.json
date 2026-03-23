@@ -1,5 +1,5 @@
 {
-  "brand": "Golden Watches",
+  "brand": "Golden Planet Watches",
   "tagline": "Curated. Authenticated. Delivered. Your trusted marketplace for pre-owned luxury timepieces.",
 
   "nav": {
@@ -182,7 +182,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "authenticity": "Authenticity Guarantee",
-    "copyright": "© 2026 Golden Watches. All rights reserved."
+    "copyright": "© 2026 Golden Planet Watches. All rights reserved."
   },
 
   "reviews": {
@@ -190,7 +190,7 @@
     "title": "What Our Clients Say",
     "reviewsCount": "reviews",
     "seeAll": "See all reviews on Google",
-    "popupTitle": "Enjoying Golden Watches?",
+    "popupTitle": "Enjoying Golden Planet Watches?",
     "popupDesc": "Your review helps other watch enthusiasts find us. It only takes a moment!",
     "popupCta": "Leave a Review",
     "popupDismiss": "Maybe Later"
