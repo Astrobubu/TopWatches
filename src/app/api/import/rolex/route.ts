@@ -49,55 +49,53 @@ function upgradeToHighRes(url: string): string {
   return url.replace(/c_limit,w_\d+/, "c_limit,w_2560")
 }
 
-// Build CDN image URLs directly from the reference number (bypasses 403 on rolex.com)
-function buildCdnUrls(reference: string): string[] {
-  const ref = reference.toLowerCase()
-  const baseRef = ref.replace(/^m/, "")
-  return [
-    `https://media.rolex.com/image/upload/v7/catalogue/${ref}_modelpage_front_facing_landscape`,
-    `https://media.rolex.com/image/upload/v7/catalogue/${ref}_modelpage_front_facing_portrait`,
-    `https://media.rolex.com/image/upload/v7/catalogue/${ref}_modelpage_laying_down_shadow`,
-    `https://media.rolex.com/image/upload/v7/catalogue/${baseRef}_modelpage_front_facing_landscape`,
-    `https://media.rolex.com/image/upload/v7/catalogue/${baseRef}_modelpage_front_facing_portrait`,
-  ]
-}
+// Fallback: search Bing Images for official Rolex product photos
+async function searchBingForRolex(reference: string, collection?: string): Promise<RolexImage[]> {
+  try {
+    const searchTerms = collection
+      ? `Rolex ${collection} ${reference} official product photo site:rolex.com OR site:media.rolex.com`
+      : `Rolex ${reference} official product photo site:rolex.com OR site:media.rolex.com`
+    const url = `https://www.bing.com/images/search?q=${encodeURIComponent(searchTerms)}&form=HDRSC2&first=1`
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": BROWSER_HEADERS["User-Agent"],
+        Accept: "text/html",
+      },
+      signal: AbortSignal.timeout(10000),
+    })
+    if (!res.ok) return []
 
-async function probeImageUrl(url: string): Promise<string | null> {
-  // Try common extensions — Rolex CDN serves without extension via content negotiation,
-  // but also try explicit .webp and .png
-  const variants = [url, `${url}.webp`, `${url}.png`]
-  for (const u of variants) {
-    try {
-      const res = await fetch(u, {
-        method: "HEAD",
-        headers: { "User-Agent": BROWSER_HEADERS["User-Agent"] },
-        signal: AbortSignal.timeout(5000),
-        redirect: "follow",
+    const html = await res.text()
+    const images: RolexImage[] = []
+
+    // Bing embeds image URLs as murl (media URL) and turl (thumbnail URL)
+    const murlRegex = /murl&quot;:&quot;(https?:\/\/[^&]+?)&quot;/g
+    const turlRegex = /turl&quot;:&quot;(https?:\/\/[^&]+?)&quot;/g
+
+    const murls: string[] = []
+    const turls: string[] = []
+
+    let match
+    while ((match = murlRegex.exec(html)) !== null) murls.push(match[1])
+    while ((match = turlRegex.exec(html)) !== null) turls.push(match[1])
+
+    const seen = new Set<string>()
+    for (let i = 0; i < murls.length && images.length < 15; i++) {
+      const imageUrl = murls[i]
+      if (imageUrl.length > 500 || imageUrl.startsWith("data:")) continue
+      if (seen.has(imageUrl)) continue
+      seen.add(imageUrl)
+      images.push({
+        url: imageUrl,
+        thumbnail: turls[i] || imageUrl,
+        source: "bing (rolex)",
       })
-      if (res.ok && res.headers.get("content-type")?.startsWith("image")) {
-        return u
-      }
-    } catch {
-      // continue
     }
-  }
-  return null
-}
 
-async function getRolexCdnImages(reference: string): Promise<RolexImage[]> {
-  const candidates = buildCdnUrls(reference)
-  const results = await Promise.all(candidates.map(probeImageUrl))
-  const seen = new Set<string>()
-  const images: RolexImage[] = []
-
-  for (const url of results) {
-    if (!url || seen.has(url)) continue
-    seen.add(url)
-    const highRes = upgradeToHighRes(url)
-    const thumb = highRes.replace(/c_limit,w_\d+/, "c_limit,w_640")
-    images.push({ url: highRes, thumbnail: thumb, source: "rolex.com" })
+    return images
+  } catch {
+    return []
   }
-  return images
 }
 
 async function scrapeRolexImages(url: string, reference?: string): Promise<RolexImage[]> {
@@ -105,16 +103,10 @@ async function scrapeRolexImages(url: string, reference?: string): Promise<Rolex
   try {
     res = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(20000) })
   } catch {
-    // Network error — fall back to CDN probing
-    if (reference) return getRolexCdnImages(reference)
     return []
   }
 
-  if (!res.ok) {
-    // 403 or other HTTP error — fall back to CDN probing instead of failing
-    if (reference) return getRolexCdnImages(reference)
-    return []
-  }
+  if (!res.ok) return []
 
   const html = await res.text()
   const $ = cheerio.load(html)
@@ -162,10 +154,7 @@ async function scrapeRolexImages(url: string, reference?: string): Promise<Rolex
     }
   }
 
-  // If scrape found nothing but we have a reference, try CDN probing
-  if (allUrls.size === 0 && reference) {
-    return getRolexCdnImages(reference)
-  }
+  if (allUrls.size === 0) return []
 
   // Deduplicate by base path (same image at different sizes)
   const seen = new Map<string, string>()
@@ -215,12 +204,13 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // Step 1: Try direct scrape (works locally, may 403 on deployed)
     let images = await scrapeRolexImages(targetUrl, normalizedRef)
 
-    // If no results and no direct URL, try common collections
+    // Step 2: If no results and no direct URL, try common collections
     if (images.length === 0 && !directUrl && normalizedRef) {
       const collections = [
-        "submariner", "datejust", "gmt-master-ii", "cosmograph-daytona",
+        "submariner", "datejust", "lady-datejust", "gmt-master-ii", "cosmograph-daytona",
         "day-date", "sky-dweller", "sea-dweller", "explorer",
         "yacht-master", "air-king", "oyster-perpetual", "1908",
       ]
@@ -236,6 +226,14 @@ export async function POST(req: NextRequest) {
           })
         }
       }
+    }
+
+    // Step 3: Fallback — search Bing for official Rolex images
+    if (images.length === 0) {
+      const ref = normalizedRef || (directUrl?.match(/(m[\w]+-\d+)/i)?.[1]) || reference || ""
+      // Extract collection from URL if available
+      const colFromUrl = directUrl?.match(/watches\/([^/]+)\//)?.[1]
+      images = await searchBingForRolex(ref, colFromUrl || collection)
     }
 
     return NextResponse.json({

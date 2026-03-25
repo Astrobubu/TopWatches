@@ -419,28 +419,69 @@ export default function ManagePage() {
     setRolexSearching(true)
     setRolexError("")
     setRolexResults([])
-    try {
-      // Detect if it's a full URL or a reference number
-      const isUrl = query.startsWith("http")
-      const payload = isUrl
-        ? { url: query }
-        : { reference: query, collection: formData.model?.split(" ")[0] }
 
-      const res = await fetch("/api/import/rolex", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+    // Extract reference from URL or raw input
+    let ref = query
+    const urlRefMatch = query.match(/(m\d+[a-z]*-\d+)/i)
+    if (urlRefMatch) {
+      ref = urlRefMatch[1].toLowerCase()
+    } else {
+      // Normalize: add "m" prefix and "-0001" suffix if missing
+      ref = ref.toLowerCase().replace(/\s+/g, "")
+      if (!ref.startsWith("m")) ref = "m" + ref
+      if (!ref.includes("-")) ref = ref + "-0001"
+    }
+
+    // Build CDN URLs directly — media.rolex.com has CORS: * and no bot blocking
+    const views = [
+      "upright-c",
+      "upright-c-shadow",
+      "showcase",
+      "raw-dial-constant-size-with-shadow",
+      "bezel-constant-size-with-shadow",
+    ]
+    // Try current and recent catalogue years
+    const years = ["2025", "2024", "2023"]
+
+    const candidates: string[] = []
+    for (const year of years) {
+      for (const view of views) {
+        candidates.push(
+          `https://media.rolex.com/image/upload/q_auto/f_auto/c_limit,w_2440/v1/catalogue/${year}/${view}/${ref}`
+        )
+      }
+    }
+
+    // Probe all URLs in parallel using <img> onload/onerror (no CORS issues)
+    const probeImage = (url: string): Promise<string | null> =>
+      new Promise((resolve) => {
+        const img = new Image()
+        img.onload = () => resolve(url)
+        img.onerror = () => resolve(null)
+        img.src = url
       })
-      const data = await res.json()
-      if (!res.ok) {
-        setRolexError(data.error || "Search failed")
-        return
+
+    try {
+      const results = await Promise.all(candidates.map(probeImage))
+      const found: ImageResult[] = []
+      const seen = new Set<string>()
+
+      for (const url of results) {
+        if (!url) continue
+        // Deduplicate by view name (same view across years)
+        const viewKey = url.replace(/\/catalogue\/\d{4}\//, "/catalogue/YEAR/")
+        if (seen.has(viewKey)) continue
+        seen.add(viewKey)
+
+        const thumb = url.replace(/c_limit,w_\d+/, "c_limit,w_640")
+        found.push({ url, thumbnail: thumb, source: "rolex.com" })
       }
-      if (data.images?.length === 0) {
-        setRolexError("No images found. Try pasting the full rolex.com URL for that watch.")
-        return
+
+      if (found.length === 0) {
+        setRolexError("No images found. Check the reference number (e.g. m279173-0013).")
+      } else {
+        setRolexResults(found)
       }
-      setRolexResults(data.images || [])
     } catch {
       setRolexError("Network error. Please try again.")
     } finally {
