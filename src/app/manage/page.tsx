@@ -62,6 +62,7 @@ export default function ManagePage() {
     description: "",
     category: "sport" as Watch["category"],
     condition: "unworn" as Watch["condition"],
+    gender: "men" as Watch["gender"],
     featured: false,
     specs: {
       movement: "",
@@ -98,6 +99,7 @@ export default function ManagePage() {
 
   // List filter state
   const [listFilter, setListFilter] = useState("")
+  const [genderFilter, setGenderFilter] = useState<"" | Watch["gender"]>("")
 
   // Scroll position preservation
   const listScrollRef = useRef(0)
@@ -145,6 +147,7 @@ export default function ManagePage() {
       description: "",
       category: "sport",
       condition: "unworn",
+      gender: "men",
       featured: false,
       specs: {
         movement: "",
@@ -400,6 +403,7 @@ export default function ManagePage() {
       description: watch.description,
       category: watch.category,
       condition: watch.condition,
+      gender: watch.gender || "men",
       featured: watch.featured,
       specs: { ...watch.specs },
     })
@@ -604,6 +608,20 @@ export default function ManagePage() {
                   </button>
                 )}
               </div>
+              <select
+                value={genderFilter}
+                onChange={(e) => setGenderFilter(e.target.value as typeof genderFilter)}
+                className="px-3 py-2.5 bg-card text-foreground text-sm font-sans outline-none focus:ring-2 ring-primary/30"
+                style={{
+                  borderRadius: "var(--pill-radius)",
+                  border: "var(--border-w) solid var(--border)",
+                }}
+              >
+                <option value="">All</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="unisex">Unisex</option>
+              </select>
             </div>
           </div>
         )}
@@ -624,13 +642,16 @@ export default function ManagePage() {
           <div className="grid gap-3">
             {(() => {
               const q = listFilter.toLowerCase().trim()
-              const filtered = q
-                ? watches.filter((w) =>
-                    [w.brand, w.model, w.reference, w.specs?.caseSize, w.specs?.caseMaterial, w.category, w.condition]
+              let filtered = genderFilter
+                ? watches.filter((w) => w.gender === genderFilter)
+                : watches
+              filtered = q
+                ? filtered.filter((w) =>
+                    [w.brand, w.model, w.reference, w.specs?.caseSize, w.specs?.caseMaterial, w.category, w.condition, w.gender]
                       .filter(Boolean)
                       .some((f) => f!.toLowerCase().includes(q))
                   )
-                : watches
+                : filtered
               if (filtered.length === 0 && q) {
                 return (
                   <div className="text-center py-12">
@@ -968,7 +989,7 @@ export default function ManagePage() {
               />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               <div>
                 <label className="block font-mono text-[10px] text-foreground/50 uppercase tracking-wider mb-1">
                   Category
@@ -1015,6 +1036,29 @@ export default function ManagePage() {
                   <option value="unworn">Unworn</option>
                   <option value="preowned">Pre-Owned</option>
                   <option value="unwanted-gift">Unwanted Gift</option>
+                </select>
+              </div>
+              <div>
+                <label className="block font-mono text-[10px] text-foreground/50 uppercase tracking-wider mb-1">
+                  Gender
+                </label>
+                <select
+                  value={formData.gender}
+                  onChange={(e) =>
+                    setFormData((p) => ({
+                      ...p,
+                      gender: e.target.value as Watch["gender"],
+                    }))
+                  }
+                  className="w-full px-3 py-2 bg-background text-foreground text-sm outline-none focus:ring-2 ring-primary/30"
+                  style={{
+                    borderRadius: "0.5rem",
+                    border: "var(--border-w) solid var(--border)",
+                  }}
+                >
+                  <option value="men">Men</option>
+                  <option value="women">Women</option>
+                  <option value="unisex">Unisex</option>
                 </select>
               </div>
               <div className="flex items-end pb-1">

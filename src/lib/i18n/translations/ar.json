@@ -113,14 +113,18 @@
 
   "specs": {
     "title": "المواصفات",
+    "referenceNumber": "رقم المرجع",
+    "yearOfProduction": "سنة الإنتاج",
+    "gender": "الجنس",
+    "condition": "الحالة",
+    "scope": "النطاق",
     "movement": "الحركة",
     "caseMaterial": "مادة العلبة",
     "caseSize": "حجم العلبة",
     "waterResistance": "مقاومة الماء",
     "dialColor": "الميناء",
     "bracelet": "السوار",
-    "powerReserve": "احتياطي الطاقة",
-    "year": "السنة"
+    "powerReserve": "احتياطي الطاقة"
   },
 
   "detail": {

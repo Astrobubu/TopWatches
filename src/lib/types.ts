@@ -18,7 +18,8 @@ export interface Watch {
   }
   category: "dress" | "sport" | "dive" | "chronograph" | "pilot"
   condition: "unworn" | "preowned" | "unwanted-gift"
-  gender: "men" | "women" | "unisex"
+  gender?: "men" | "women" | "unisex"
+  scope?: string
   featured: boolean
 }
 

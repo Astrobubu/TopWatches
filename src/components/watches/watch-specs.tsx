@@ -4,13 +4,25 @@ import type { Watch } from "@/lib/types"
 import { useTranslation } from "@/lib/i18n/context"
 
 interface WatchSpecsProps {
-  specs: Watch["specs"]
+  watch: Watch
 }
 
-export function WatchSpecs({ specs }: WatchSpecsProps) {
+const genderLabels: Record<string, string> = {
+  men: "Men's Watch",
+  women: "Women's Watch",
+  unisex: "Unisex",
+}
+
+export function WatchSpecs({ watch }: WatchSpecsProps) {
   const { t } = useTranslation()
+  const { specs } = watch
 
   const specRows = [
+    { label: t("specs.referenceNumber"), value: watch.reference },
+    { label: t("specs.yearOfProduction"), value: specs.year.toString() },
+    { label: t("specs.gender"), value: watch.gender ? (genderLabels[watch.gender] || watch.gender) : undefined },
+    { label: t("specs.condition"), value: t(`conditions.${watch.condition}`) },
+    { label: t("specs.scope"), value: watch.scope },
     { label: t("specs.movement"), value: specs.movement },
     { label: t("specs.caseMaterial"), value: specs.caseMaterial },
     { label: t("specs.caseSize"), value: specs.caseSize },
@@ -18,8 +30,7 @@ export function WatchSpecs({ specs }: WatchSpecsProps) {
     { label: t("specs.dialColor"), value: specs.dialColor },
     { label: t("specs.bracelet"), value: specs.bracelet },
     { label: t("specs.powerReserve"), value: specs.powerReserve },
-    { label: t("specs.year"), value: specs.year.toString() },
-  ]
+  ].filter(row => row.value)
 
   return (
     <div className="space-y-0">

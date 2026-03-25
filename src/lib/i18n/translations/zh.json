@@ -113,14 +113,18 @@
 
   "specs": {
     "title": "规格参数",
+    "referenceNumber": "参考编号",
+    "yearOfProduction": "生产年份",
+    "gender": "性别",
+    "condition": "状况",
+    "scope": "配件范围",
     "movement": "机芯",
     "caseMaterial": "表壳材质",
     "caseSize": "表壳尺寸",
     "waterResistance": "防水性能",
     "dialColor": "表盘",
     "bracelet": "表带",
-    "powerReserve": "动力储备",
-    "year": "年份"
+    "powerReserve": "动力储备"
   },
 
   "detail": {

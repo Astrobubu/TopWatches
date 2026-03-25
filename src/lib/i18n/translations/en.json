@@ -113,14 +113,18 @@
 
   "specs": {
     "title": "Specifications",
+    "referenceNumber": "Reference Number",
+    "yearOfProduction": "Year Of Production",
+    "gender": "Gender",
+    "condition": "Condition",
+    "scope": "Scope",
     "movement": "Movement",
     "caseMaterial": "Case Material",
     "caseSize": "Case Size",
     "waterResistance": "Water Resistance",
     "dialColor": "Dial",
     "bracelet": "Bracelet",
-    "powerReserve": "Power Reserve",
-    "year": "Year"
+    "powerReserve": "Power Reserve"
   },
 
   "detail": {

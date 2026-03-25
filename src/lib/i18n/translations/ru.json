@@ -113,14 +113,18 @@
 
   "specs": {
     "title": "Характеристики",
+    "referenceNumber": "Референс",
+    "yearOfProduction": "Год выпуска",
+    "gender": "Пол",
+    "condition": "Состояние",
+    "scope": "Комплектация",
     "movement": "Механизм",
     "caseMaterial": "Материал корпуса",
     "caseSize": "Размер корпуса",
     "waterResistance": "Водонепроницаемость",
     "dialColor": "Циферблат",
     "bracelet": "Браслет",
-    "powerReserve": "Запас хода",
-    "year": "Год"
+    "powerReserve": "Запас хода"
   },
 
   "detail": {

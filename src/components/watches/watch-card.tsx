@@ -18,9 +18,8 @@ export function WatchCard({ watch }: WatchCardProps) {
   const { t } = useTranslation()
   const mm = extractMM(watch.specs?.caseSize)
   const details = [
-    watch.specs?.bracelet?.split(",")[0]?.split("(")[0]?.trim(),
-    watch.specs?.caseMaterial?.split(",")[0]?.split("(")[0]?.trim(),
     watch.reference ? `Ref. ${watch.reference}` : null,
+    watch.specs?.year ? `${watch.specs.year}` : null,
   ].filter(Boolean)
 
   return (

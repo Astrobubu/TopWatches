@@ -74,7 +74,7 @@ export function WatchDetailContent({ watch }: { watch: Watch }) {
 
           <div className="border-t border-foreground/10 pt-6">
             <h3 className="font-sans font-bold text-base text-foreground mb-4">{t("detail.specifications")}</h3>
-            <WatchSpecs specs={watch.specs} />
+            <WatchSpecs watch={watch} />
           </div>
         </div>
       </div>
