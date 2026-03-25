@@ -121,10 +121,8 @@
     "movement": "Механизм",
     "caseMaterial": "Материал корпуса",
     "caseSize": "Размер корпуса",
-    "waterResistance": "Водонепроницаемость",
     "dialColor": "Циферблат",
-    "bracelet": "Браслет",
-    "powerReserve": "Запас хода"
+    "bracelet": "Браслет"
   },
 
   "detail": {

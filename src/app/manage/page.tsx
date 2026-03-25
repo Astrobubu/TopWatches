@@ -25,10 +25,8 @@ interface ImportedSpecs {
   movement?: string
   caseMaterial?: string
   caseSize?: string
-  waterResistance?: string
   dialColor?: string
   bracelet?: string
-  powerReserve?: string
   year?: number
 }
 
@@ -68,10 +66,8 @@ export default function ManagePage() {
       movement: "",
       caseMaterial: "",
       caseSize: "",
-      waterResistance: "",
       dialColor: "",
       bracelet: "",
-      powerReserve: "",
       year: new Date().getFullYear(),
     } as ImportedSpecs,
   })
@@ -153,10 +149,8 @@ export default function ManagePage() {
         movement: "",
         caseMaterial: "",
         caseSize: "",
-        waterResistance: "",
         dialColor: "",
         bracelet: "",
-        powerReserve: "",
         year: new Date().getFullYear(),
       },
     })
@@ -230,10 +224,8 @@ export default function ManagePage() {
         movement: data.specs?.movement || prev.specs.movement,
         caseMaterial: data.specs?.caseMaterial || prev.specs.caseMaterial,
         caseSize: data.specs?.caseSize || prev.specs.caseSize,
-        waterResistance: data.specs?.waterResistance || prev.specs.waterResistance,
         dialColor: data.specs?.dialColor || prev.specs.dialColor,
         bracelet: data.specs?.bracelet || prev.specs.bracelet,
-        powerReserve: data.specs?.powerReserve || prev.specs.powerReserve,
         year: data.specs?.year || prev.specs.year,
       },
     }))
@@ -1099,10 +1091,8 @@ export default function ManagePage() {
                 ["movement", "Movement"],
                 ["caseMaterial", "Case Material"],
                 ["caseSize", "Case Size"],
-                ["waterResistance", "Water Resistance"],
                 ["dialColor", "Dial"],
                 ["bracelet", "Bracelet / Strap"],
-                ["powerReserve", "Power Reserve"],
               ] as const
             ).map(([key, label]) => (
               <div key={key}>

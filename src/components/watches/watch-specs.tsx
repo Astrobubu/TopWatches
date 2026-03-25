@@ -17,19 +17,19 @@ export function WatchSpecs({ watch }: WatchSpecsProps) {
   const { t } = useTranslation()
   const { specs } = watch
 
+  const gender = watch.gender || "men"
+
   const specRows = [
     { label: t("specs.referenceNumber"), value: watch.reference },
-    { label: t("specs.yearOfProduction"), value: specs.year.toString() },
-    { label: t("specs.gender"), value: watch.gender ? (genderLabels[watch.gender] || watch.gender) : undefined },
+    { label: t("specs.yearOfProduction"), value: specs.year ? specs.year.toString() : undefined },
+    { label: t("specs.gender"), value: genderLabels[gender] || gender },
     { label: t("specs.condition"), value: t(`conditions.${watch.condition}`) },
     { label: t("specs.scope"), value: watch.scope },
     { label: t("specs.movement"), value: specs.movement },
     { label: t("specs.caseMaterial"), value: specs.caseMaterial },
     { label: t("specs.caseSize"), value: specs.caseSize },
-    { label: t("specs.waterResistance"), value: specs.waterResistance },
     { label: t("specs.dialColor"), value: specs.dialColor },
     { label: t("specs.bracelet"), value: specs.bracelet },
-    { label: t("specs.powerReserve"), value: specs.powerReserve },
   ].filter(row => row.value)
 
   return (

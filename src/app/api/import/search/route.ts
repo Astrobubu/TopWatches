@@ -5,10 +5,8 @@ interface WatchSpecs {
   movement: string
   caseMaterial: string
   caseSize: string
-  waterResistance: string
   dialColor: string
   bracelet: string
-  powerReserve: string
   year: number
 }
 
@@ -36,9 +34,6 @@ function parseSpecsFromPage($: cheerio.CheerioAPI): Partial<WatchSpecs> {
   const diameterMatch = bodyText.match(/Diameter[:\s]+(\d+\.?\d*\s*mm)/i)
   if (diameterMatch) specs.caseSize = diameterMatch[1]
 
-  const wrMatch = bodyText.match(/(?:W\/R|Water Resistance)[:\s]+(\d+\.?\d*)\s*(m|meters|metres|atm|bar|ft)/i)
-  if (wrMatch) specs.waterResistance = wrMatch[1] + " " + wrMatch[2]
-
   const caliberMatch = bodyText.match(/(?:Caliber|Calibre|Movement)[:\s]+([^\n]{3,60}?)(?:\n|Hours|$)/i)
   if (caliberMatch) specs.movement = caliberMatch[1].trim()
   if (!specs.movement) {
@@ -51,9 +46,6 @@ function parseSpecsFromPage($: cheerio.CheerioAPI): Partial<WatchSpecs> {
 
   const braceletMatch = bodyText.match(/(?:Bracelet|Strap)\s*(?:Material)?[:\s]+((?:Stainless Steel|Leather|Rubber|Titanium|Gold|Alligator|Nato|Canvas|Textile|Metal|Ceramic|Oyster|Jubilee|President)[\w\s,]*)/i)
   if (braceletMatch) specs.bracelet = braceletMatch[1].trim()
-
-  const prMatch = bodyText.match(/(?:Power Reserve)[:\s]+(\d+\.?\d*\s*(?:hours|h|hrs))/i)
-  if (prMatch) specs.powerReserve = prMatch[1]
 
   if (!specs.caseSize) {
     const sizeMatch = bodyText.match(/(\d{2,3}\.?\d*)\s*mm/i)

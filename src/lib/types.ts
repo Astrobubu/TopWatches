@@ -10,10 +10,8 @@ export interface Watch {
     movement: string
     caseMaterial: string
     caseSize: string
-    waterResistance: string
     dialColor: string
     bracelet: string
-    powerReserve: string
     year: number
   }
   category: "dress" | "sport" | "dive" | "chronograph" | "pilot"

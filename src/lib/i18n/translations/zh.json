@@ -121,10 +121,8 @@
     "movement": "机芯",
     "caseMaterial": "表壳材质",
     "caseSize": "表壳尺寸",
-    "waterResistance": "防水性能",
     "dialColor": "表盘",
-    "bracelet": "表带",
-    "powerReserve": "动力储备"
+    "bracelet": "表带"
   },
 
   "detail": {

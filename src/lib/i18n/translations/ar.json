@@ -121,10 +121,8 @@
     "movement": "الحركة",
     "caseMaterial": "مادة العلبة",
     "caseSize": "حجم العلبة",
-    "waterResistance": "مقاومة الماء",
     "dialColor": "الميناء",
-    "bracelet": "السوار",
-    "powerReserve": "احتياطي الطاقة"
+    "bracelet": "السوار"
   },
 
   "detail": {

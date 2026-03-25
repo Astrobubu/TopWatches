@@ -121,10 +121,8 @@
     "movement": "Movement",
     "caseMaterial": "Case Material",
     "caseSize": "Case Size",
-    "waterResistance": "Water Resistance",
     "dialColor": "Dial",
-    "bracelet": "Bracelet",
-    "powerReserve": "Power Reserve"
+    "bracelet": "Bracelet"
   },
 
   "detail": {
