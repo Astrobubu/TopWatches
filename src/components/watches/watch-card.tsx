@@ -35,12 +35,12 @@ export function WatchCard({ watch }: WatchCardProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
           {/* Condition badge */}
-          <span className="absolute top-3 right-3 bg-background/70 backdrop-blur-sm text-foreground/70 text-[10px] uppercase tracking-widest font-mono px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
+          <span className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm text-foreground/80 text-xs uppercase tracking-widest font-sans px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
             {t(`conditions.${watch.condition}`)}
           </span>
           {/* MM size badge */}
           {mm && (
-            <span className="absolute top-3 left-3 bg-primary/80 backdrop-blur-sm text-primary-foreground text-[10px] uppercase tracking-widest font-mono px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
+            <span className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-xs uppercase tracking-widest font-sans px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
               {mm}
             </span>
           )}
@@ -48,19 +48,19 @@ export function WatchCard({ watch }: WatchCardProps) {
 
         {/* Info */}
         <div className="p-4">
-          <p className="font-mono text-[10px] text-primary tracking-widest uppercase mb-1">
+          <p className="font-sans text-xs text-primary tracking-widest uppercase mb-1">
             {watch.brand}
           </p>
-          <h3 className="font-sans font-semibold text-sm text-foreground leading-tight truncate mb-1">
+          <h3 className="font-sans font-semibold text-base text-foreground leading-tight truncate mb-1">
             {watch.model}
           </h3>
           {details.length > 0 && (
-            <p className="font-mono text-[10px] text-foreground/40 truncate mb-2">
+            <p className="font-sans text-xs text-foreground/60 truncate mb-2">
               {details.join(" \u00b7 ")}
             </p>
           )}
-          <p className="font-serif italic text-lg text-foreground flex items-center gap-1">
-            <span className="font-mono text-xs text-muted-foreground not-italic">{t("currency")}</span>
+          <p className="font-serif italic text-xl text-foreground flex items-center gap-1">
+            <span className="font-sans text-sm text-foreground/70 not-italic">{t("currency")}</span>
             {watch.price.toLocaleString()}
           </p>
         </div>

@@ -42,10 +42,10 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
         <MessageCircle className="w-4 h-4" />
         Order via WhatsApp
       </button>
-      <button className="w-12 h-12 flex items-center justify-center text-foreground/50 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+      <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
         <Heart className="w-4 h-4" />
       </button>
-      <button className="w-12 h-12 flex items-center justify-center text-foreground/50 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+      <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
         <Share2 className="w-4 h-4" />
       </button>
     </div>

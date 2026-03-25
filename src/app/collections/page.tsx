@@ -111,9 +111,9 @@ function CollectionsContent() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Page header */}
       <div className="mb-8">
-        <h3 className="font-mono text-primary text-xs tracking-[0.2em] mb-2 uppercase">{t("collections.theCollection")}</h3>
+        <h3 className="font-sans text-primary text-sm tracking-[0.2em] mb-2 uppercase">{t("collections.theCollection")}</h3>
         <h1 className="font-serif italic text-3xl md:text-4xl text-foreground">{t("collections.allWatches")}</h1>
-        <p className="font-mono text-xs text-foreground/40 mt-2">
+        <p className="font-sans text-sm text-foreground/60 mt-2">
           {filteredWatches.length} {t("collections.results")}
         </p>
       </div>
@@ -171,7 +171,7 @@ function CollectionsContent() {
             </div>
           ) : (
             <div className="text-center py-20">
-              <p className="text-foreground/40 text-lg font-sans">{t("collections.noMatch")}</p>
+              <p className="text-foreground/60 text-lg font-sans">{t("collections.noMatch")}</p>
               <button onClick={clearAll} className="text-primary text-sm mt-3 hover:underline">
                 {t("collections.clearAllFilters")}
               </button>

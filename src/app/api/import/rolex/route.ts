@@ -49,11 +49,71 @@ function upgradeToHighRes(url: string): string {
   return url.replace(/c_limit,w_\d+/, "c_limit,w_2560")
 }
 
+// Build CDN image URLs directly from the reference number (bypasses 403 on rolex.com)
+function buildCdnUrls(reference: string): string[] {
+  const ref = reference.toLowerCase()
+  const baseRef = ref.replace(/^m/, "")
+  return [
+    `https://media.rolex.com/image/upload/v7/catalogue/${ref}_modelpage_front_facing_landscape`,
+    `https://media.rolex.com/image/upload/v7/catalogue/${ref}_modelpage_front_facing_portrait`,
+    `https://media.rolex.com/image/upload/v7/catalogue/${ref}_modelpage_laying_down_shadow`,
+    `https://media.rolex.com/image/upload/v7/catalogue/${baseRef}_modelpage_front_facing_landscape`,
+    `https://media.rolex.com/image/upload/v7/catalogue/${baseRef}_modelpage_front_facing_portrait`,
+  ]
+}
+
+async function probeImageUrl(url: string): Promise<string | null> {
+  // Try common extensions — Rolex CDN serves without extension via content negotiation,
+  // but also try explicit .webp and .png
+  const variants = [url, `${url}.webp`, `${url}.png`]
+  for (const u of variants) {
+    try {
+      const res = await fetch(u, {
+        method: "HEAD",
+        headers: { "User-Agent": BROWSER_HEADERS["User-Agent"] },
+        signal: AbortSignal.timeout(5000),
+        redirect: "follow",
+      })
+      if (res.ok && res.headers.get("content-type")?.startsWith("image")) {
+        return u
+      }
+    } catch {
+      // continue
+    }
+  }
+  return null
+}
+
+async function getRolexCdnImages(reference: string): Promise<RolexImage[]> {
+  const candidates = buildCdnUrls(reference)
+  const results = await Promise.all(candidates.map(probeImageUrl))
+  const seen = new Set<string>()
+  const images: RolexImage[] = []
+
+  for (const url of results) {
+    if (!url || seen.has(url)) continue
+    seen.add(url)
+    const highRes = upgradeToHighRes(url)
+    const thumb = highRes.replace(/c_limit,w_\d+/, "c_limit,w_640")
+    images.push({ url: highRes, thumbnail: thumb, source: "rolex.com" })
+  }
+  return images
+}
+
 async function scrapeRolexImages(url: string, reference?: string): Promise<RolexImage[]> {
-  const res = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(20000) })
+  let res: Response
+  try {
+    res = await fetch(url, { headers: BROWSER_HEADERS, signal: AbortSignal.timeout(20000) })
+  } catch {
+    // Network error — fall back to CDN probing
+    if (reference) return getRolexCdnImages(reference)
+    return []
+  }
 
   if (!res.ok) {
-    throw new Error(`Rolex returned status ${res.status}`)
+    // 403 or other HTTP error — fall back to CDN probing instead of failing
+    if (reference) return getRolexCdnImages(reference)
+    return []
   }
 
   const html = await res.text()
@@ -100,6 +160,11 @@ async function scrapeRolexImages(url: string, reference?: string): Promise<Rolex
     if (isProductImage(u, reference)) {
       allUrls.add(u)
     }
+  }
+
+  // If scrape found nothing but we have a reference, try CDN probing
+  if (allUrls.size === 0 && reference) {
+    return getRolexCdnImages(reference)
   }
 
   // Deduplicate by base path (same image at different sizes)
