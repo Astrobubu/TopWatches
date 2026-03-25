@@ -440,25 +440,31 @@ export default function ManagePage() {
       "raw-dial-constant-size-with-shadow",
       "bezel-constant-size-with-shadow",
     ]
+    // Transforms: t_v7 gives highest quality, t_v7-main-configurator is the hero shot, no transform is raw
+    const transforms = ["t_v7", "t_v7-main-configurator", ""]
     // Try current and recent catalogue years
     const years = ["2025", "2024", "2023"]
 
-    const candidates: string[] = []
+    const candidates: { url: string; label: string }[] = []
     for (const year of years) {
       for (const view of views) {
-        candidates.push(
-          `https://media.rolex.com/image/upload/q_auto/f_auto/c_limit,w_2440/v1/catalogue/${year}/${view}/${ref}`
-        )
+        for (const t of transforms) {
+          const tPart = t ? `${t}/` : ""
+          candidates.push({
+            url: `https://media.rolex.com/image/upload/q_auto/f_auto/${tPart}c_limit,w_2440/v1/catalogue/${year}/${view}/${ref}`,
+            label: `${view}${t ? ` (${t})` : ""} ${year}`,
+          })
+        }
       }
     }
 
     // Probe all URLs in parallel using <img> onload/onerror (no CORS issues)
-    const probeImage = (url: string): Promise<string | null> =>
+    const probeImage = (candidate: { url: string; label: string }): Promise<{ url: string; label: string; w: number; h: number } | null> =>
       new Promise((resolve) => {
         const img = new Image()
-        img.onload = () => resolve(url)
+        img.onload = () => resolve({ url: candidate.url, label: candidate.label, w: img.naturalWidth, h: img.naturalHeight })
         img.onerror = () => resolve(null)
-        img.src = url
+        img.src = candidate.url
       })
 
     try {
@@ -466,15 +472,20 @@ export default function ManagePage() {
       const found: ImageResult[] = []
       const seen = new Set<string>()
 
-      for (const url of results) {
-        if (!url) continue
-        // Deduplicate by view name (same view across years)
-        const viewKey = url.replace(/\/catalogue\/\d{4}\//, "/catalogue/YEAR/")
+      for (const result of results) {
+        if (!result) continue
+        // Deduplicate by view+transform (same combo across years — keep first/newest)
+        const viewKey = result.url.replace(/\/catalogue\/\d{4}\//, "/catalogue/YEAR/")
         if (seen.has(viewKey)) continue
         seen.add(viewKey)
 
-        const thumb = url.replace(/c_limit,w_\d+/, "c_limit,w_640")
-        found.push({ url, thumbnail: thumb, source: "rolex.com" })
+        const thumb = result.url.replace(/c_limit,w_\d+/, "c_limit,w_640")
+        found.push({
+          url: result.url,
+          thumbnail: thumb,
+          source: "rolex.com",
+          label: `${result.w}×${result.h}`,
+        })
       }
 
       if (found.length === 0) {
