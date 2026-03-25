@@ -10,7 +10,7 @@ const conditionInfo: Record<string, { tagline: string; color: string }> = {
         color: "#4ade80",
     },
     preowned: {
-        tagline: "Previously owned. Fully inspected, serviced, and authenticated.",
+        tagline: "Previously owned. Fully inspected, serviced, and authenticated. Includes 1-year warranty.",
         color: "var(--primary)",
     },
     "unwanted-gift": {
