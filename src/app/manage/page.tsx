@@ -61,7 +61,7 @@ export default function ManagePage() {
     price: 0,
     description: "",
     category: "sport" as Watch["category"],
-    condition: "new" as Watch["condition"],
+    condition: "unworn" as Watch["condition"],
     featured: false,
     specs: {
       movement: "",
@@ -144,7 +144,7 @@ export default function ManagePage() {
       price: 0,
       description: "",
       category: "sport",
-      condition: "new",
+      condition: "unworn",
       featured: false,
       specs: {
         movement: "",
@@ -1012,10 +1012,9 @@ export default function ManagePage() {
                     border: "var(--border-w) solid var(--border)",
                   }}
                 >
-                  <option value="new">New</option>
                   <option value="unworn">Unworn</option>
-                  <option value="excellent">Excellent</option>
-                  <option value="good">Good</option>
+                  <option value="preowned">Pre-Owned</option>
+                  <option value="unwanted-gift">Unwanted Gift</option>
                 </select>
               </div>
               <div className="flex items-end pb-1">

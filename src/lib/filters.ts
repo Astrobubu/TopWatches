@@ -31,10 +31,9 @@ export const CATEGORY_OPTIONS = [
 ]
 
 export const CONDITION_OPTIONS = [
-  { value: "new", label: "New" },
   { value: "unworn", label: "Unworn" },
-  { value: "excellent", label: "Excellent" },
-  { value: "good", label: "Good" },
+  { value: "preowned", label: "Pre-Owned" },
+  { value: "unwanted-gift", label: "Unwanted Gift" },
 ]
 
 export const CASE_SIZE_OPTIONS = [

@@ -5,28 +5,24 @@ import { useState } from "react"
 import { useTranslation } from "@/lib/i18n/context"
 
 const conditionInfo: Record<string, { tagline: string; color: string }> = {
-    new: {
-        tagline: "Factory sealed, never sold. Full manufacturer warranty.",
+    unworn: {
+        tagline: "Brand new, never worn on the wrist. Complete set with full warranty.",
         color: "#4ade80",
     },
-    unworn: {
-        tagline: "Complete set, never worn on the wrist. May have been briefly tried on.",
+    preowned: {
+        tagline: "Previously owned. Fully inspected, serviced, and authenticated.",
         color: "var(--primary)",
     },
-    excellent: {
-        tagline: "Minimal wear visible only under loupe. Crystal flawless, movement serviced.",
+    "unwanted-gift": {
+        tagline: "Received as a gift, never used. Complete set in original packaging.",
         color: "#60a5fa",
-    },
-    good: {
-        tagline: "Honest signs of wear. Fully serviced movement. Polishing available.",
-        color: "#a78bfa",
     },
 }
 
 export function ConditionBadge({ condition }: { condition: string }) {
     const [showTooltip, setShowTooltip] = useState(false)
     const { t } = useTranslation()
-    const info = conditionInfo[condition] || conditionInfo["good"]
+    const info = conditionInfo[condition] || conditionInfo["preowned"]
 
     return (
         <div className="relative inline-block">

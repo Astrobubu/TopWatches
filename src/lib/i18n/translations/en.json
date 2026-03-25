@@ -106,10 +106,9 @@
   },
 
   "conditions": {
-    "new": "New",
     "unworn": "Unworn",
-    "excellent": "Excellent",
-    "good": "Good"
+    "preowned": "Pre-Owned",
+    "unwanted-gift": "Unwanted Gift"
   },
 
   "specs": {

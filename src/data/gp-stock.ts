@@ -132,6 +132,6 @@ export const gpStock: Watch[] = stockRows.map((r) => ({
     year: r.year || 0,
   },
   category: inferCategory(r.model),
-  condition: "excellent" as const,
+  condition: "preowned" as const,
   featured: false,
 }))

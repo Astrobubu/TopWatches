@@ -106,10 +106,9 @@
   },
 
   "conditions": {
-    "new": "全新",
     "unworn": "未佩戴",
-    "excellent": "品相极佳",
-    "good": "品相良好"
+    "preowned": "二手",
+    "unwanted-gift": "不想要的礼物"
   },
 
   "specs": {

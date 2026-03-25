@@ -106,10 +106,9 @@
   },
 
   "conditions": {
-    "new": "جديدة",
     "unworn": "غير ملبوسة",
-    "excellent": "ممتازة",
-    "good": "جيدة"
+    "preowned": "مملوكة مسبقاً",
+    "unwanted-gift": "هدية غير مرغوبة"
   },
 
   "specs": {

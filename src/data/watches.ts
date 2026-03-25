@@ -30,7 +30,7 @@ export const watches: Watch[] = [
       year: 2024,
     },
     category: "dive",
-    condition: "new",
+    condition: "unworn",
     featured: true,
   },
   {
@@ -86,7 +86,7 @@ export const watches: Watch[] = [
       year: 2023,
     },
     category: "sport",
-    condition: "excellent",
+    condition: "preowned",
     featured: true,
   },
   {
@@ -144,7 +144,7 @@ export const watches: Watch[] = [
       year: 2021,
     },
     category: "sport",
-    condition: "excellent",
+    condition: "preowned",
     featured: true,
   },
   {
@@ -172,7 +172,7 @@ export const watches: Watch[] = [
       year: 2024,
     },
     category: "dress",
-    condition: "new",
+    condition: "unworn",
     featured: false,
   },
   {
@@ -230,7 +230,7 @@ export const watches: Watch[] = [
       year: 2024,
     },
     category: "sport",
-    condition: "new",
+    condition: "unworn",
     featured: true,
   },
   {
@@ -258,7 +258,7 @@ export const watches: Watch[] = [
       year: 2022,
     },
     category: "chronograph",
-    condition: "good",
+    condition: "preowned",
     featured: false,
   },
 
@@ -288,7 +288,7 @@ export const watches: Watch[] = [
       year: 2024,
     },
     category: "chronograph",
-    condition: "new",
+    condition: "unworn",
     featured: true,
   },
   {
@@ -344,7 +344,7 @@ export const watches: Watch[] = [
       year: 2023,
     },
     category: "dress",
-    condition: "excellent",
+    condition: "preowned",
     featured: false,
   },
 
@@ -374,7 +374,7 @@ export const watches: Watch[] = [
       year: 2024,
     },
     category: "dress",
-    condition: "new",
+    condition: "unworn",
     featured: false,
   },
   {
@@ -402,7 +402,7 @@ export const watches: Watch[] = [
       year: 2024,
     },
     category: "dress",
-    condition: "new",
+    condition: "unworn",
     featured: false,
   },
 
@@ -460,7 +460,7 @@ export const watches: Watch[] = [
       year: 2023,
     },
     category: "chronograph",
-    condition: "excellent",
+    condition: "preowned",
     featured: false,
   },
 
@@ -490,7 +490,7 @@ export const watches: Watch[] = [
       year: 2024,
     },
     category: "chronograph",
-    condition: "new",
+    condition: "unworn",
     featured: false,
   },
   {

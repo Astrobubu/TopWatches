@@ -17,7 +17,8 @@ export interface Watch {
     year: number
   }
   category: "dress" | "sport" | "dive" | "chronograph" | "pilot"
-  condition: "new" | "unworn" | "excellent" | "good"
+  condition: "unworn" | "preowned" | "unwanted-gift"
+  gender: "men" | "women" | "unisex"
   featured: boolean
 }
 

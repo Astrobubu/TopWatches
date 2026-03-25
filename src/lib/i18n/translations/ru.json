@@ -106,10 +106,9 @@
   },
 
   "conditions": {
-    "new": "Новые",
     "unworn": "Неношеные",
-    "excellent": "Отличное",
-    "good": "Хорошее"
+    "preowned": "Б/у",
+    "unwanted-gift": "Нежеланный подарок"
   },
 
   "specs": {
