@@ -12,6 +12,7 @@ const themes = [
     { name: "Minimalist Sand", value: "theme-minimalist-sand", desc: "Warm Editorial", color: "#8B5A2B" },
     { name: "Ocean Depth", value: "theme-ocean-depth", desc: "Deep Naval", color: "#38BDF8" },
     { name: "Rolex Heritage", value: "theme-rolex-heritage", desc: "Green & Gold", color: "#006039" },
+    { name: "Rolex Dark", value: "theme-rolex-heritage-dark", desc: "Green & Gold Dark", color: "#0A1F15" },
 ]
 
 export function ThemeSwitcher({ className }: { className?: string }) {

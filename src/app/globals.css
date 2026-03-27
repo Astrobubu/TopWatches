@@ -284,6 +284,41 @@ img {
   color-scheme: light;
 }
 
+/* ═══════════════════════════════════════════════
+   H — ROLEX HERITAGE DARK  (Green & Gold on Dark)
+   Dark variant — deep green background with gold
+   accents, like the inside of a Rolex box at night
+   ═══════════════════════════════════════════════ */
+.theme-rolex-heritage-dark {
+  --bg: #0A1F15;
+  --text: #F0EBE0;
+  --primary: #C4A265;
+  --primary-fg: #0A1F15;
+  --secondary: #142B1F;
+  --accent: #006039;
+  --muted: #142B1F;
+  --muted-fg: #8B9C8F;
+  --card: #0F2A1C;
+  --border: #2A4A38;
+  --dark-section-bg: #060E0A;
+  --dark-section-text: #F0EBE0;
+  --dark-section-card: #0A1F15;
+  --dark-section-muted: #142B1F;
+  --soft-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  --soft-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  --font-sans-active: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-serif-active: "Cormorant Garamond", "Georgia", serif;
+  --font-mono-active: "IBM Plex Mono", "Consolas", monospace;
+
+  --card-radius: 1.25rem;
+  --container-radius: 1.75rem;
+  --pill-radius: 99px;
+  --border-w: 1px;
+  --dirham-filter: brightness(0) invert(1);
+  color-scheme: dark;
+}
+
 /* ═══════════════════ DARK SECTION OVERRIDE ═══════════════════ */
 .dark-section {
   --bg: var(--dark-section-bg);

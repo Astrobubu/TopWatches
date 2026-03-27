@@ -46,7 +46,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="theme-organic-tech"
-          themes={["theme-organic-tech", "theme-midnight-luxe", "theme-brutalist-signal", "theme-neon-cyberpunk", "theme-minimalist-sand", "theme-ocean-depth", "theme-rolex-heritage"]}
+          themes={["theme-organic-tech", "theme-midnight-luxe", "theme-brutalist-signal", "theme-neon-cyberpunk", "theme-minimalist-sand", "theme-ocean-depth", "theme-rolex-heritage", "theme-rolex-heritage-dark"]}
           enableSystem={false}
         >
           <I18nProvider>
