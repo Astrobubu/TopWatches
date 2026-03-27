@@ -11,6 +11,7 @@ const themes = [
     { name: "Neon Cyberpunk", value: "theme-neon-cyberpunk", desc: "Digital Hacker", color: "#39FF14" },
     { name: "Minimalist Sand", value: "theme-minimalist-sand", desc: "Warm Editorial", color: "#8B5A2B" },
     { name: "Ocean Depth", value: "theme-ocean-depth", desc: "Deep Naval", color: "#38BDF8" },
+    { name: "Rolex Heritage", value: "theme-rolex-heritage", desc: "Green & Gold", color: "#006039" },
 ]
 
 export function ThemeSwitcher({ className }: { className?: string }) {

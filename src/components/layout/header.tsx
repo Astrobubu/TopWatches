@@ -41,7 +41,7 @@ export function Header() {
             {t("nav.about")}
           </Link>
           <LanguageSwitcher />
-          <ThemeSwitcher className="hidden" />
+          <ThemeSwitcher />
         </div>
 
         {/* Desktop CTA */}
@@ -56,7 +56,7 @@ export function Header() {
         {/* Mobile Toggle & Switcher */}
         <div className="md:hidden flex items-center gap-2">
           <LanguageSwitcher />
-          <ThemeSwitcher className="hidden" />
+          <ThemeSwitcher />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 text-foreground"
