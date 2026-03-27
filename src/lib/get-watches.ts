@@ -17,6 +17,7 @@ function toWatch(row: any, images: any[]): Watch {
     specs: row.specs || {},
     category: row.category,
     condition: row.condition,
+    gender: row.gender || undefined,
     featured: row.featured,
   }
 }

@@ -16,6 +16,7 @@ function toWatch(row: any, images: any[]): Watch {
     specs: row.specs || {},
     category: row.category,
     condition: row.condition,
+    gender: row.gender || undefined,
     featured: row.featured,
   }
 }
@@ -69,6 +70,7 @@ export async function createWatch(
     specs: watch.specs,
     category: watch.category,
     condition: watch.condition,
+    gender: watch.gender || null,
     featured: watch.featured,
   }, { onConflict: "id" })
 
