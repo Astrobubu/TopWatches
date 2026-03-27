@@ -44,6 +44,13 @@ export function ActiveFilters({
       label: getLabelForFilterValue("conditions", condition),
     })
   }
+  for (const gender of filters.genders) {
+    tags.push({
+      key: "genders",
+      value: gender,
+      label: getLabelForFilterValue("genders", gender),
+    })
+  }
   for (const size of filters.caseSizes) {
     tags.push({
       key: "caseSizes",

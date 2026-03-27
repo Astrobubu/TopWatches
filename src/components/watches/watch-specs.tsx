@@ -7,12 +7,6 @@ interface WatchSpecsProps {
   watch: Watch
 }
 
-const genderLabels: Record<string, string> = {
-  men: "Men's Watch",
-  women: "Women's Watch",
-  unisex: "Unisex",
-}
-
 export function WatchSpecs({ watch }: WatchSpecsProps) {
   const { t } = useTranslation()
   const { specs } = watch
@@ -22,7 +16,7 @@ export function WatchSpecs({ watch }: WatchSpecsProps) {
   const specRows = [
     { label: t("specs.referenceNumber"), value: watch.reference },
     { label: t("specs.yearOfProduction"), value: specs.year ? specs.year.toString() : undefined },
-    { label: t("specs.gender"), value: genderLabels[gender] || gender },
+    { label: t("specs.gender"), value: t(`genders.${gender}`) },
     { label: t("specs.condition"), value: t(`conditions.${watch.condition}`) },
     { label: t("specs.scope"), value: watch.scope },
     { label: t("specs.movement"), value: specs.movement },
