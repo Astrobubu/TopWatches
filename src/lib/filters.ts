@@ -4,6 +4,7 @@ export interface FilterState {
   brands: string[]
   categories: string[]
   conditions: string[]
+  genders: string[]
   caseSizes: string[]
   minPrice: number
   maxPrice: number
@@ -36,6 +37,12 @@ export const CONDITION_OPTIONS = [
   { value: "unwanted-gift", label: "Unwanted Gift" },
 ]
 
+export const GENDER_OPTIONS = [
+  { value: "men", label: "Men" },
+  { value: "women", label: "Women" },
+  { value: "unisex", label: "Unisex" },
+]
+
 export const CASE_SIZE_OPTIONS = [
   { value: "28", label: "28mm" },
   { value: "31", label: "31mm" },
@@ -57,6 +64,7 @@ export function getDefaultFilters(): FilterState {
     brands: [],
     categories: [],
     conditions: [],
+    genders: [],
     caseSizes: [],
     minPrice: DEFAULT_MIN_PRICE,
     maxPrice: DEFAULT_MAX_PRICE,
@@ -90,6 +98,12 @@ export function filterWatches(watches: Watch[], filters: FilterState): Watch[] {
     if (
       filters.conditions.length > 0 &&
       !filters.conditions.includes(w.condition)
+    ) {
+      return false
+    }
+    if (
+      filters.genders.length > 0 &&
+      (!w.gender || !filters.genders.includes(w.gender))
     ) {
       return false
     }
@@ -128,7 +142,7 @@ export function sortWatches(watches: Watch[], sort: string): Watch[] {
 }
 
 export function getLabelForFilterValue(
-  key: "brands" | "categories" | "conditions" | "caseSizes",
+  key: "brands" | "categories" | "conditions" | "genders" | "caseSizes",
   value: string
 ): string {
   const options =
@@ -136,8 +150,10 @@ export function getLabelForFilterValue(
       ? BRAND_OPTIONS
       : key === "categories"
         ? CATEGORY_OPTIONS
-        : key === "caseSizes"
-          ? CASE_SIZE_OPTIONS
-          : CONDITION_OPTIONS
+        : key === "genders"
+          ? GENDER_OPTIONS
+          : key === "caseSizes"
+            ? CASE_SIZE_OPTIONS
+            : CONDITION_OPTIONS
   return options.find((o) => o.value === value)?.label ?? value
 }

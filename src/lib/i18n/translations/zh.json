@@ -85,7 +85,8 @@
     "max": "最高",
     "category": "类别",
     "caseSize": "表壳尺寸",
-    "condition": "成色"
+    "condition": "成色",
+    "gender": "性别"
   },
 
   "sort": {
@@ -109,6 +110,12 @@
     "unworn": "未佩戴",
     "preowned": "二手",
     "unwanted-gift": "不想要的礼物"
+  },
+
+  "genders": {
+    "men": "男士",
+    "women": "女士",
+    "unisex": "中性"
   },
 
   "specs": {

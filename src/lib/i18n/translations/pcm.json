@@ -85,7 +85,8 @@
     "max": "Max",
     "category": "Category",
     "caseSize": "Case Size",
-    "condition": "Condition"
+    "condition": "Condition",
+    "gender": "Gender"
   },
 
   "sort": {
@@ -109,6 +110,12 @@
     "unworn": "Never Wear",
     "preowned": "Pre-Owned",
     "unwanted-gift": "Unwanted Gift"
+  },
+
+  "genders": {
+    "men": "Men",
+    "women": "Women",
+    "unisex": "Unisex"
   },
 
   "specs": {

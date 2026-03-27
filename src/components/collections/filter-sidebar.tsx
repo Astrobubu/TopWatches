@@ -11,6 +11,7 @@ import {
   BRAND_OPTIONS,
   CATEGORY_OPTIONS,
   CONDITION_OPTIONS,
+  GENDER_OPTIONS,
   CASE_SIZE_OPTIONS,
   DEFAULT_MIN_PRICE,
   DEFAULT_MAX_PRICE,
@@ -82,9 +83,10 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
 
   const categoryOptions = CATEGORY_OPTIONS.map(o => ({ ...o, label: t(`categories.${o.value}`) }))
   const conditionOptions = CONDITION_OPTIONS.map(o => ({ ...o, label: t(`conditions.${o.value}`) }))
+  const genderOptions = GENDER_OPTIONS.map(o => ({ ...o, label: t(`genders.${o.value}`) }))
 
   function toggleArrayFilter(
-    key: "brands" | "categories" | "conditions" | "caseSizes",
+    key: "brands" | "categories" | "conditions" | "genders" | "caseSizes",
     value: string
   ) {
     const current = filters[key]
@@ -113,6 +115,7 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
       brands: [],
       categories: [],
       conditions: [],
+      genders: [],
       caseSizes: [],
       minPrice: DEFAULT_MIN_PRICE,
       maxPrice: DEFAULT_MAX_PRICE,
@@ -123,6 +126,7 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
     filters.brands.length > 0 ||
     filters.categories.length > 0 ||
     filters.conditions.length > 0 ||
+    filters.genders.length > 0 ||
     filters.caseSizes.length > 0 ||
     filters.minPrice > DEFAULT_MIN_PRICE ||
     filters.maxPrice < DEFAULT_MAX_PRICE
@@ -186,6 +190,16 @@ export function FilterSidebar({ filters, onFilterChange }: FilterSidebarProps) {
           options={categoryOptions}
           selected={filters.categories}
           onToggle={(v) => toggleArrayFilter("categories", v)}
+        />
+      </FilterSection>
+
+      <Separator />
+
+      <FilterSection title={t("filters.gender")}>
+        <CheckboxFilter
+          options={genderOptions}
+          selected={filters.genders}
+          onToggle={(v) => toggleArrayFilter("genders", v)}
         />
       </FilterSection>
 

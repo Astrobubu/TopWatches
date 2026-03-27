@@ -23,6 +23,7 @@ function parseFiltersFromParams(params: URLSearchParams): FilterState {
   const brands = params.get("brand")?.split(",").filter(Boolean) ?? []
   const categories = params.get("category")?.split(",").filter(Boolean) ?? []
   const conditions = params.get("condition")?.split(",").filter(Boolean) ?? []
+  const genders = params.get("gender")?.split(",").filter(Boolean) ?? []
   const caseSizes = params.get("caseSize")?.split(",").filter(Boolean) ?? []
   const minPrice = params.get("minPrice")
     ? parseInt(params.get("minPrice")!, 10)
@@ -35,6 +36,7 @@ function parseFiltersFromParams(params: URLSearchParams): FilterState {
     brands,
     categories,
     conditions,
+    genders,
     caseSizes,
     minPrice: isNaN(minPrice) ? DEFAULT_MIN_PRICE : minPrice,
     maxPrice: isNaN(maxPrice) ? DEFAULT_MAX_PRICE : maxPrice,
@@ -46,6 +48,7 @@ function buildSearchParams(filters: FilterState, sort: string): string {
   if (filters.brands.length > 0) params.set("brand", filters.brands.join(","))
   if (filters.categories.length > 0) params.set("category", filters.categories.join(","))
   if (filters.conditions.length > 0) params.set("condition", filters.conditions.join(","))
+  if (filters.genders.length > 0) params.set("gender", filters.genders.join(","))
   if (filters.caseSizes.length > 0) params.set("caseSize", filters.caseSizes.join(","))
   if (filters.minPrice > DEFAULT_MIN_PRICE) params.set("minPrice", String(filters.minPrice))
   if (filters.maxPrice < DEFAULT_MAX_PRICE) params.set("maxPrice", String(filters.maxPrice))
@@ -103,6 +106,7 @@ function CollectionsContent() {
     filters.brands.length > 0 ||
     filters.categories.length > 0 ||
     filters.conditions.length > 0 ||
+    filters.genders.length > 0 ||
     filters.caseSizes.length > 0 ||
     filters.minPrice > DEFAULT_MIN_PRICE ||
     filters.maxPrice < DEFAULT_MAX_PRICE

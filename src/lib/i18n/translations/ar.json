@@ -85,7 +85,8 @@
     "max": "الحد الأقصى",
     "category": "الفئة",
     "caseSize": "حجم العلبة",
-    "condition": "الحالة"
+    "condition": "الحالة",
+    "gender": "الجنس"
   },
 
   "sort": {
@@ -109,6 +110,12 @@
     "unworn": "غير ملبوسة",
     "preowned": "مملوكة مسبقاً",
     "unwanted-gift": "هدية غير مرغوبة"
+  },
+
+  "genders": {
+    "men": "رجال",
+    "women": "نساء",
+    "unisex": "للجنسين"
   },
 
   "specs": {

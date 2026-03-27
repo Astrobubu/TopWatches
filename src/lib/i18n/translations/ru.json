@@ -85,7 +85,8 @@
     "max": "Макс",
     "category": "Категория",
     "caseSize": "Размер корпуса",
-    "condition": "Состояние"
+    "condition": "Состояние",
+    "gender": "Пол"
   },
 
   "sort": {
@@ -109,6 +110,12 @@
     "unworn": "Неношеные",
     "preowned": "Б/у",
     "unwanted-gift": "Нежеланный подарок"
+  },
+
+  "genders": {
+    "men": "Мужские",
+    "women": "Женские",
+    "unisex": "Унисекс"
   },
 
   "specs": {
