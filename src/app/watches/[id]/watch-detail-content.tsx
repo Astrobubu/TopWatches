@@ -33,7 +33,7 @@ export function WatchDetailContent({ watch }: { watch: Watch }) {
       {/* Main product section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
         {/* Left: Image Gallery */}
-        <ImageGallery images={watch.images} modelName={`${watch.brand} ${watch.model}`} />
+        <ImageGallery images={watch.images} imageVariants={watch.imageVariants} modelName={`${watch.brand} ${watch.model}`} />
 
         {/* Right: Product Info */}
         <div className="space-y-6">

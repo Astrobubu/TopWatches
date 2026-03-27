@@ -1,3 +1,9 @@
+export interface ImageVariant {
+  url: string
+  url_thumb?: string
+  url_optimized?: string
+}
+
 export interface Watch {
   id: string
   brand: string
@@ -5,6 +11,7 @@ export interface Watch {
   reference: string
   price: number
   images: string[]
+  imageVariants?: ImageVariant[]
   description: string
   specs: {
     movement: string

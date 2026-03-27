@@ -28,7 +28,7 @@ export function WatchCard({ watch }: WatchCardProps) {
         {/* Image */}
         <div className="relative overflow-hidden aspect-square bg-card">
           <img
-            src={watch.images[0]}
+            src={watch.imageVariants?.[0]?.url_thumb || watch.images[0]}
             alt={`${watch.brand} ${watch.model}`}
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />

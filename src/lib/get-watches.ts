@@ -4,15 +4,19 @@ import { watches as staticWatches } from "@/data/watches"
 
 // Transform DB row + images into the Watch type
 function toWatch(row: any, images: any[]): Watch {
+  const sorted = images.sort((a: any, b: any) => a.position - b.position)
   return {
     id: row.id,
     brand: row.brand,
     model: row.model,
     reference: row.reference,
     price: Number(row.price),
-    images: images
-      .sort((a: any, b: any) => a.position - b.position)
-      .map((img: any) => img.url),
+    images: sorted.map((img: any) => img.url),
+    imageVariants: sorted.map((img: any) => ({
+      url: img.url,
+      url_thumb: img.url_thumb || undefined,
+      url_optimized: img.url_optimized || undefined,
+    })),
     description: row.description || "",
     specs: row.specs || {},
     category: row.category,

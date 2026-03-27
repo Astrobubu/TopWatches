@@ -92,6 +92,8 @@ export default function ManagePage() {
   const [saving, setSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [deleting, setDeleting] = useState<string | null>(null)
+  const [processingImages, setProcessingImages] = useState(false)
+  const [processStatus, setProcessStatus] = useState("")
 
   // List filter state
   const [listFilter, setListFilter] = useState("")
@@ -290,6 +292,7 @@ export default function ManagePage() {
         const formDataUpload = new FormData()
         formDataUpload.append("file", file)
         formDataUpload.append("watchId", formData.id || "temp")
+        formDataUpload.append("position", String(selectedImages.length))
 
         const res = await fetch("/api/upload", {
           method: "POST",
@@ -301,31 +304,10 @@ export default function ManagePage() {
           if (data.url) {
             setSelectedImages((prev) => [...prev, data.url])
           }
-        } else {
-          // Fallback: convert to base64 data URL for preview
-          const reader = new FileReader()
-          reader.onload = (e) => {
-            const dataUrl = e.target?.result as string
-            if (dataUrl) {
-              setSelectedImages((prev) => [...prev, dataUrl])
-            }
-          }
-          reader.readAsDataURL(file)
         }
       }
     } catch {
-      // Fallback to data URLs
-      for (const file of Array.from(files)) {
-        if (!file.type.startsWith("image/")) continue
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          const dataUrl = e.target?.result as string
-          if (dataUrl) {
-            setSelectedImages((prev) => [...prev, dataUrl])
-          }
-        }
-        reader.readAsDataURL(file)
-      }
+      // Silently fail — user can retry
     } finally {
       setUploading(false)
       if (fileInputRef.current) fileInputRef.current.value = ""
@@ -336,12 +318,62 @@ export default function ManagePage() {
     setSaving(true)
     setSaveSuccess(false)
     try {
+      const watchId =
+        formData.id ||
+        generateId(formData.brand, formData.model, formData.reference)
+
+      // Step 1: Process external images through our pipeline
+      const externalUrls = selectedImages.filter(
+        (url) => !url.includes("supabase.co")
+      )
+      const supabaseUrls = selectedImages.filter((url) =>
+        url.includes("supabase.co")
+      )
+
+      let finalImages: Array<string | { url: string; url_thumb?: string; url_optimized?: string }> =
+        supabaseUrls.map((url) => url)
+
+      if (externalUrls.length > 0) {
+        setProcessingImages(true)
+        setProcessStatus(`Processing ${externalUrls.length} images...`)
+        try {
+          const processRes = await fetch("/api/process-images", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ watchId, urls: externalUrls }),
+          })
+
+          if (processRes.ok) {
+            const processData = await processRes.json()
+            for (const result of processData.results) {
+              finalImages.push({
+                url: result.url,
+                url_thumb: result.url_thumb,
+                url_optimized: result.url_optimized,
+              })
+            }
+            // Update selected images to show the processed Supabase URLs
+            setSelectedImages([
+              ...supabaseUrls,
+              ...processData.results.map((r: any) => r.url),
+            ])
+          } else {
+            // Processing failed — save with original external URLs
+            finalImages.push(...externalUrls)
+          }
+        } catch {
+          finalImages.push(...externalUrls)
+        } finally {
+          setProcessingImages(false)
+          setProcessStatus("")
+        }
+      }
+
+      // Step 2: Save the watch with processed image URLs
       const watchData = {
         ...formData,
-        id:
-          formData.id ||
-          generateId(formData.brand, formData.model, formData.reference),
-        images: selectedImages,
+        id: watchId,
+        images: finalImages,
       }
 
       const isEdit = view === "edit"
@@ -355,7 +387,6 @@ export default function ManagePage() {
         await fetchWatches()
         setSaveSuccess(true)
         setTimeout(() => setSaveSuccess(false), 3000)
-        // Stay on the same page — don't navigate back to list
       } else {
         const data = await res.json()
         alert(`Save failed: ${data.error}`)
@@ -508,6 +539,51 @@ export default function ManagePage() {
     }
   }
 
+  const [migrating, setMigrating] = useState(false)
+  const [migrateStatus, setMigrateStatus] = useState("")
+
+  const handleMigrateImages = async () => {
+    if (!confirm("Download all external images and host them on Supabase? This may take a while.")) return
+    setMigrating(true)
+    let totalProcessed = 0
+    let totalFailed = 0
+
+    try {
+      // Process in batches until done
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        setMigrateStatus(`Processing batch... (${totalProcessed} done, ${totalFailed} failed)`)
+        const res = await fetch("/api/migrate-images", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ batchSize: 5 }),
+        })
+
+        if (!res.ok) {
+          const err = await res.json()
+          alert(`Migration error: ${err.error}`)
+          break
+        }
+
+        const data = await res.json()
+        totalProcessed += data.processed
+        totalFailed += data.failed
+
+        if (data.remaining === 0) {
+          setMigrateStatus(`Done! ${totalProcessed} processed, ${totalFailed} failed`)
+          break
+        }
+      }
+
+      await fetchWatches()
+    } catch {
+      alert("Migration failed")
+    } finally {
+      setMigrating(false)
+      setTimeout(() => setMigrateStatus(""), 5000)
+    }
+  }
+
   // ─── ZOOM MODAL ────────────────────────────────────────────
   const ZoomModal = () => {
     if (!zoomImage) return null
@@ -546,7 +622,7 @@ export default function ManagePage() {
               {watches.length} watches in database
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
             <button
               onClick={handleSeed}
               className="flex items-center gap-2 px-4 py-2 text-sm font-sans font-medium bg-card text-foreground hover:bg-muted transition-colors"
@@ -557,6 +633,18 @@ export default function ManagePage() {
             >
               <Download className="w-4 h-4" />
               Seed Data
+            </button>
+            <button
+              onClick={handleMigrateImages}
+              disabled={migrating}
+              className="flex items-center gap-2 px-4 py-2 text-sm font-sans font-medium bg-card text-foreground hover:bg-muted transition-colors disabled:opacity-50"
+              style={{
+                borderRadius: "var(--pill-radius)",
+                border: "var(--border-w) solid var(--border)",
+              }}
+            >
+              {migrating ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImageIcon className="w-4 h-4" />}
+              {migrating ? migrateStatus : "Migrate Images"}
             </button>
             <button
               onClick={() => {
@@ -675,7 +763,7 @@ export default function ManagePage() {
                 >
                   {watch.images[0] ? (
                     <img
-                      src={watch.images[0]}
+                      src={watch.imageVariants?.[0]?.url_thumb || watch.images[0]}
                       alt={watch.model}
                       className="w-full h-full object-cover"
                     />
@@ -1587,7 +1675,7 @@ export default function ManagePage() {
           {/* Save Button */}
           <button
             onClick={handleSave}
-            disabled={saving || !formData.brand || !formData.model}
+            disabled={saving || processingImages || !formData.brand || !formData.model}
             className={`w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-sans font-semibold transition-all disabled:opacity-50 ${
               saveSuccess
                 ? "bg-green-600 text-white"
@@ -1602,13 +1690,15 @@ export default function ManagePage() {
             ) : (
               <Check className="w-4 h-4" />
             )}
-            {saving
-              ? "Saving..."
-              : saveSuccess
-                ? "Saved!"
-                : view === "edit"
-                  ? "Update Watch"
-                  : "Save Watch"}
+            {processingImages
+              ? processStatus
+              : saving
+                ? "Saving..."
+                : saveSuccess
+                  ? "Saved!"
+                  : view === "edit"
+                    ? "Update Watch"
+                    : "Save Watch"}
           </button>
         </div>
       </div>

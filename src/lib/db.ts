@@ -1,17 +1,23 @@
 import { createAdminClient, supabase } from "./supabase"
-import type { Watch } from "./types"
+import type { Watch, ImageVariant } from "./types"
+
+type ImageInput = string | ImageVariant
 
 // Transform DB row + images into the Watch type used by the frontend
 function toWatch(row: any, images: any[]): Watch {
+  const sorted = images.sort((a: any, b: any) => a.position - b.position)
   return {
     id: row.id,
     brand: row.brand,
     model: row.model,
     reference: row.reference,
     price: Number(row.price),
-    images: images
-      .sort((a: any, b: any) => a.position - b.position)
-      .map((img: any) => img.url),
+    images: sorted.map((img: any) => img.url),
+    imageVariants: sorted.map((img: any) => ({
+      url: img.url,
+      url_thumb: img.url_thumb || undefined,
+      url_optimized: img.url_optimized || undefined,
+    })),
     description: row.description || "",
     specs: row.specs || {},
     category: row.category,
@@ -55,8 +61,22 @@ export async function getWatch(id: string): Promise<Watch | null> {
   return toWatch(watch, images || [])
 }
 
+function toImageRow(watchId: string, img: ImageInput, position: number) {
+  if (typeof img === "string") {
+    return { watch_id: watchId, url: img, source: "manual", position }
+  }
+  return {
+    watch_id: watchId,
+    url: img.url,
+    url_thumb: img.url_thumb || null,
+    url_optimized: img.url_optimized || null,
+    source: "processed",
+    position,
+  }
+}
+
 export async function createWatch(
-  watch: Omit<Watch, "images"> & { images: string[] }
+  watch: Omit<Watch, "images" | "imageVariants"> & { images: ImageInput[] }
 ): Promise<Watch> {
   const admin = createAdminClient()
   if (!admin) throw new Error("Supabase not configured")
@@ -82,12 +102,7 @@ export async function createWatch(
   await admin.from("watch_images").delete().eq("watch_id", watch.id)
 
   if (watch.images.length > 0) {
-    const imageRows = watch.images.map((url, i) => ({
-      watch_id: watch.id,
-      url,
-      source: "manual",
-      position: i,
-    }))
+    const imageRows = watch.images.map((img, i) => toImageRow(watch.id, img, i))
     const { error: imgError } = await admin.from("watch_images").insert(imageRows)
     if (imgError) throw imgError
   }
@@ -99,7 +114,7 @@ export async function createWatch(
 
 export async function updateWatch(
   id: string,
-  data: Partial<Omit<Watch, "images">> & { images?: string[] }
+  data: Partial<Omit<Watch, "images" | "imageVariants">> & { images?: ImageInput[] }
 ): Promise<Watch> {
   const admin = createAdminClient()
   if (!admin) throw new Error("Supabase not configured")
@@ -114,12 +129,7 @@ export async function updateWatch(
   if (images) {
     await admin.from("watch_images").delete().eq("watch_id", id)
     if (images.length > 0) {
-      const imageRows = images.map((url, i) => ({
-        watch_id: id,
-        url,
-        source: "manual",
-        position: i,
-      }))
+      const imageRows = images.map((img, i) => toImageRow(id, img, i))
       const { error } = await admin.from("watch_images").insert(imageRows)
       if (error) throw error
     }
@@ -133,6 +143,18 @@ export async function updateWatch(
 export async function deleteWatch(id: string): Promise<void> {
   const admin = createAdminClient()
   if (!admin) throw new Error("Supabase not configured")
+
+  // Clean up storage files
+  const { data: files } = await admin.storage
+    .from("watch-images")
+    .list(`watches/${id}`)
+
+  if (files && files.length > 0) {
+    await admin.storage
+      .from("watch-images")
+      .remove(files.map((f) => `watches/${id}/${f.name}`))
+  }
+
   const { error } = await admin.from("watches").delete().eq("id", id)
   if (error) throw error
 }
