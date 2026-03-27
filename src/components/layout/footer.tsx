@@ -57,8 +57,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-foreground/10 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-foreground/30 font-sans text-xs">{t("footer.copyright")}</p>
+        <div className="pt-6 border-t border-foreground/10">
+          <p className="text-foreground/30 font-sans text-[11px] leading-relaxed text-center max-w-2xl mx-auto mb-4 italic">
+            We are not an official dealer for the products we sell and have no affiliation with the manufacturer. All brand names and trademarks are the property of their respective owners and are used for identification purposes only.
+          </p>
+          <p className="text-foreground/30 font-sans text-xs text-center">{t("footer.copyright")}</p>
         </div>
       </div>
     </footer>
