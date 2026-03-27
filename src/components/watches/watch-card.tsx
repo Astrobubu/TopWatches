@@ -36,12 +36,12 @@ export function WatchCard({ watch }: WatchCardProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
           {/* Condition badge */}
-          <span className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm text-foreground/80 text-xs uppercase tracking-widest font-sans px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
+          <span className="absolute top-2 right-2 md:top-3 md:right-3 bg-background/80 backdrop-blur-sm text-foreground/80 text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans px-1.5 py-0.5 md:px-2.5 md:py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
             {t(`conditions.${watch.condition}`)}
           </span>
           {/* MM size badge */}
           {mm && (
-            <span className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-xs uppercase tracking-widest font-sans px-2.5 py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
+            <span className="absolute top-2 left-2 md:top-3 md:left-3 bg-primary/90 backdrop-blur-sm text-primary-foreground text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans px-1.5 py-0.5 md:px-2.5 md:py-1" style={{ borderRadius: 'var(--pill-radius)' }}>
               {mm}
             </span>
           )}
