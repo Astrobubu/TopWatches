@@ -86,6 +86,8 @@ export function ImageGallery({ images, imageVariants, modelName }: ImageGalleryP
             <img
               src={getThumb(i)}
               alt={`${modelName} view ${i + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
           </button>

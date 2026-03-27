@@ -214,6 +214,8 @@ export default function HomePage() {
             <img
               src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=1600"
               alt="Luxury watch style"
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
@@ -246,6 +248,8 @@ export default function HomePage() {
             <img
               src="https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=1600"
               alt="Watch questionnaire"
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />

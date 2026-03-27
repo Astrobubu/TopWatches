@@ -765,6 +765,8 @@ export default function ManagePage() {
                     <img
                       src={watch.imageVariants?.[0]?.url_thumb || watch.images[0]}
                       alt={watch.model}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -1256,6 +1258,8 @@ export default function ManagePage() {
                     <img
                       src={url}
                       alt={`Selected ${i + 1}`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
