@@ -3,14 +3,16 @@ import zh from "./translations/zh.json"
 import ar from "./translations/ar.json"
 import ru from "./translations/ru.json"
 import pcm from "./translations/pcm.json"
+import fa from "./translations/fa.json"
 
-export const locales = ["en", "zh", "ar", "ru", "pcm"] as const
+export const locales = ["en", "zh", "ar", "fa", "ru", "pcm"] as const
 export type Locale = (typeof locales)[number]
 
 export const localeNames: Record<Locale, string> = {
   en: "English",
   zh: "中文",
   ar: "العربية",
+  fa: "فارسی",
   ru: "Русский",
   pcm: "Pidgin",
 }
@@ -19,13 +21,14 @@ export const localeFlags: Record<Locale, string> = {
   en: "🇬🇧",
   zh: "🇨🇳",
   ar: "🇸🇦",
+  fa: "🇮🇷",
   ru: "🇷🇺",
   pcm: "🇳🇬",
 }
 
-export const rtlLocales: Locale[] = ["ar"]
+export const rtlLocales: Locale[] = ["ar", "fa"]
 
-const translations: Record<Locale, typeof en> = { en, zh, ar, ru, pcm }
+const translations: Record<Locale, typeof en> = { en, zh, ar, fa, ru, pcm }
 
 export type TranslationKey = string
 
