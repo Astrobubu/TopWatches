@@ -263,7 +263,7 @@ img {
   --accent: #C4A265;
   --muted: #F0EBE0;
   --muted-fg: #8B7D6B;
-  --card: #FFFFFF;
+  --card: #006039;
   --border: #D4C5A0;
   --dark-section-bg: #00301D;
   --dark-section-text: #F5F0E8;
@@ -282,6 +282,15 @@ img {
   --border-w: 1px;
   --dirham-filter: none;
   color-scheme: light;
+}
+
+/* Text contrast on green cards */
+.theme-rolex-heritage .bg-card {
+  --text: #F5F0E8;
+  --primary: #C4A265;
+  --muted-fg: #B8C4BC;
+  --secondary: #004D2E;
+  --border: #2A7A56;
 }
 
 /* ═══════════════════════════════════════════════
