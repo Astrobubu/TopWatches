@@ -1,8 +1,8 @@
 "use client"
 
-const GOOGLE_MAPS_URL = "https://www.google.com/maps/place/golden+planet+watches+%26+jewellery/@25.270517,55.2963121,788m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3e5f4323f101b867:0x24e1f97091e971b6!8m2!3d25.270517!4d55.298887!16s%2Fg%2F11pxk_xhjz?entry=tts&g_ep=EgoyMDI2MDMxMS4wIPu8ASoASAFQAw%3D%3D&skid=493d17c4-553c-41d6-be1a-55c50691f2dc"
+const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJZ7gB8SNDXz4RtnHpkXD54SQ"
 
-const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(GOOGLE_MAPS_URL)}`
+const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(GOOGLE_REVIEW_URL)}`
 
 export default function ReviewQRPage() {
   return (
