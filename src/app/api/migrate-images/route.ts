@@ -80,14 +80,17 @@ export async function POST(req: NextRequest) {
           )
         }
 
+        const updateData: Record<string, string> = {
+          url: result.url,
+          url_thumb: result.url_thumb,
+          url_optimized: result.url,
+          source: "processed",
+        }
+        if (result.source_url) updateData.source_url = result.source_url
+
         const { error: updateError } = await admin
           .from("watch_images")
-          .update({
-            url: result.url,
-            url_thumb: result.url_thumb,
-            url_optimized: result.url,
-            source: "processed",
-          })
+          .update(updateData)
           .eq("id", row.id)
 
         if (updateError) throw updateError

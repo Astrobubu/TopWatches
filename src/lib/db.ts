@@ -63,13 +63,14 @@ export async function getWatch(id: string): Promise<Watch | null> {
 
 function toImageRow(watchId: string, img: ImageInput, position: number) {
   if (typeof img === "string") {
-    return { watch_id: watchId, url: img, source: "manual", position }
+    return { watch_id: watchId, url: img, source: "manual", position, source_url: img }
   }
   return {
     watch_id: watchId,
     url: img.url,
     url_thumb: img.url_thumb || null,
     url_optimized: img.url_optimized || null,
+    source_url: (img as any).source_url || null,
     source: "processed",
     position,
   }

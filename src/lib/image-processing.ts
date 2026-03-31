@@ -12,6 +12,7 @@ const BROWSER_HEADERS: Record<string, string> = {
 export interface ProcessedImage {
   url: string
   url_thumb: string
+  source_url?: string
 }
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
@@ -95,6 +96,7 @@ export async function processAndUploadImage(
   return {
     url: getPublicUrl(paths.original),
     url_thumb: getPublicUrl(paths.thumb),
+    source_url: sourceUrl,
   }
 }
 
