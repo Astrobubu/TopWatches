@@ -400,7 +400,7 @@ img {
 
 html {
   overflow-y: scroll;
-  /* Prevents layout shift when scrollbar appears/disappears */
+  scrollbar-gutter: stable;
 }
 
 body {
