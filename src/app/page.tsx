@@ -88,6 +88,9 @@ export default function HomePage() {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pb-16 md:pb-24">
           <div>
+            <span className="hero-elem inline-block font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-primary/80 border border-primary/30 px-3 py-1 mb-4" style={{ borderRadius: 'var(--pill-radius)' }}>
+              {t("hero.established")}
+            </span>
             <h1 className="hero-elem text-4xl sm:text-5xl md:text-7xl leading-[1.1] text-foreground">
               <span className="font-sans font-bold block tracking-tight">{t("hero.line1")}</span>
               <span className="font-serif italic font-light block">{t("hero.line2")}</span>

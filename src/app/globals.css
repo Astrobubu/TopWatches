@@ -115,16 +115,16 @@ img {
    Zero radius, thick borders, raw industrial
    ═══════════════════════════════════════════════ */
 .theme-brutalist-signal {
-  --bg: #F5F3EE;
+  --bg: #F2F0EA;
   --text: #111111;
-  --primary: #E63B2E;
-  --primary-fg: #F5F3EE;
-  --secondary: #E8E4DD;
-  --accent: #E63B2E;
+  --primary: #16a34a;
+  --primary-fg: #F2F0EA;
+  --secondary: #E8E5DD;
+  --accent: #16a34a;
   --muted: #E5E5E5;
   --muted-fg: #666666;
   --card: #FAFAFA;
-  --border: #111111;
+  --border: #C8C4BC;
   --dark-section-bg: #111111;
   --dark-section-text: #F5F3EE;
   --dark-section-card: #1A1A1A;
@@ -139,7 +139,7 @@ img {
   --card-radius: 0px;
   --container-radius: 0px;
   --pill-radius: 0px;
-  --border-w: 2px;
+  --border-w: 1px;
   --dirham-filter: brightness(0);
   color-scheme: light;
 }
@@ -372,6 +372,22 @@ img {
 }
 .dark-section-animate {
   animation: fadeInUp 0.8s ease-out both;
+}
+
+/* Image gallery loading animations */
+@keyframes galleryProgress {
+  0% { width: 0; margin-left: 0; }
+  50% { width: 60%; margin-left: 20%; }
+  100% { width: 0; margin-left: 100%; }
+}
+@keyframes galleryFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes galleryFadeOut {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* Fix overflow-hidden + border-radius anti-aliasing artifact */

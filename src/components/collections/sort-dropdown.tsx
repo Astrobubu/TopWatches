@@ -30,7 +30,7 @@ export function SortDropdown({ value, onChange }: SortDropdownProps) {
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder={t("sort.sortBy")} />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent position="popper" align="end">
         {sortOptions.map((option) => (
           <SelectItem key={option.value} value={option.value}>
             {option.label}

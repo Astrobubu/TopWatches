@@ -12,7 +12,6 @@ const BROWSER_HEADERS: Record<string, string> = {
 export interface ProcessedImage {
   url: string
   url_thumb: string
-  url_optimized: string
 }
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
@@ -72,40 +71,61 @@ export async function processAndUploadImage(
   // Download
   const rawBuffer = await downloadImage(sourceUrl)
 
-  // Process three variants
-  const [original, optimized, thumb] = await Promise.all([
-    sharp(rawBuffer)
-      .resize({ width: 1200, withoutEnlargement: true })
-      .webp({ quality: 85 })
-      .toBuffer(),
-    sharp(rawBuffer)
-      .resize({ width: 800, withoutEnlargement: true })
-      .webp({ quality: 70 })
-      .toBuffer(),
-    sharp(rawBuffer)
-      .resize({ width: 400, withoutEnlargement: true })
-      .webp({ quality: 60 })
-      .toBuffer(),
-  ])
+  // Full quality original + small thumb only
+  const original = await sharp(rawBuffer)
+    .webp({ quality: 100, nearLossless: true })
+    .toBuffer()
 
-  // Upload all three
+  const thumb = await sharp(rawBuffer)
+    .resize({ width: 400, withoutEnlargement: true })
+    .webp({ quality: 60 })
+    .toBuffer()
+
   const basePath = `watches/${watchId}`
   const paths = {
     original: `${basePath}/${position}-original.webp`,
-    optimized: `${basePath}/${position}-optimized.webp`,
     thumb: `${basePath}/${position}-thumb.webp`,
   }
 
   await Promise.all([
     uploadToStorage(admin, paths.original, original, "image/webp"),
-    uploadToStorage(admin, paths.optimized, optimized, "image/webp"),
     uploadToStorage(admin, paths.thumb, thumb, "image/webp"),
   ])
 
   return {
     url: getPublicUrl(paths.original),
     url_thumb: getPublicUrl(paths.thumb),
-    url_optimized: getPublicUrl(paths.optimized),
+  }
+}
+
+/**
+ * Generate thumb + optimized variants from an existing image URL (e.g. already on Supabase).
+ * Downloads the existing image and creates the missing variants.
+ * The original stays untouched.
+ */
+export async function generateVariantsFromExisting(
+  existingUrl: string,
+  watchId: string,
+  position: number
+): Promise<ProcessedImage> {
+  const admin = createAdminClient()
+  if (!admin) throw new Error("Supabase not configured")
+
+  const rawBuffer = await downloadImage(existingUrl)
+
+  const thumb = await sharp(rawBuffer)
+    .resize({ width: 400, withoutEnlargement: true })
+    .webp({ quality: 60 })
+    .toBuffer()
+
+  const basePath = `watches/${watchId}`
+  const thumbPath = `${basePath}/${position}-thumb.webp`
+
+  await uploadToStorage(admin, thumbPath, thumb, "image/webp")
+
+  return {
+    url: existingUrl,
+    url_thumb: getPublicUrl(thumbPath),
   }
 }
 

@@ -35,9 +35,12 @@ export function Footer() {
       <div className="max-w-7xl mx-auto border-t border-foreground/10 pt-12 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
           <div className="md:col-span-2">
-            <span className="font-serif font-bold text-2xl tracking-wide text-foreground block mb-4">{t("brand")}</span>
+            <span className="font-sans font-bold text-2xl tracking-tight text-foreground block mb-4">{t("brand")}</span>
             <p className="text-foreground/40 font-sans max-w-xs leading-relaxed text-sm">
               {t("tagline")}
+            </p>
+            <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-primary/60 mt-3">
+              {t("footer.established")}
             </p>
           </div>
           <div>

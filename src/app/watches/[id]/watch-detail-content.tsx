@@ -51,7 +51,7 @@ export function WatchDetailContent({ watch }: { watch: Watch }) {
 
           <div className="flex items-center gap-2">
             <ConditionBadge condition={watch.condition} />
-            <span className="text-foreground/70 text-xs uppercase tracking-widest font-sans px-3 py-1 bg-muted/50" style={{ borderRadius: 'var(--pill-radius)' }}>
+            <span className="text-foreground/70 text-xs uppercase tracking-widest font-sans px-3 py-1 bg-foreground/10" style={{ borderRadius: 'var(--pill-radius)' }}>
               {watch.category}
             </span>
           </div>

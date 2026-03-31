@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createAdminClient } from "@/lib/supabase"
-import { processAndUploadImage, isSupabaseUrl } from "@/lib/image-processing"
+import { processAndUploadImage, generateVariantsFromExisting, isSupabaseUrl } from "@/lib/image-processing"
 
 export const maxDuration = 120
 export const dynamic = "force-dynamic"
@@ -13,28 +13,46 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json().catch(() => ({}))
-    const batchSize = body.batchSize || 5
+    const batchSize = body.batchSize || 3
 
-    // Find image rows that still point to external URLs
-    const { data: rows, error } = await admin
+    // Phase 1: external URLs that need full migration
+    const { data: externalRows, error: extErr } = await admin
       .from("watch_images")
       .select("id, watch_id, url, position")
       .not("url", "ilike", "%supabase.co%")
       .limit(batchSize)
 
-    if (error) throw error
-    if (!rows || rows.length === 0) {
-      // Count total to confirm we're done
-      const { count } = await admin
+    if (extErr) throw extErr
+
+    // Phase 2: Supabase images missing thumb/optimized variants
+    const { data: missingRows, error: missErr } = await admin
+      .from("watch_images")
+      .select("id, watch_id, url, position")
+      .ilike("url", "%supabase.co%")
+      .is("url_thumb", null)
+      .limit(batchSize)
+
+    if (missErr) throw missErr
+
+    const rows = [...(externalRows || []), ...(missingRows || [])]
+
+    if (rows.length === 0) {
+      const { count: extRemaining } = await admin
         .from("watch_images")
         .select("id", { count: "exact", head: true })
         .not("url", "ilike", "%supabase.co%")
 
+      const { count: varRemaining } = await admin
+        .from("watch_images")
+        .select("id", { count: "exact", head: true })
+        .ilike("url", "%supabase.co%")
+        .is("url_thumb", null)
+
       return NextResponse.json({
         processed: 0,
         failed: 0,
-        remaining: count || 0,
-        message: "No external images to migrate",
+        remaining: (extRemaining || 0) + (varRemaining || 0),
+        message: "All images are fully processed",
       })
     }
 
@@ -43,24 +61,31 @@ export async function POST(req: NextRequest) {
     const errors: Array<{ watchId: string; url: string; error: string }> = []
 
     for (const row of rows) {
-      if (isSupabaseUrl(row.url)) {
-        processed++
-        continue
-      }
-
       try {
-        const result = await processAndUploadImage(
-          row.url,
-          row.watch_id,
-          row.position
-        )
+        let result
+
+        if (isSupabaseUrl(row.url)) {
+          // Already on Supabase — just generate missing variants
+          result = await generateVariantsFromExisting(
+            row.url,
+            row.watch_id,
+            row.position
+          )
+        } else {
+          // External URL — full download + process
+          result = await processAndUploadImage(
+            row.url,
+            row.watch_id,
+            row.position
+          )
+        }
 
         const { error: updateError } = await admin
           .from("watch_images")
           .update({
             url: result.url,
             url_thumb: result.url_thumb,
-            url_optimized: result.url_optimized,
+            url_optimized: result.url,
             source: "processed",
           })
           .eq("id", row.id)
@@ -78,15 +103,21 @@ export async function POST(req: NextRequest) {
     }
 
     // Count remaining
-    const { count: remaining } = await admin
+    const { count: extLeft } = await admin
       .from("watch_images")
       .select("id", { count: "exact", head: true })
       .not("url", "ilike", "%supabase.co%")
 
+    const { count: varLeft } = await admin
+      .from("watch_images")
+      .select("id", { count: "exact", head: true })
+      .ilike("url", "%supabase.co%")
+      .is("url_thumb", null)
+
     return NextResponse.json({
       processed,
       failed,
-      remaining: remaining || 0,
+      remaining: (extLeft || 0) + (varLeft || 0),
       errors: errors.length > 0 ? errors : undefined,
     })
   } catch (error: any) {

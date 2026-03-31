@@ -776,22 +776,36 @@ export default function ManagePage() {
                   )}
                 </div>
 
-                {/* Info */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="font-mono text-[10px] text-primary tracking-widest uppercase">
-                      {watch.brand}
+                {/* Info — click text to edit, ctrl/middle-click to open in new tab */}
+                <div className="flex-1 min-w-0 cursor-pointer group/info" onClick={() => handleEdit(watch)}>
+                  <a
+                    href={`/watches/${watch.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      if (!e.ctrlKey && !e.metaKey && e.button !== 1) {
+                        e.preventDefault()
+                        handleEdit(watch)
+                      }
+                    }}
+                    onAuxClick={(e) => { if (e.button === 1) { /* allow middle-click default */ } }}
+                    className="block"
+                  >
+                    <div className="flex items-center gap-2">
+                      <p className="font-mono text-[10px] text-primary tracking-widest uppercase">
+                        {watch.brand}
+                      </p>
+                      {watch.featured && (
+                        <Star className="w-3 h-3 text-primary fill-primary" />
+                      )}
+                    </div>
+                    <p className="font-sans font-semibold text-sm text-foreground truncate group-hover/info:text-primary transition-colors">
+                      {watch.model}
                     </p>
-                    {watch.featured && (
-                      <Star className="w-3 h-3 text-primary fill-primary" />
-                    )}
-                  </div>
-                  <p className="font-sans font-semibold text-sm text-foreground truncate">
-                    {watch.model}
-                  </p>
-                  <p className="font-mono text-[10px] text-foreground/40">
-                    Ref. {watch.reference} | {watch.specs?.caseSize || "—"} | {watch.images.length} images
-                  </p>
+                    <p className="font-mono text-[10px] text-foreground/40">
+                      Ref. {watch.reference} | {watch.specs?.caseSize || "—"} | {watch.images.length} images
+                    </p>
+                  </a>
                 </div>
 
                 {/* Price */}

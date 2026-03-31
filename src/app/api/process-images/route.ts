@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
       original: string
       url: string
       url_thumb: string
-      url_optimized: string
+      url_optimized?: string
       error?: string
     }> = []
 
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
           original: sourceUrl,
           url: sourceUrl,
           url_thumb: sourceUrl,
-          url_optimized: sourceUrl,
+          url_optimized: sourceUrl, // legacy field — same as url
         })
         continue
       }
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
           original: sourceUrl,
           url: sourceUrl,
           url_thumb: sourceUrl,
-          url_optimized: sourceUrl,
+          url_optimized: sourceUrl, // legacy field — same as url
           error: err.message,
         })
       }

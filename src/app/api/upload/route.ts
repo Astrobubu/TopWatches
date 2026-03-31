@@ -37,32 +37,25 @@ export async function POST(req: NextRequest) {
     const basePath = `watches/${watchId}`
     const slug = `${position}-${Date.now()}`
 
-    // Process three variants
-    const [original, optimized, thumb] = await Promise.all([
-      sharp(rawBuffer)
-        .resize({ width: 1200, withoutEnlargement: true })
-        .webp({ quality: 85 })
-        .toBuffer(),
-      sharp(rawBuffer)
-        .resize({ width: 800, withoutEnlargement: true })
-        .webp({ quality: 70 })
-        .toBuffer(),
-      sharp(rawBuffer)
-        .resize({ width: 400, withoutEnlargement: true })
-        .webp({ quality: 60 })
-        .toBuffer(),
-    ])
+    // Process variants sequentially to avoid memory spikes
+    // Original: full quality, no resize
+    const original = await sharp(rawBuffer)
+      .webp({ quality: 100, nearLossless: true })
+      .toBuffer()
+
+    const thumb = await sharp(rawBuffer)
+      .resize({ width: 400, withoutEnlargement: true })
+      .webp({ quality: 60 })
+      .toBuffer()
 
     const paths = {
       original: `${basePath}/${slug}-original.webp`,
-      optimized: `${basePath}/${slug}-optimized.webp`,
       thumb: `${basePath}/${slug}-thumb.webp`,
     }
 
-    // Upload all three
+    // Upload original + thumb
     for (const [key, data] of [
       ["original", original],
-      ["optimized", optimized],
       ["thumb", thumb],
     ] as const) {
       const { error } = await admin.storage.from(BUCKET).upload(
@@ -75,10 +68,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    const originalUrl = getPublicUrl(paths.original)
     return NextResponse.json({
-      url: getPublicUrl(paths.original),
+      url: originalUrl,
       url_thumb: getPublicUrl(paths.thumb),
-      url_optimized: getPublicUrl(paths.optimized),
+      url_optimized: originalUrl,
     })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })

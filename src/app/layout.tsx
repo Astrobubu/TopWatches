@@ -45,7 +45,7 @@ export default function RootLayout({
       <body className="font-sans antialiased transition-colors duration-500">
         <ThemeProvider
           attribute="class"
-          defaultTheme="theme-organic-tech"
+          defaultTheme="theme-brutalist-signal"
           themes={["theme-organic-tech", "theme-midnight-luxe", "theme-brutalist-signal", "theme-neon-cyberpunk", "theme-minimalist-sand", "theme-ocean-depth", "theme-rolex-heritage", "theme-rolex-heritage-dark"]}
           enableSystem={false}
         >

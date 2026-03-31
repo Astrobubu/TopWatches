@@ -14,6 +14,7 @@
     "line1": "Acquire the",
     "line2": "Exceptional.",
     "subtitle": "Authenticated luxury watches from the world's finest maisons.",
+    "established": "Est. 2010",
     "cta": "Enter the Collection"
   },
 
@@ -154,11 +155,12 @@
 
   "about": {
     "title": "About Golden Planet Watches",
-    "location": "Gold Souq, Dubai — Trusted since day one",
+    "location": "Gold Souq, Dubai — Trusted since 2010",
     "ourStory": "Our Story",
-    "storyP1": "Golden Planet Watches was founded in the heart of Dubai's Gold Souq to create a trusted destination for buying and selling luxury timepieces. Located in the Al Dukhan Building, we connect collectors with verified watches from the world's top brands.",
+    "storyP1": "Founded in 2010 in the heart of Dubai's Gold Souq, Golden Planet Watches has spent over 16 years as a trusted destination for buying and selling luxury timepieces. Located in the Al Dukhan Building, we connect collectors with verified watches from the world's top brands.",
     "storyP2": "Our team of certified watchmakers inspects and authenticates every watch that passes through our shop. We prioritize transparency, accuracy, and reliable service — whether you visit us in person or shop online.",
     "storyP3": "From Rolex to Patek Philippe, every watch in our collection has been verified for authenticity, condition, and provenance.",
+    "yearsInBusiness": "Years in Business",
     "watchesSold": "Watches Sold",
     "brands": "Brands",
     "countries": "Countries",
@@ -190,6 +192,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "authenticity": "Authenticity Guarantee",
+    "established": "Serving collectors since 2010",
     "copyright": "© 2026 Golden Planet Watches. All rights reserved."
   },
 

@@ -30,7 +30,8 @@ export function ConditionBadge({ condition }: { condition: string }) {
                 href="/condition-guide"
                 onMouseEnter={() => setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
-                className="inline-flex items-center gap-1.5 bg-border text-foreground/80 text-xs uppercase tracking-widest font-sans px-3 py-1 rounded-full hover:bg-border/80 transition-colors cursor-help"
+                className="inline-flex items-center gap-1.5 bg-border text-foreground/80 text-xs uppercase tracking-widest font-sans px-3 py-1 hover:bg-border/80 transition-colors cursor-help"
+                style={{ borderRadius: 'var(--pill-radius)' }}
             >
                 <span
                     className="w-1.5 h-1.5 rounded-full"

@@ -8,9 +8,9 @@ export function AboutContent() {
   const { t } = useTranslation()
 
   const stats = [
+    { value: "16+", label: t("about.yearsInBusiness") },
     { value: "10,000+", label: t("about.watchesSold") },
     { value: "50+", label: t("about.brands") },
-    { value: "120+", label: t("about.countries") },
     { value: "99.8%", label: t("about.satisfaction") },
   ]
 

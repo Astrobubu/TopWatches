@@ -22,7 +22,8 @@ export function LanguageSwitcher() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 text-sm text-foreground/70 hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-secondary"
+        className="flex items-center gap-1.5 text-sm text-foreground/70 hover:text-foreground transition-colors px-2 py-1.5 hover:bg-secondary"
+        style={{ borderRadius: 'var(--pill-radius)' }}
         aria-label="Change language"
       >
         <Globe className="w-4 h-4" />
@@ -31,8 +32,8 @@ export function LanguageSwitcher() {
 
       {open && (
         <div
-          className="absolute top-full mt-1 right-0 bg-card border border-border rounded-xl overflow-hidden z-50 min-w-[160px]"
-          style={{ boxShadow: "var(--soft-shadow)" }}
+          className="absolute top-full mt-1 right-0 bg-card border border-border overflow-hidden z-50 min-w-[160px]"
+          style={{ boxShadow: "var(--soft-shadow)", borderRadius: 'var(--card-radius)' }}
         >
           {locales.map((l) => (
             <button
