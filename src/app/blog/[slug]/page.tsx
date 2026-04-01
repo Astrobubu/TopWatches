@@ -170,6 +170,11 @@ export default async function BlogPostPage({
             prose-blockquote:border-primary prose-blockquote:text-foreground/60
             prose-img:rounded-lg
             prose-code:text-primary prose-code:bg-muted/50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+            prose-table:w-full prose-table:border-collapse
+            prose-th:bg-muted/30 prose-th:text-foreground prose-th:font-sans prose-th:text-sm prose-th:font-semibold prose-th:p-3 prose-th:text-left
+            prose-td:text-foreground/70 prose-td:font-sans prose-td:text-sm prose-td:p-3
+            [&_table]:border [&_table]:border-foreground/10 [&_th]:border [&_th]:border-foreground/10 [&_td]:border [&_td]:border-foreground/10
+            [&_table]:rounded-lg [&_table]:overflow-hidden
           "
           dangerouslySetInnerHTML={{ __html: contentWithIds }}
         />
