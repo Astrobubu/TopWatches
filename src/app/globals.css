@@ -3,13 +3,15 @@
 @import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
-/* Arabic & Farsi — elegant fonts for RTL, no italic */
+/* Arabic & Farsi — elegant fonts for RTL, no italic, generous line-height */
 [dir="rtl"] * {
   font-family: 'Tajawal', sans-serif !important;
+  line-height: 1.8 !important;
 }
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4,
 [dir="rtl"] .font-serif {
   font-family: 'Amiri', serif !important;
+  line-height: 1.4 !important;
 }
 [dir="rtl"] .font-mono, [dir="rtl"] code, [dir="rtl"] pre {
   font-family: 'Tajawal', monospace !important;
@@ -17,6 +19,14 @@
 [dir="rtl"] .italic, [dir="rtl"] em, [dir="rtl"] i,
 [dir="rtl"] *[class*="italic"] {
   font-style: normal !important;
+}
+/* Bump tiny mono/label text for Arabic/Farsi — Latin micro-type is unreadable in Arabic */
+[dir="rtl"] .font-mono.text-xs,
+[dir="rtl"] .font-mono[class*="text-[10px]"],
+[dir="rtl"] .text-\[10px\] {
+  font-size: 0.875rem !important;
+  letter-spacing: 0 !important;
+  font-weight: 700 !important;
 }
 
 img {
@@ -46,6 +56,10 @@ img {
   --color-ring: var(--primary);
   --color-destructive: #e63b2e;
   --color-destructive-foreground: var(--bg);
+
+  --font-sans: var(--font-sans-active);
+  --font-serif: var(--font-serif-active);
+  --font-mono: var(--font-mono-active);
 
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -427,17 +441,18 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Global font-family utilities */
+/* Font utilities — Tailwind's --font-sans/serif/mono are mapped in @theme inline,
+   no !important here so RTL [dir="rtl"] rules can override for Arabic/Farsi */
 .font-sans {
-  font-family: var(--font-sans-active) !important;
+  font-family: var(--font-sans-active);
 }
 
 .font-serif {
-  font-family: var(--font-serif-active) !important;
+  font-family: var(--font-serif-active);
 }
 
 .font-mono {
-  font-family: var(--font-mono-active) !important;
+  font-family: var(--font-mono-active);
 }
 
 /* Global SVG noise overlay */

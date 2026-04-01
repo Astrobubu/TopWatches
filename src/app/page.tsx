@@ -155,7 +155,7 @@ export default function HomePage() {
           >
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-              style={{ backgroundImage: "url('https://i.pinimg.com/1200x/a2/ab/aa/a2abaad39785e84615742e5c50e68772.jpg')" }}
+              style={{ backgroundImage: "url('https://kstvsyjfrleyqbgglhjy.supabase.co/storage/v1/object/public/watch-images/hero/for-him-hero.png')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="relative z-10 w-full flex items-end justify-between">
@@ -176,7 +176,7 @@ export default function HomePage() {
           >
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-              style={{ backgroundImage: "url('https://hijabi.pk/cdn/shop/files/gemini-image-2_photography_of_the_uploaded_image_is_a_reference_of_hijab_hijab_matching_bracele-0_fbb79dd1-962d-4944-a2c7-d74fecf663d3.jpg?v=1765878218')" }}
+              style={{ backgroundImage: "url('https://kstvsyjfrleyqbgglhjy.supabase.co/storage/v1/object/public/watch-images/hero/for-her-hero.png')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="relative z-10 w-full flex items-end justify-between">
@@ -249,7 +249,7 @@ export default function HomePage() {
             style={{ boxShadow: 'var(--soft-shadow)' }}
           >
             <img
-              src="https://images.unsplash.com/photo-1622434641406-a158123450f9?q=80&w=1600"
+              src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?q=80&w=1600"
               alt="Watch questionnaire"
               loading="lazy"
               decoding="async"

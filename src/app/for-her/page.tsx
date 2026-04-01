@@ -23,7 +23,7 @@ export default function ForHerPage() {
             {/* Hero Section */}
             <section className="relative h-[calc(50vh+5rem)] min-h-[400px] flex items-center justify-center overflow-hidden -mt-20 pt-20">
                 <img
-                    src="/for-her-hero.png"
+                    src="https://kstvsyjfrleyqbgglhjy.supabase.co/storage/v1/object/public/watch-images/hero/for-her-hero.png"
                     alt="Woman in elegant beige hijab wearing a rose gold Rolex with diamond bracelet — Golden Planet Watches ladies collection in Dubai"
                     className="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-luminosity"
                 />

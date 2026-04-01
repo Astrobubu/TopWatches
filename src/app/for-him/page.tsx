@@ -23,7 +23,7 @@ export default function ForHimPage() {
             {/* Hero Section */}
             <section className="relative h-[calc(50vh+5rem)] min-h-[400px] flex items-center justify-center overflow-hidden -mt-20 pt-20">
                 <img
-                    src="/for-him-hero.png"
+                    src="https://kstvsyjfrleyqbgglhjy.supabase.co/storage/v1/object/public/watch-images/hero/for-him-hero.png"
                     alt="Man in traditional Gulf keffiyeh and bisht wearing a luxury steel timepiece — Golden Planet Watches men's collection in Dubai"
                     className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity"
                 />
