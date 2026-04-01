@@ -1,6 +1,7 @@
 "use client"
 
 import { MessageCircle, Heart, Share2 } from "lucide-react"
+import { trackEvent } from "@/components/analytics"
 import type { Watch } from "@/lib/types"
 
 interface WhatsAppOrderProps {
@@ -29,6 +30,7 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
     ].join("\n")
 
     const url = `https://wa.me/${SHOP_PHONE}?text=${encodeURIComponent(message)}`
+    trackEvent("click", "WhatsApp", `order_${watch.brand}_${watch.model}`)
     window.open(url, "_blank")
   }
 

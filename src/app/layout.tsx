@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { ReviewPrompt } from "@/components/review-prompt";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { Analytics } from "@/components/analytics";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/json-ld";
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/lib/i18n/context"
@@ -94,6 +95,7 @@ export default function RootLayout({
             <Footer />
             <ReviewPrompt />
             <WhatsAppButton />
+            <Analytics />
             <ScrollToTop />
           </I18nProvider>
         </ThemeProvider>
