@@ -10,21 +10,18 @@ export default function Icon() {
         style={{
           width: 32,
           height: 32,
-          background: "#16a34a",
-          borderRadius: "50%",
+          background: "transparent",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          border: "2px solid #fff",
         }}
       >
         <span
           style={{
-            color: "#fff",
-            fontSize: 14,
+            color: "#16a34a",
+            fontSize: 18,
             fontWeight: 700,
-            fontFamily: "Georgia, serif",
-            marginTop: -1,
+            fontFamily: "Times New Roman, Times, serif",
           }}
         >
           GP
