@@ -33,7 +33,7 @@ export function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto border-t border-foreground/10 pt-12 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-8 mb-12">
           <div className="md:col-span-2">
             <span className="font-sans font-bold text-2xl tracking-tight text-foreground block mb-4">{t("brand")}</span>
             <p className="text-foreground/40 font-sans max-w-xs leading-relaxed text-sm">
@@ -60,6 +60,22 @@ export function Footer() {
               <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
               <li><Link href="/guides" className="hover:text-primary transition-colors">Guides</Link></li>
               <li><Link href="/about" className="hover:text-primary transition-colors">{t("nav.aboutUs")}</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">Areas We Serve</h4>
+            <ul className="space-y-2 font-sans text-xs text-foreground/50">
+              <li><Link href="/luxury-watches-in-deira" className="hover:text-primary transition-colors">Deira</Link></li>
+              <li><Link href="/luxury-watches-in-downtown-dubai" className="hover:text-primary transition-colors">Downtown Dubai</Link></li>
+              <li><Link href="/luxury-watches-in-jumeirah" className="hover:text-primary transition-colors">Jumeirah</Link></li>
+              <li><Link href="/luxury-watches-in-palm-jumeirah" className="hover:text-primary transition-colors">Palm Jumeirah</Link></li>
+              <li><Link href="/luxury-watches-in-dubai-marina" className="hover:text-primary transition-colors">Dubai Marina</Link></li>
+              <li><Link href="/luxury-watches-in-difc" className="hover:text-primary transition-colors">DIFC</Link></li>
+              <li><Link href="/luxury-watches-in-business-bay" className="hover:text-primary transition-colors">Business Bay</Link></li>
+              <li><Link href="/luxury-watches-in-jbr" className="hover:text-primary transition-colors">JBR</Link></li>
+              <li><Link href="/luxury-watches-in-al-barsha" className="hover:text-primary transition-colors">Al Barsha</Link></li>
+              <li><Link href="/luxury-watches-in-bur-dubai" className="hover:text-primary transition-colors">Bur Dubai</Link></li>
+              <li><Link href="/luxury-watches-in-karama" className="hover:text-primary transition-colors">Karama</Link></li>
             </ul>
           </div>
           <div>

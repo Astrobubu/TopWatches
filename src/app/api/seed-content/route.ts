@@ -240,23 +240,115 @@ const LOCATIONS = [
 export async function GET() { return seed() }
 export async function POST() { return seed() }
 
+const BLOG_POSTS = [
+  {
+    title: "The Complete Guide to Rolex Reference Numbers",
+    slug: "rolex-reference-numbers",
+    content: `<h2>What Are Rolex Reference Numbers?</h2><p>Every Rolex watch has a unique reference number that tells you exactly what model it is, what materials it's made from, and what bezel type it features. Understanding these numbers is essential for any serious collector or buyer in Dubai's luxury watch market.</p><h2>Where to Find Your Rolex Reference Number</h2><p>The reference number is engraved on the side of the case between the lugs at the 12 o'clock position. You'll need to remove the bracelet or strap to see it clearly. On newer models (post-2005), it may also appear on the inner bezel ring.</p><h2>How to Read a Rolex Reference Number</h2><p>A typical Rolex reference number looks like <strong>126610LN</strong>. Let's break it down:</p><ul><li><strong>First 3 digits (126):</strong> The model family and case size. 116 = 40mm Submariner, 126 = 41mm Submariner</li><li><strong>Next 2 digits (61):</strong> The bezel and material type. 61 = ceramic bezel, stainless steel</li><li><strong>Last digit (0):</strong> Usually indicates the dial type or variation</li><li><strong>Letter suffix (LN):</strong> Lunette Noire = black bezel insert</li></ul><h2>Common Rolex Reference Number Prefixes</h2><p>Here are the most common Rolex model families you'll encounter in Dubai:</p><ul><li><strong>116500 / 126500:</strong> Daytona</li><li><strong>116610 / 126610:</strong> Submariner Date</li><li><strong>124060:</strong> Submariner No-Date</li><li><strong>126710:</strong> GMT-Master II</li><li><strong>126334:</strong> Datejust 41</li><li><strong>228235:</strong> Day-Date 40</li><li><strong>326235:</strong> Sky-Dweller</li></ul><h2>Material Codes</h2><p>The middle digits tell you the material:</p><ul><li><strong>0:</strong> Stainless steel</li><li><strong>1:</strong> Steel + white gold bezel</li><li><strong>3:</strong> Steel + yellow gold (Rolesor)</li><li><strong>5:</strong> 18k rose gold (Everose)</li><li><strong>8:</strong> 18k yellow gold</li><li><strong>9:</strong> 18k white gold</li></ul><h2>Why Reference Numbers Matter When Buying</h2><p>When buying a pre-owned Rolex in Dubai, the reference number is your first line of authentication. It should match the model, materials, and features of the watch in hand. At Golden Planet Watches, we verify every reference number against Rolex's specifications as part of our multi-point authentication process.</p><p>If you're looking at a specific Rolex reference, <a href="https://wa.me/971507452323">WhatsApp us</a> and we'll check our current inventory for you.</p>`,
+    excerpt: "Learn how to decode Rolex reference numbers to identify models, materials, and bezels. Essential knowledge for buying authenticated Rolex watches in Dubai.",
+    cover_image: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1200&q=80",
+    category: "guides",
+    tags: ["rolex", "reference-numbers", "authentication", "buying-guide"],
+    author: "Golden Planet Watches",
+    status: "published",
+    seo_title: "Rolex Reference Numbers Explained | Complete Guide | Golden Planet Watches Dubai",
+    seo_description: "Learn how to read and decode Rolex reference numbers. Understand model families, material codes, and bezel types. Essential for buying Rolex in Dubai.",
+    reading_time: 5,
+    featured: true,
+    published_at: "2026-03-15T10:00:00Z",
+  },
+  {
+    title: "Rolex Serial Numbers: How to Date Your Rolex",
+    slug: "rolex-serial-numbers",
+    content: `<h2>What Is a Rolex Serial Number?</h2><p>Every Rolex watch has a unique serial number that identifies when it was manufactured. This number is crucial for authentication, insurance, and determining the value of pre-owned Rolex watches in Dubai.</p><h2>Where to Find the Serial Number</h2><p>On vintage Rolex watches (pre-2005), the serial number is engraved between the lugs at the 6 o'clock position. On modern Rolex watches (2005 onwards), it's engraved on the inner rehaut (the ring inside the dial) at the 6 o'clock position, visible without removing the bracelet.</p><h2>Rolex Serial Number Ranges by Year</h2><p>Rolex used sequential serial numbers until 2010, when they switched to a random system. Here are the key ranges:</p><ul><li><strong>R-series (1987-1988):</strong> R000,001 – R999,999</li><li><strong>L-series (1989-1990):</strong> L000,001 – L999,999</li><li><strong>E-series (1990-1991):</strong> E000,001 – E999,999</li><li><strong>S-series (1993):</strong> S000,001 – S999,999</li><li><strong>U-series (1997):</strong> U000,001 – U999,999</li><li><strong>A-series (1999):</strong> A000,001 – A999,999</li><li><strong>P-series (2000):</strong> P000,001 – P999,999</li><li><strong>Y-series (2002):</strong> Y000,001 – Y999,999</li><li><strong>D-series (2005):</strong> D000,001 – D999,999</li><li><strong>Z-series (2006):</strong> Z000,001 – Z999,999</li><li><strong>M-series (2007-2008):</strong> M000,001 – M999,999</li><li><strong>V-series (2008-2009):</strong> V000,001 – V999,999</li><li><strong>G-series (2010):</strong> Random serial numbers begin</li></ul><h2>Post-2010: Random Serial Numbers</h2><p>Since 2010, Rolex has used random serial numbers that don't follow a sequential pattern. This means you cannot determine the manufacturing year from the serial number alone. Instead, you'll need to check the warranty card date or consult an expert.</p><h2>Why Serial Numbers Matter</h2><p>Serial numbers are essential for:</p><ul><li><strong>Authentication:</strong> Verifying the watch is genuine</li><li><strong>Dating:</strong> Determining when the watch was made (pre-2010)</li><li><strong>Insurance:</strong> Documenting the watch for insurance purposes</li><li><strong>Theft Recovery:</strong> Registering with databases like The Watch Register</li><li><strong>Value Assessment:</strong> Older serial numbers on certain models command premium prices</li></ul><p>At Golden Planet Watches in Dubai, we verify every serial number as part of our authentication process. <a href="https://wa.me/971507452323">Contact us on WhatsApp</a> if you need help identifying your Rolex.</p>`,
+    excerpt: "Complete guide to Rolex serial numbers and how to date your watch. Serial number ranges from 1987 to present, plus tips for authentication.",
+    cover_image: "https://images.unsplash.com/photo-1548171916-c8d0a5e69bc4?w=1200&q=80",
+    category: "guides",
+    tags: ["rolex", "serial-numbers", "authentication", "dating"],
+    author: "Golden Planet Watches",
+    status: "published",
+    seo_title: "Rolex Serial Numbers Guide | Date Your Rolex | Golden Planet Watches Dubai",
+    seo_description: "Look up Rolex serial numbers by year. Complete serial number chart from 1987-2026. Learn how to find, read, and verify your Rolex serial number in Dubai.",
+    reading_time: 4,
+    featured: true,
+    published_at: "2026-03-10T10:00:00Z",
+  },
+  {
+    title: "How to Spot a Fake Rolex: Authentication Guide",
+    slug: "how-to-spot-fake-rolex",
+    content: `<h2>Why Authentication Matters in Dubai</h2><p>Dubai is one of the world's largest luxury watch markets, which unfortunately also makes it a target for counterfeiters. Whether you're buying from a dealer or a private seller, knowing how to spot a fake Rolex is essential knowledge.</p><h2>The Weight Test</h2><p>Genuine Rolex watches are made from high-quality metals — 904L stainless steel, 18k gold, or platinum. They have a substantial, satisfying weight. A fake will often feel noticeably lighter because it uses cheaper metals or hollow components.</p><h2>The Cyclops Lens</h2><p>The date magnification lens (cyclops) on a genuine Rolex magnifies the date <strong>2.5x</strong>. On fakes, the magnification is often only 1.5x or the lens may distort the date. The date should be perfectly centered and clearly legible.</p><h2>The Second Hand Movement</h2><p>A genuine Rolex has a smooth, sweeping second hand that moves at 8 beats per second (28,800 bph). Cheap fakes have a visible tick-tick-tick motion. However, high-quality fakes ("super clones") have replicated the smooth sweep, so this test alone isn't definitive.</p><h2>The Case Back</h2><p>Most genuine Rolex watches have a smooth, plain case back with no engravings or transparent windows. The exceptions are some vintage models and the Rolex Sea-Dweller. If you see "Rolex" engraved on the case back or a display back, it's almost certainly fake.</p><h2>The Rehaut Engraving</h2><p>Modern Rolex watches (post-2005) have "ROLEX ROLEX ROLEX" laser-etched around the inner rehaut (the ring between the dial and crystal). The serial number appears at 6 o'clock. On fakes, this engraving is often blurry, poorly aligned, or missing entirely.</p><h2>The Crown Etching</h2><p>At the 6 o'clock position on the crystal, Rolex laser-etches a tiny crown logo. It's nearly invisible to the naked eye and requires a loupe to see clearly. This is one of the hardest features for counterfeiters to replicate.</p><h2>The Winding Crown</h2><p>A genuine Rolex crown is made from a single piece of metal with the Rolex logo deeply embossed. It should feel precise and smooth when unscrewing and winding. Fakes often have a shallow, poorly defined logo and a gritty feel when turning.</p><h2>When in Doubt, Consult an Expert</h2><p>The truth is that modern "super clone" fakes have become incredibly sophisticated. The only way to be 100% certain is to have the watch examined by a certified watchmaker who can open the case back and inspect the movement.</p><p>At Golden Planet Watches in Dubai's Gold Souq, every watch undergoes multi-point authentication before it enters our collection. We stake our 16-year reputation on the authenticity of every piece we sell. <a href="https://wa.me/971507452323">WhatsApp us</a> for a free authenticity consultation.</p>`,
+    excerpt: "Learn how to identify fake Rolex watches with our expert authentication guide. Weight test, cyclops lens, rehaut engraving, and more.",
+    cover_image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1200&q=80",
+    category: "guides",
+    tags: ["rolex", "authentication", "fake-watches", "buying-guide"],
+    author: "Golden Planet Watches",
+    status: "published",
+    seo_title: "How to Spot a Fake Rolex | Authentication Guide | Golden Planet Watches Dubai",
+    seo_description: "Expert guide to spotting fake Rolex watches. Learn 8 authentication checks: weight, cyclops, movement, case back, rehaut, crown etching & more. Dubai.",
+    reading_time: 6,
+    featured: true,
+    published_at: "2026-03-20T10:00:00Z",
+  },
+  {
+    title: "Best Luxury Watches to Buy in Dubai 2026",
+    slug: "best-luxury-watches-dubai-2026",
+    content: `<h2>Why Buy Luxury Watches in Dubai?</h2><p>Dubai has become one of the world's premier destinations for luxury watch buying. With zero income tax, competitive import duties, and a thriving pre-owned market, prices here are often significantly lower than in Europe, the US, or Asia. Add in the city's reputation for authenticity and the convenience of tax-free shopping, and it's easy to see why collectors worldwide come to Dubai to buy.</p><h2>Top 10 Luxury Watches to Buy in Dubai in 2026</h2><h3>1. Rolex Submariner Date 126610LN</h3><p>The quintessential luxury sports watch. The 41mm Submariner Date is Rolex's most popular model globally, and Dubai offers some of the best pre-owned prices. Expect to pay AED 45,000-55,000 for excellent condition.</p><h3>2. Rolex Daytona 126500LN</h3><p>The most coveted chronograph in the world. Pre-owned Daytonas in Dubai start around AED 70,000 — still above retail but well below European secondary market prices.</p><h3>3. Patek Philippe Nautilus 5711</h3><p>Discontinued but more desirable than ever. Finding one in Dubai is easier than in most markets thanks to our large collector community. Prices start around AED 200,000.</p><h3>4. Audemars Piguet Royal Oak 15500ST</h3><p>The iconic octagonal bezel and "tapisserie" dial. Dubai is a strong market for AP, with competitive pre-owned prices starting around AED 85,000.</p><h3>5. Omega Speedmaster Moonwatch</h3><p>The watch that went to the moon. Incredible value at AED 25,000-30,000 for the latest reference. One of the best entry points into serious watch collecting.</p><h3>6. Cartier Santos Medium</h3><p>A design icon since 1904. The modern Santos with QuickSwitch straps is equally at home in the boardroom or on the beach. Around AED 30,000 in Dubai.</p><h3>7. Rolex GMT-Master II 126710BLNR "Batman"</h3><p>The blue-and-black bezel GMT is a favourite among Dubai's frequent travellers. Pre-owned prices around AED 55,000-65,000.</p><h3>8. IWC Portugieser Chronograph</h3><p>Understated elegance with one of the most beautiful dials in watchmaking. Excellent value at AED 30,000-35,000.</p><h3>9. TAG Heuer Monaco</h3><p>Steve McQueen's watch. The square case is an instant conversation starter. A genuine luxury watch at an accessible AED 20,000-25,000.</p><h3>10. Omega Seamaster 300M</h3><p>James Bond's choice since 1995. Outstanding build quality, ceramic bezel, and excellent water resistance. Around AED 20,000 in Dubai.</p><h2>Where to Buy in Dubai</h2><p>For the best prices and guaranteed authenticity on pre-owned luxury watches, visit Golden Planet Watches in the Gold Souq, Deira. We've been serving collectors since 2010 with a focus on authenticated timepieces at fair market prices. <a href="https://wa.me/971507452323">WhatsApp us</a> to check availability of any model.</p>`,
+    excerpt: "Discover the top 10 luxury watches to buy in Dubai in 2026. Rolex, Patek Philippe, AP, Omega & more with Dubai pricing and buying advice.",
+    cover_image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1200&q=80",
+    category: "buying-tips",
+    tags: ["buying-guide", "dubai", "rolex", "patek-philippe", "2026"],
+    author: "Golden Planet Watches",
+    status: "published",
+    seo_title: "10 Best Luxury Watches to Buy in Dubai 2026 | Golden Planet Watches",
+    seo_description: "Top 10 luxury watches to buy in Dubai 2026 with prices. Rolex Submariner, Daytona, Patek Nautilus, AP Royal Oak & more. Expert buying advice from Gold Souq.",
+    reading_time: 7,
+    featured: true,
+    published_at: "2026-03-25T10:00:00Z",
+  },
+  {
+    title: "Luxury Watch Warranty Guide: What You Need to Know",
+    slug: "luxury-watch-warranty-guide",
+    content: `<h2>Understanding Watch Warranties</h2><p>When buying a luxury watch — whether new or pre-owned — understanding the warranty is crucial. This guide covers everything you need to know about luxury watch warranties in Dubai.</p><h2>Manufacturer Warranties</h2><p>Major watch brands offer the following warranty periods on new watches:</p><ul><li><strong>Rolex:</strong> 5 years (extended from 2 years in 2015)</li><li><strong>Patek Philippe:</strong> 2 years (extendable to 4 with registration)</li><li><strong>Audemars Piguet:</strong> 5 years</li><li><strong>Omega:</strong> 5 years</li><li><strong>Cartier:</strong> 5 years (international warranty)</li><li><strong>TAG Heuer:</strong> 2 years</li><li><strong>IWC:</strong> 2 years (extendable to 8 with My IWC registration)</li></ul><h2>What Manufacturer Warranties Cover</h2><p>Manufacturer warranties typically cover:</p><ul><li>Manufacturing defects in materials and workmanship</li><li>Movement malfunctions under normal use</li><li>Crown, crystal, and case integrity issues</li></ul><h2>What They Don't Cover</h2><ul><li>Normal wear and tear (scratches, bracelet stretch)</li><li>Water damage if crown was not properly screwed down</li><li>Damage from unauthorized servicing</li><li>Battery replacement (for quartz models)</li><li>Cosmetic deterioration</li><li>Theft or loss</li></ul><h2>Pre-Owned Watch Warranties</h2><p>When buying pre-owned, the warranty situation depends on the age of the watch and the seller:</p><ul><li><strong>Still under manufacturer warranty:</strong> If the watch is less than 5 years old (for Rolex) and has its warranty card, the manufacturer warranty still applies globally.</li><li><strong>Dealer warranty:</strong> Reputable pre-owned dealers like Golden Planet Watches provide their own warranty. We offer a <strong>12-month comprehensive warranty</strong> on every watch we sell.</li><li><strong>No warranty:</strong> Private sales typically come with no warranty — buyer beware.</li></ul><h2>The Golden Planet Watches Warranty</h2><p>Every watch purchased from Golden Planet Watches comes with our 12-month warranty covering:</p><ul><li>Mechanical movement issues</li><li>Water resistance failures (when properly used)</li><li>Crown and winding mechanism problems</li><li>Any defect not present at time of sale</li></ul><p>To make a warranty claim, simply <a href="https://wa.me/971507452323">WhatsApp us</a> with your purchase details and a description of the issue. We'll arrange collection, repair, and return at no cost to you.</p>`,
+    excerpt: "Complete guide to luxury watch warranties. Manufacturer warranty periods for Rolex, Patek Philippe, Omega & more. Plus our 12-month dealer warranty.",
+    cover_image: "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=1200&q=80",
+    category: "guides",
+    tags: ["warranty", "buying-guide", "after-sales"],
+    author: "Golden Planet Watches",
+    status: "published",
+    seo_title: "Luxury Watch Warranty Guide | Rolex, Patek, Omega | Golden Planet Watches Dubai",
+    seo_description: "Complete guide to luxury watch warranties. Manufacturer warranty periods, what's covered, pre-owned warranties, and our 12-month Golden Planet guarantee.",
+    reading_time: 5,
+    featured: false,
+    published_at: "2026-03-05T10:00:00Z",
+  },
+]
+
 async function seed() {
   const admin = createAdminClient()
   if (!admin) return NextResponse.json({ error: "No admin client" }, { status: 500 })
 
-  const results = { locations: 0, errors: [] as string[] }
+  const results = { locations: 0, blogs: 0, errors: [] as string[] }
 
   for (const loc of LOCATIONS) {
     const { error } = await admin.from("location_pages").upsert(loc, { onConflict: "slug" })
     if (error) {
-      results.errors.push(`${loc.area_name}: ${error.message}`)
+      results.errors.push(`Location ${loc.area_name}: ${error.message}`)
     } else {
       results.locations++
     }
   }
 
+  for (const post of BLOG_POSTS) {
+    const { error } = await admin.from("blog_posts").upsert(post, { onConflict: "slug" })
+    if (error) {
+      results.errors.push(`Blog ${post.slug}: ${error.message}`)
+    } else {
+      results.blogs++
+    }
+  }
+
   return NextResponse.json({
-    message: `Seeded ${results.locations} location pages`,
+    message: `Seeded ${results.locations} locations + ${results.blogs} blog posts`,
     errors: results.errors,
   })
 }
