@@ -3,6 +3,18 @@
 @import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
+/* Arabic & Farsi — elegant fonts for RTL */
+[dir="rtl"] {
+  font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+}
+[dir="rtl"] .font-serif,
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 {
+  font-family: 'Amiri', 'Cormorant Garamond', serif;
+}
+[dir="rtl"] .font-mono {
+  font-family: 'Tajawal', monospace;
+}
+
 img {
   image-rendering: auto;
   -webkit-backface-visibility: hidden;
