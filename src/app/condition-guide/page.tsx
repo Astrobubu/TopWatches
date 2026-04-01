@@ -3,8 +3,12 @@ import type { Metadata } from "next"
 import { ArrowLeft, CheckCircle2 } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Condition Guide | TopWatches",
-    description: "Understand our watch condition grading system: New, Unworn, Excellent, and Good.",
+    title: "Watch Condition Guide | How We Grade Luxury Watches",
+    description: "Understand our luxury watch condition grading system: New, Unworn, Excellent, and Good. Know exactly what you're buying at Golden Planet Watches Dubai.",
+    openGraph: {
+        title: "Watch Condition Guide | Golden Planet Watches",
+        description: "Learn how we grade luxury watches: New, Unworn, Excellent, and Good condition ratings explained.",
+    },
 }
 
 const conditions = [

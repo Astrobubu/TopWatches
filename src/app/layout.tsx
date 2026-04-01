@@ -3,6 +3,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { ReviewPrompt } from "@/components/review-prompt";
+import { WhatsAppButton } from "@/components/whatsapp-button";
+import { OrganizationSchema, WebSiteSchema } from "@/components/seo/json-ld";
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/lib/i18n/context"
 import "./globals.css";
@@ -22,8 +24,42 @@ const NoiseOverlay = () => (
 );
 
 export const metadata: Metadata = {
-  title: "Golden Planet Watches | Luxury Watch Marketplace",
-  description: "Buy and sell luxury watches from Rolex, Patek Philippe, Audemars Piguet, Omega and more",
+  title: {
+    default: "Golden Planet Watches | Buy Luxury Watches in Dubai | Est. 2010",
+    template: "%s | Golden Planet Watches Dubai",
+  },
+  description:
+    "Buy authenticated luxury watches in Dubai. Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier & more. Pre-owned & new. Free delivery. WhatsApp us today.",
+  keywords: [
+    "luxury watches dubai",
+    "buy rolex dubai",
+    "pre-owned watches dubai",
+    "patek philippe dubai",
+    "audemars piguet dubai",
+    "omega watches dubai",
+    "golden planet watches",
+  ],
+  metadataBase: new URL("https://goldenplanetwatches.com"),
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_AE",
+    siteName: "Golden Planet Watches",
+    title: "Golden Planet Watches | Buy Luxury Watches in Dubai",
+    description:
+      "Authenticated luxury watches in Dubai. Rolex, Patek Philippe, AP, Omega & more. Est. 2010.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Golden Planet Watches | Luxury Watches Dubai",
+    description:
+      "Buy authenticated luxury watches in Dubai. Rolex, Patek Philippe, Audemars Piguet & more.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 };
 
 export default function RootLayout({
@@ -34,6 +70,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <OrganizationSchema />
+        <WebSiteSchema />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* ALL fonts loaded via CDN for maximum reliability */}
@@ -55,6 +93,7 @@ export default function RootLayout({
             <main className="min-h-screen pt-20">{children}</main>
             <Footer />
             <ReviewPrompt />
+            <WhatsAppButton />
             <ScrollToTop />
           </I18nProvider>
         </ThemeProvider>

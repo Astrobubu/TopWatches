@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Shield, Truck, RotateCcw } from "lucide-react"
+import { Shield, Truck, RotateCcw, MapPin, Phone } from "lucide-react"
 import { useTranslation } from "@/lib/i18n/context"
 
 export function Footer() {
@@ -42,6 +42,16 @@ export function Footer() {
             <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-primary/60 mt-3">
               {t("footer.established")}
             </p>
+            <div className="mt-4 space-y-2 text-foreground/40 text-xs font-sans">
+              <p className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-primary/60 shrink-0" />
+                Al Dukhan Building, Shop No. 3, Gold Souq, Dubai, UAE
+              </p>
+              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Phone className="w-3.5 h-3.5 text-primary/60 shrink-0" />
+                WhatsApp: +1234567890
+              </a>
+            </div>
           </div>
           <div>
             <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">{t("footer.navigation")}</h4>
@@ -53,9 +63,9 @@ export function Footer() {
           <div>
             <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">{t("footer.legal")}</h4>
             <ul className="space-y-3 font-sans text-sm text-foreground/50">
-              <li><Link href="#" className="hover:text-primary transition-colors">{t("footer.privacy")}</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">{t("footer.terms")}</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">{t("footer.authenticity")}</Link></li>
+              <li><Link href="/privacy" className="hover:text-primary transition-colors">{t("footer.privacy")}</Link></li>
+              <li><Link href="/terms" className="hover:text-primary transition-colors">{t("footer.terms")}</Link></li>
+              <li><Link href="/condition-guide" className="hover:text-primary transition-colors">{t("footer.authenticity")}</Link></li>
             </ul>
           </div>
         </div>

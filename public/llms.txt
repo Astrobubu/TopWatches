@@ -1,0 +1,38 @@
+# Golden Planet Watches
+# Luxury Watch Marketplace in Dubai, UAE | Established 2010
+
+> Golden Planet Watches is a trusted luxury watch dealer in Dubai, offering authenticated pre-owned and new timepieces from the world's most prestigious brands including Rolex, Patek Philippe, Audemars Piguet, Omega, Cartier, TAG Heuer, and IWC. We serve clients across Dubai including Deira, Downtown Dubai, Jumeirah, Palm Jumeirah, Dubai Marina, Business Bay, DIFC, and more.
+
+## Key Pages
+
+- /: Homepage with featured watches and brand catalog
+- /collections: Full watch catalog with advanced filters (brand, price, condition, gender)
+- /about: About Golden Planet Watches - our story since 2010
+- /condition-guide: Watch condition grading system (Unworn, Excellent, Very Good, Good, Fair)
+- /for-him: Men's luxury watch collection (39mm+ case sizes)
+- /for-her: Women's luxury watch collection (under 39mm)
+- /review: Customer review submission
+
+## Brands We Carry
+
+- Rolex
+- Patek Philippe
+- Audemars Piguet
+- Omega
+- Cartier
+- TAG Heuer
+- IWC
+
+## Services
+
+- Authenticated luxury watch sales
+- Pre-owned watch sourcing
+- Personal watch concierge service
+- WhatsApp-based ordering and consultation
+- Free delivery across Dubai
+
+## Contact
+
+- WhatsApp: Available via website
+- Location: Dubai, UAE
+- Languages: English, Arabic, Farsi, Russian, Chinese, Nigerian Pidgin
