@@ -57,13 +57,13 @@ export function Footer() {
             <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">{t("footer.navigation")}</h4>
             <ul className="space-y-3 font-sans text-sm text-foreground/50">
               <li><Link href="/collections" className="hover:text-primary transition-colors">{t("nav.allWatches")}</Link></li>
-              <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-              <li><Link href="/guides" className="hover:text-primary transition-colors">Guides</Link></li>
+              <li><Link href="/blog" className="hover:text-primary transition-colors">{t("nav.blog")}</Link></li>
+              <li><Link href="/guides" className="hover:text-primary transition-colors">{t("nav.guides")}</Link></li>
               <li><Link href="/about" className="hover:text-primary transition-colors">{t("nav.aboutUs")}</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">Areas We Serve</h4>
+            <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">{t("footer.areasWeServe")}</h4>
             <ul className="space-y-2 font-sans text-xs text-foreground/50">
               <li><Link href="/luxury-watches-in-deira" className="hover:text-primary transition-colors">Deira</Link></li>
               <li><Link href="/luxury-watches-in-downtown-dubai" className="hover:text-primary transition-colors">Downtown Dubai</Link></li>

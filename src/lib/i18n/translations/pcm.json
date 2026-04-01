@@ -5,6 +5,8 @@
   "nav": {
     "collections": "Collections",
     "about": "About Us",
+    "blog": "Blog",
+    "guides": "Guides",
     "shopNow": "Shop Now",
     "allWatches": "All Watches",
     "aboutUs": "About Us"
@@ -188,6 +190,7 @@
     "returns": "14-Day Returns",
     "returnsDesc": "Full money-back guarantee. No wahala at all.",
     "navigation": "Navigation",
+    "areasWeServe": "Areas We Dey Serve",
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",

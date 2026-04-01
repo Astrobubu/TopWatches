@@ -37,7 +37,7 @@ export function Header() {
             {t("nav.collections")}
           </Link>
           <Link href="/blog" className="hover:text-primary transition-colors">
-            Blog
+            {t("nav.blog")}
           </Link>
           <Link href="/about" className="hover:text-primary transition-colors">
             {t("nav.about")}

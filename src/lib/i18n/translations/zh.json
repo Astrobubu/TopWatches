@@ -5,6 +5,8 @@
   "nav": {
     "collections": "系列",
     "about": "关于我们",
+    "blog": "博客",
+    "guides": "指南",
     "shopNow": "立即选购",
     "allWatches": "全部腕表",
     "aboutUs": "关于我们"
@@ -188,6 +190,7 @@
     "returns": "14天退货",
     "returnsDesc": "全额退款保障，零阻碍。",
     "navigation": "导航",
+    "areasWeServe": "服务区域",
     "legal": "法律条款",
     "privacy": "隐私政策",
     "terms": "服务条款",

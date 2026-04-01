@@ -5,6 +5,8 @@
   "nav": {
     "collections": "Collections",
     "about": "About",
+    "blog": "Blog",
+    "guides": "Guides",
     "shopNow": "Shop Now",
     "allWatches": "All Watches",
     "aboutUs": "About Us"
@@ -188,6 +190,7 @@
     "returns": "14-Day Returns",
     "returnsDesc": "Full money-back guarantee. Zero friction.",
     "navigation": "Navigation",
+    "areasWeServe": "Areas We Serve",
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
