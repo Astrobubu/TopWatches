@@ -237,7 +237,10 @@ const LOCATIONS = [
   },
 ]
 
-export async function POST() {
+export async function GET() { return seed() }
+export async function POST() { return seed() }
+
+async function seed() {
   const admin = createAdminClient()
   if (!admin) return NextResponse.json({ error: "No admin client" }, { status: 500 })
 
