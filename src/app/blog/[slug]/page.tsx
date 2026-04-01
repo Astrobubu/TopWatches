@@ -209,7 +209,7 @@ export default async function BlogPostPage({
           <p className="font-serif text-xl font-bold mb-2">Have questions about luxury watches?</p>
           <p className="text-foreground/50 text-sm font-sans mb-4">Our experts are here to help. Chat with us on WhatsApp.</p>
           <a
-            href="https://wa.me/1234567890?text=Hi%2C%20I%20have%20a%20question%20about%20luxury%20watches"
+            href="https://wa.me/971507452323?text=Hi%2C%20I%20have%20a%20question%20about%20luxury%20watches"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-sans font-semibold text-sm hover:opacity-90 transition-opacity"

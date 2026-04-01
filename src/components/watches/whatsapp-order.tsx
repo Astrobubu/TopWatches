@@ -7,7 +7,7 @@ interface WhatsAppOrderProps {
   watch: Watch
 }
 
-const SHOP_PHONE = "1234567890"
+const SHOP_PHONE = "971507452323"
 
 function generateOrderNumber() {
   const timestamp = Date.now().toString(36).toUpperCase()

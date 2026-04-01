@@ -47,9 +47,9 @@ export function Footer() {
                 <MapPin className="w-3.5 h-3.5 text-primary/60 shrink-0" />
                 Al Dukhan Building, Shop No. 3, Gold Souq, Dubai, UAE
               </p>
-              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <a href="https://wa.me/971507452323" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Phone className="w-3.5 h-3.5 text-primary/60 shrink-0" />
-                WhatsApp: +1234567890
+                WhatsApp: +971 50 745 2323
               </a>
             </div>
           </div>
