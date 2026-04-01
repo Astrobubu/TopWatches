@@ -37,6 +37,9 @@ export function Header() {
           <Link href="/collections" className="hover:text-primary transition-colors">
             {t("nav.collections")}
           </Link>
+          <Link href="/blog" className="hover:text-primary transition-colors">
+            Blog
+          </Link>
           <Link href="/about" className="hover:text-primary transition-colors">
             {t("nav.about")}
           </Link>
@@ -71,6 +74,9 @@ export function Header() {
         <div className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 text-xl font-sans font-medium text-foreground">
           <Link href="/collections" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors">
             {t("nav.collections")}
+          </Link>
+          <Link href="/blog" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors">
+            Blog
           </Link>
           <Link href="/about" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors">
             {t("nav.about")}

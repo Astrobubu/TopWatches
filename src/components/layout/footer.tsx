@@ -57,6 +57,8 @@ export function Footer() {
             <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">{t("footer.navigation")}</h4>
             <ul className="space-y-3 font-sans text-sm text-foreground/50">
               <li><Link href="/collections" className="hover:text-primary transition-colors">{t("nav.allWatches")}</Link></li>
+              <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
+              <li><Link href="/guides" className="hover:text-primary transition-colors">Guides</Link></li>
               <li><Link href="/about" className="hover:text-primary transition-colors">{t("nav.aboutUs")}</Link></li>
             </ul>
           </div>
