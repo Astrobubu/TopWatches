@@ -23,8 +23,8 @@ export default function ForHerPage() {
             {/* Hero Section */}
             <section className="relative h-[calc(50vh+5rem)] min-h-[400px] flex items-center justify-center overflow-hidden -mt-20 pt-20">
                 <img
-                    src="https://hijabi.pk/cdn/shop/files/gemini-image-2_photography_of_the_uploaded_image_is_a_reference_of_hijab_hijab_matching_bracele-0_fbb79dd1-962d-4944-a2c7-d74fecf663d3.jpg?v=1765878218"
-                    alt="Ladies Collection Hero"
+                    src="/for-her-hero.png"
+                    alt="Woman in elegant beige hijab wearing a rose gold Rolex with diamond bracelet — Golden Planet Watches ladies collection in Dubai"
                     className="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-luminosity"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/80" />

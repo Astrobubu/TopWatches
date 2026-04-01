@@ -23,8 +23,8 @@ export default function ForHimPage() {
             {/* Hero Section */}
             <section className="relative h-[calc(50vh+5rem)] min-h-[400px] flex items-center justify-center overflow-hidden -mt-20 pt-20">
                 <img
-                    src="https://i.pinimg.com/1200x/a2/ab/aa/a2abaad39785e84615742e5c50e68772.jpg"
-                    alt="Gents Collection Hero"
+                    src="/for-him-hero.png"
+                    alt="Man in traditional Gulf keffiyeh and bisht wearing a luxury steel timepiece — Golden Planet Watches men's collection in Dubai"
                     className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
