@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { ThemeSwitcher } from "@/components/theme-switcher"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useTranslation } from "@/lib/i18n/context"
 
@@ -44,7 +43,6 @@ export function Header() {
             {t("nav.about")}
           </Link>
           <LanguageSwitcher />
-          <ThemeSwitcher />
         </div>
 
         {/* Desktop CTA */}
@@ -59,7 +57,6 @@ export function Header() {
         {/* Mobile Toggle & Switcher */}
         <div className="md:hidden flex items-center gap-2">
           <LanguageSwitcher />
-          <ThemeSwitcher />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="p-2 text-foreground"

@@ -32,41 +32,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // Blog posts (will populate once blog system is built)
+  // Blog posts
   let blogPages: MetadataRoute.Sitemap = []
   if (supabase) {
-    const { data: posts } = await supabase
-      .from("blog_posts")
-      .select("slug, published_at, updated_at")
-      .eq("status", "published")
-      .order("published_at", { ascending: false })
+    try {
+      const { data: posts } = await supabase
+        .from("blog_posts")
+        .select("slug, published_at, updated_at")
+        .eq("status", "published")
+        .order("published_at", { ascending: false })
 
-    if (posts) {
-      blogPages = posts.map((p) => ({
-        url: `${BASE_URL}/blog/${p.slug}`,
-        lastModified: new Date(p.updated_at || p.published_at),
-        changeFrequency: "weekly" as const,
-        priority: 0.7,
-      }))
-    }
+      if (posts) {
+        blogPages = posts.map((p) => ({
+          url: `${BASE_URL}/blog/${p.slug}`,
+          lastModified: new Date(p.updated_at || p.published_at),
+          changeFrequency: "weekly" as const,
+          priority: 0.7,
+        }))
+      }
+    } catch { /* table may not exist yet */ }
   }
 
-  // Location pages (will populate once location pages are built)
+  // Location pages
   let locationPages: MetadataRoute.Sitemap = []
   if (supabase) {
-    const { data: locations } = await supabase
-      .from("location_pages")
-      .select("slug, updated_at")
-      .eq("published", true)
+    try {
+      const { data: locations } = await supabase
+        .from("location_pages")
+        .select("slug, updated_at")
+        .eq("published", true)
 
-    if (locations) {
-      locationPages = locations.map((l) => ({
-        url: `${BASE_URL}/luxury-watches-in-${l.slug}`,
-        lastModified: new Date(l.updated_at),
-        changeFrequency: "weekly" as const,
-        priority: 0.8,
-      }))
-    }
+      if (locations) {
+        locationPages = locations.map((l) => ({
+          url: `${BASE_URL}/luxury-watches-in-${l.slug}`,
+          lastModified: new Date(l.updated_at),
+          changeFrequency: "weekly" as const,
+          priority: 0.8,
+        }))
+      }
+    } catch { /* table may not exist yet */ }
   }
 
   return [...staticPages, ...watchPages, ...blogPages, ...locationPages]

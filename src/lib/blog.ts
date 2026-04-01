@@ -56,7 +56,7 @@ export async function getBlogPosts(options?: {
   if (options?.offset) query = query.range(options.offset, options.offset + (options.limit || 12) - 1)
 
   const { data, error, count } = await query
-  if (error) throw error
+  if (error) return { posts: [], total: 0 }
   return { posts: (data || []) as BlogPost[], total: count || 0 }
 }
 
@@ -102,7 +102,7 @@ export async function getAllBlogPosts(status?: string): Promise<BlogPost[]> {
   if (status && status !== "all") query = query.eq("status", status)
 
   const { data, error } = await query
-  if (error) throw error
+  if (error) return []
   return (data || []) as BlogPost[]
 }
 
