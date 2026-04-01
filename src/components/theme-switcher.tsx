@@ -5,14 +5,7 @@ import { useTheme } from "next-themes"
 import { Check, Palette } from "lucide-react"
 
 const themes = [
-    { name: "Organic Tech", value: "theme-organic-tech", desc: "Clinical Boutique", color: "#2E4036" },
-    { name: "Midnight Luxe", value: "theme-midnight-luxe", desc: "Dark Editorial", color: "#C9A84C" },
     { name: "Brutalist Signal", value: "theme-brutalist-signal", desc: "Raw Precision", color: "#16a34a" },
-    { name: "Neon Cyberpunk", value: "theme-neon-cyberpunk", desc: "Digital Hacker", color: "#39FF14" },
-    { name: "Minimalist Sand", value: "theme-minimalist-sand", desc: "Warm Editorial", color: "#8B5A2B" },
-    { name: "Ocean Depth", value: "theme-ocean-depth", desc: "Deep Naval", color: "#38BDF8" },
-    { name: "Rolex Heritage", value: "theme-rolex-heritage", desc: "Green & Gold", color: "#006039" },
-    { name: "Rolex Dark", value: "theme-rolex-heritage-dark", desc: "Green & Gold Dark", color: "#0A1F15" },
 ]
 
 export function ThemeSwitcher({ className }: { className?: string }) {

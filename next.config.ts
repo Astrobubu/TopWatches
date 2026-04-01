@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.pixabay.com" },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/luxury-watches-in-:slug",
+        destination: "/locations/:slug",
+      },
+    ]
+  },
   async headers() {
     return [
       {
