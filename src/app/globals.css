@@ -3,16 +3,20 @@
 @import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
-/* Arabic & Farsi — elegant fonts for RTL */
+/* Arabic & Farsi — elegant fonts for RTL, no italic */
 [dir="rtl"] * {
-  font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif !important;
+  font-family: 'Tajawal', sans-serif !important;
 }
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4,
 [dir="rtl"] .font-serif {
-  font-family: 'Amiri', 'Cormorant Garamond', serif !important;
+  font-family: 'Amiri', serif !important;
 }
 [dir="rtl"] .font-mono, [dir="rtl"] code, [dir="rtl"] pre {
   font-family: 'Tajawal', monospace !important;
+}
+[dir="rtl"] .italic, [dir="rtl"] em, [dir="rtl"] i,
+[dir="rtl"] *[class*="italic"] {
+  font-style: normal !important;
 }
 
 img {
