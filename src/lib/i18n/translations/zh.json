@@ -252,5 +252,88 @@
     "bankTransfer": "接受银行转账——确认付款后，我们将送货上门。通过WhatsApp或致电 +971 50 745 2323 安排。"
   },
 
+  "locations": {
+    "home": "首页",
+    "luxuryWatchesIn": "奢华腕表 —",
+    "whyBuyIn": "为什么在",
+    "nearbyLandmarks": "附近地标",
+    "browseCollection": "浏览我们的系列",
+    "exploreAuth": "探索可配送至",
+    "andAcrossDubai": "及迪拜全境的认证奢华腕表。",
+    "viewAllWatches": "查看所有腕表",
+    "faq": "常见问题",
+    "ourLocation": "我们的位置",
+    "alsoServing": "同时服务周边地区",
+    "readBlog": "阅读奢华腕表博客",
+    "buyingGuides": "购表指南",
+    "conditionGuide": "成色等级指南",
+    "lookingForWatch": "在",
+    "expertHelp": "我们的专家可以帮助您找到完美的腕表。通过WhatsApp与我们聊天获取个性化推荐。",
+    "chatWhatsApp": "WhatsApp咨询",
+    "waMessage": "您好，我在寻找"
+  },
+
+  "conditionGuide": {
+    "backToHome": "返回首页",
+    "transparency": "透明度",
+    "title": "品相指南",
+    "intro": "我们保险库中的每一枚腕表都由认证制表师使用标准化系统进行评级。以下是每个品相等级的确切含义——没有模糊之处，没有附加条款。",
+    "questionsAbout": "对某款腕表的品相有疑问？",
+    "browseCollection": "浏览系列",
+    "gradeNew": "全新",
+    "taglineNew": "原厂密封，从未出售",
+    "descNew": "来自授权经销商或制造商的全新腕表。腕表保留在原始未开封包装中，所有出厂贴纸、标签和保护膜完好无损。享有完整的制造商保修。",
+    "newDetail1": "原厂封条和贴纸完好",
+    "newDetail2": "从未佩戴或调整表带",
+    "newDetail3": "表盒、证书和配件齐全",
+    "newDetail4": "完整制造商保修",
+    "newDetail5": "无任何触碰痕迹",
+    "gradeUnworn": "未佩戴",
+    "taglineUnworn": "全套配件，从未上手佩戴",
+    "descUnworn": "腕表已购入但从未上手佩戴。可能曾短暂试戴或展示。附带完整原装包装。可能存在极其细微的检验痕迹，肉眼不可见。",
+    "unwornDetail1": "从未上手佩戴",
+    "unwornDetail2": "可能曾短暂试戴或展示",
+    "unwornDetail3": "附带完整表盒和证书",
+    "unwornDetail4": "无可见磨损痕迹",
+    "unwornDetail5": "表带未调整尺寸",
+    "gradeExcellent": "优秀",
+    "taglineExcellent": "磨损极少，精心维护",
+    "descExcellent": "一枚状态出色的二手腕表。仅在制表师放大镜下可见极其轻微的磨损痕迹。机芯已经过保养和认证。表镜完美无瑕。表带可能已调整尺寸。附带我们的一年保修。",
+    "excellentDetail1": "极轻微磨损痕迹（仅放大镜可见）",
+    "excellentDetail2": "表镜无划痕",
+    "excellentDetail3": "机芯已保养并验证",
+    "excellentDetail4": "表带可能已调整尺寸",
+    "excellentDetail5": "原装表盒和证书视情况提供",
+    "excellentDetail6": "附带一年保修",
+    "gradeGood": "良好",
+    "taglineGood": "诚实磨损，功能完好",
+    "descGood": "一枚维护良好的二手腕表，有明显但正常的日常佩戴痕迹。表壳或表带上有轻微的表面划痕，可通过抛光去除。机芯功能完好，近期由我们的认证制表师进行了保养。附带我们的一年保修。",
+    "goodDetail1": "表壳或表带上有可见的轻微划痕",
+    "goodDetail2": "表镜可能有轻微痕迹",
+    "goodDetail3": "机芯已全面保养和测试",
+    "goodDetail4": "可应要求提供抛光服务",
+    "goodDetail5": "表盒和证书可能不包含",
+    "goodDetail6": "附带一年保修"
+  },
+
+  "guidesPage": {
+    "knowledge": "知识",
+    "title": "奢华腕表指南",
+    "subtitle": "关于购买、鉴定和保养奢华腕表的一切知识。由我们拥有超过16年经验的专家团队撰写。",
+    "comingSoon": "指南即将推出",
+    "comingSoonDesc": "我们正在准备奢华腕表专家指南。请稍后回来查看。",
+    "visitBlog": "先浏览我们的博客",
+    "readGuide": "阅读指南",
+    "minRead": "分钟阅读"
+  },
+
+  "review": {
+    "title": "在Google上评价我们",
+    "scanQR": "用手机摄像头扫描二维码",
+    "brandName": "Golden Planet Watches",
+    "location": "黄金市场，迪拜",
+    "printPage": "打印此页"
+  },
+
   "currency": "CNY"
 }

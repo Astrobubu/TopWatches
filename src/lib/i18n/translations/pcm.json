@@ -252,5 +252,88 @@
     "bankTransfer": "We dey accept bank transfer — once payment don confirm, we go deliver am to your door. Chat for WhatsApp or call +971 50 745 2323 to arrange."
   },
 
+  "locations": {
+    "home": "Home",
+    "luxuryWatchesIn": "Luxury Watches for",
+    "whyBuyIn": "Why You Go Buy Luxury Watches for",
+    "nearbyLandmarks": "Places Wey Dey Near",
+    "browseCollection": "Check Our Collection",
+    "exploreAuth": "See authentic luxury watches wey we fit deliver to",
+    "andAcrossDubai": "and anywhere for Dubai.",
+    "viewAllWatches": "See All Watches",
+    "faq": "Questions Wey People Dey Ask",
+    "ourLocation": "Where We Dey",
+    "alsoServing": "We Also Dey Serve These Areas",
+    "readBlog": "Read our luxury watch blog",
+    "buyingGuides": "Watch buying guides",
+    "conditionGuide": "Condition grading guide",
+    "lookingForWatch": "You Dey Find Specific Watch for",
+    "expertHelp": "Our experts fit help you find the perfect watch. Chat with us for WhatsApp make we recommend the best one for you.",
+    "chatWhatsApp": "Chat for WhatsApp",
+    "waMessage": "Hello, I dey look for luxury watch for"
+  },
+
+  "conditionGuide": {
+    "backToHome": "Go Back Home",
+    "transparency": "Transparency",
+    "title": "Condition Guide",
+    "intro": "Every watch wey dey our vault, certified horologists don grade am with standard system. See wetin each condition grade mean — no wahala, no hidden thing.",
+    "questionsAbout": "You get question about one watch condition?",
+    "browseCollection": "Check the Collection",
+    "gradeNew": "New",
+    "taglineNew": "Factory seal, dem never sell am",
+    "descNew": "Brand new from authorized dealer or straight from the maker. The watch dey inside original packaging wey dem never open, with all factory stickers, tags, and protective film. Full manufacturer warranty dey.",
+    "newDetail1": "Original factory seals and stickers still dey",
+    "newDetail2": "Dem never wear am or size am",
+    "newDetail3": "Complete box, papers, and accessories",
+    "newDetail4": "Full manufacturer warranty",
+    "newDetail5": "No handling marks at all at all",
+    "gradeUnworn": "Unworn",
+    "taglineUnworn": "Complete set, dem never wear am for wrist",
+    "descUnworn": "Dem don buy the watch but dem never wear am for wrist. Dem fit don try am small or display am. E come with complete original packaging. E fit get very small handling marks from inspection wey eye no fit see.",
+    "unwornDetail1": "Dem never wear am for wrist",
+    "unwornDetail2": "Dem fit don try am small or display am",
+    "unwornDetail3": "Complete box and papers dey inside",
+    "unwornDetail4": "No wear marks wey you fit see",
+    "unwornDetail5": "Dem never size the bracelet",
+    "gradeExcellent": "Excellent",
+    "taglineExcellent": "Small wear, dem take care of am well well",
+    "descExcellent": "Watch wey person don own before but e dey outstanding condition. Very small signs of wear wey only jeweler loupe fit see. Dem don service and certify the movement. Crystal clean well well. Dem fit don size the bracelet. Our 1-year warranty dey.",
+    "excellentDetail1": "Very light signs of wear (loupe-only)",
+    "excellentDetail2": "Crystal no get scratch",
+    "excellentDetail3": "Movement don dey serviced and verified",
+    "excellentDetail4": "Dem fit don size the bracelet",
+    "excellentDetail5": "Original box and papers if dem dey available",
+    "excellentDetail6": "1-year warranty dey included",
+    "gradeGood": "Good",
+    "taglineGood": "Honest wear, e dey fully functional",
+    "descGood": "Pre-owned watch wey dem maintain well with visible but honest signs of regular wear. Light scratches for case or bracelet wey dem fit polish out. Movement dey fully functional, our certified watchmakers don service am recently. Our 1-year warranty dey.",
+    "goodDetail1": "You fit see light scratches for case or bracelet",
+    "goodDetail2": "Crystal fit get small marks",
+    "goodDetail3": "Movement don dey fully serviced and tested",
+    "goodDetail4": "Polishing dey available if you want",
+    "goodDetail5": "Box and papers fit no dey included",
+    "goodDetail6": "1-year warranty dey included"
+  },
+
+  "guidesPage": {
+    "knowledge": "Knowledge",
+    "title": "Luxury Watch Guides",
+    "subtitle": "Everything wey you need to know about how to buy, check, and take care of luxury watches. Our experts wey get over 16 years experience write am.",
+    "comingSoon": "Guides dey come soon",
+    "comingSoonDesc": "We dey prepare expert guides about luxury watches. Come back soon.",
+    "visitBlog": "Check our blog for now",
+    "readGuide": "Read the guide",
+    "minRead": "min read"
+  },
+
+  "review": {
+    "title": "Review Us for Google",
+    "scanQR": "Use your phone camera scan the QR code",
+    "brandName": "Golden Planet Watches",
+    "location": "Gold Souq, Dubai",
+    "printPage": "Print This Page"
+  },
+
   "currency": "NGN"
 }

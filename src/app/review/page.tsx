@@ -1,10 +1,13 @@
 "use client"
 
+import { useTranslation } from "@/lib/i18n/context"
+
 const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJZ7gB8SNDXz4RtnHpkXD54SQ"
 
 const QR_URL = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(GOOGLE_REVIEW_URL)}`
 
 export default function ReviewQRPage() {
+  const { t } = useTranslation()
   return (
     <>
       <style>{`
@@ -30,10 +33,10 @@ export default function ReviewQRPage() {
           {/* Heading */}
           <div>
             <h1 className="font-serif italic text-3xl md:text-4xl text-foreground mb-2">
-              Review Us on Google
+              {t("review.title")}
             </h1>
             <p className="font-sans text-foreground/50 text-sm">
-              Scan the QR code with your phone camera
+              {t("review.scanQR")}
             </p>
           </div>
 
@@ -56,10 +59,10 @@ export default function ReviewQRPage() {
           {/* Store info */}
           <div className="space-y-1">
             <p className="font-sans font-bold text-lg text-foreground">
-              Golden Planet Watches
+              {t("review.brandName")}
             </p>
             <p className="font-mono text-xs text-foreground/40 tracking-wider uppercase">
-              Gold Souq, Dubai
+              {t("review.location")}
             </p>
           </div>
 
@@ -78,7 +81,7 @@ export default function ReviewQRPage() {
             className="no-print inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 font-sans font-semibold text-sm hover:opacity-90 transition-opacity"
             style={{ borderRadius: "var(--pill-radius)" }}
           >
-            Print This Page
+            {t("review.printPage")}
           </button>
         </div>
       </div>

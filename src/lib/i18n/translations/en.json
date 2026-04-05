@@ -252,5 +252,88 @@
     "bankTransfer": "Bank transfer accepted — once payment is confirmed, we deliver to your door. Chat on WhatsApp or call +971 50 745 2323 to arrange."
   },
 
+  "locations": {
+    "home": "Home",
+    "luxuryWatchesIn": "Luxury Watches in",
+    "whyBuyIn": "Why Buy Luxury Watches in",
+    "nearbyLandmarks": "Nearby Landmarks",
+    "browseCollection": "Browse Our Collection",
+    "exploreAuth": "Explore authenticated luxury watches available for delivery to",
+    "andAcrossDubai": "and across Dubai.",
+    "viewAllWatches": "View All Watches",
+    "faq": "Frequently Asked Questions",
+    "ourLocation": "Our Location",
+    "alsoServing": "Also Serving Nearby",
+    "readBlog": "Read our luxury watch blog",
+    "buyingGuides": "Watch buying guides",
+    "conditionGuide": "Condition grading guide",
+    "lookingForWatch": "Looking for a Specific Watch in",
+    "expertHelp": "Our experts can help you find the perfect timepiece. Chat with us on WhatsApp for personalized recommendations.",
+    "chatWhatsApp": "Chat on WhatsApp",
+    "waMessage": "Hi, I'm looking for a luxury watch in"
+  },
+
+  "conditionGuide": {
+    "backToHome": "Back to Home",
+    "transparency": "Transparency",
+    "title": "Condition Guide",
+    "intro": "Every watch in our vault is graded by certified horologists using a standardized system. Here's exactly what each condition grade means — no ambiguity, no fine print.",
+    "questionsAbout": "Have questions about a specific watch's condition?",
+    "browseCollection": "Browse the Collection",
+    "gradeNew": "New",
+    "taglineNew": "Factory sealed, never sold",
+    "descNew": "Brand new from an authorized dealer or directly from the manufacturer. The watch comes in its original, unopened packaging with all factory stickers, tags, and protective film intact. Full manufacturer warranty applies.",
+    "newDetail1": "Original factory seals and stickers intact",
+    "newDetail2": "Never worn or sized",
+    "newDetail3": "Complete box, papers, and accessories",
+    "newDetail4": "Full manufacturer warranty",
+    "newDetail5": "No handling marks whatsoever",
+    "gradeUnworn": "Unworn",
+    "taglineUnworn": "Complete set, never worn on the wrist",
+    "descUnworn": "The watch has been purchased but never worn on the wrist. It may have been tried on briefly or displayed. Comes with complete original packaging. May show extremely minor handling marks from inspection that are invisible to the naked eye.",
+    "unwornDetail1": "Never worn on the wrist",
+    "unwornDetail2": "May have been briefly tried on or displayed",
+    "unwornDetail3": "Complete box and papers included",
+    "unwornDetail4": "No visible wear marks",
+    "unwornDetail5": "Bracelet has not been sized",
+    "gradeExcellent": "Excellent",
+    "taglineExcellent": "Minimal wear, meticulously maintained",
+    "descExcellent": "A previously owned watch in outstanding condition. Shows very minimal signs of wear that are only visible under a jeweler's loupe. The movement has been serviced and certified. Crystal is flawless. Bracelet may have been sized. Includes our 1-year warranty.",
+    "excellentDetail1": "Very light signs of wear (loupe-only)",
+    "excellentDetail2": "Crystal is scratch-free",
+    "excellentDetail3": "Movement serviced and verified",
+    "excellentDetail4": "Bracelet may have been sized",
+    "excellentDetail5": "Original box and papers when available",
+    "excellentDetail6": "1-year warranty included",
+    "gradeGood": "Good",
+    "taglineGood": "Honest wear, fully functional",
+    "descGood": "A well-maintained pre-owned watch with visible but honest signs of regular wear. Light surface scratches on the case or bracelet that could be polished out. Fully functional movement that has been recently serviced by our certified watchmakers. Includes our 1-year warranty.",
+    "goodDetail1": "Visible light scratches on case or bracelet",
+    "goodDetail2": "Crystal may have minor marks",
+    "goodDetail3": "Movement fully serviced and tested",
+    "goodDetail4": "Polishing available upon request",
+    "goodDetail5": "Box and papers may not be included",
+    "goodDetail6": "1-year warranty included"
+  },
+
+  "guidesPage": {
+    "knowledge": "Knowledge",
+    "title": "Luxury Watch Guides",
+    "subtitle": "Everything you need to know about buying, authenticating, and caring for luxury watches. Written by our team of experts with over 16 years of experience.",
+    "comingSoon": "Guides coming soon",
+    "comingSoonDesc": "We're preparing expert guides on luxury watches. Check back soon.",
+    "visitBlog": "Visit our blog in the meantime",
+    "readGuide": "Read the guide",
+    "minRead": "min read"
+  },
+
+  "review": {
+    "title": "Review Us on Google",
+    "scanQR": "Scan the QR code with your phone camera",
+    "brandName": "Golden Planet Watches",
+    "location": "Gold Souq, Dubai",
+    "printPage": "Print This Page"
+  },
+
   "currency": "USD"
 }

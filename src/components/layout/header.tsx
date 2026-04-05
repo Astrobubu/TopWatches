@@ -27,8 +27,8 @@ export function Header() {
         style={{ borderRadius: 'var(--pill-radius)', boxShadow: scrolled ? '0 4px 30px rgba(44, 40, 36, 0.1)' : 'none' }}
       >
         {/* Logo */}
-        <Link href="/" className={`font-sans font-bold text-xl md:text-2xl tracking-tight transition-colors ${scrolled ? "text-primary hover:text-accent" : "text-foreground hover:text-primary"}`}>
-          {t("brand")}
+        <Link href="/" className={`font-bold text-xl md:text-2xl tracking-tight transition-colors ${scrolled ? "text-primary hover:text-accent" : "text-foreground hover:text-primary"}`} style={{ fontFamily: "'Playfair Display', serif" }}>
+          Golden Planet Watches
         </Link>
 
         {/* Desktop Links & Switcher */}
