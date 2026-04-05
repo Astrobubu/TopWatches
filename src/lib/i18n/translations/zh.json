@@ -28,8 +28,8 @@
     "findYourFit": "找到适合您的",
     "forHim": "男士系列",
     "forHer": "女士系列",
-    "above39mm": "39毫米及以上",
-    "under39mm": "39毫米以下",
+    "above36mm": "36毫米及以上",
+    "under36mm": "36毫米及以下",
     "authorizedBrands": "授权品牌",
     "featuredWatches": "精选腕表"
   },
@@ -144,14 +144,14 @@
   "forHim": {
     "subtitle": "男士系列",
     "title": "致他。",
-    "description": "强大的存在感。卓越的工程技艺。探索我们精心挑选的39毫米及以上腕表，专为现代绅士打造。",
+    "description": "强大的存在感。卓越的工程技艺。探索我们精心挑选的劳力士及其他奢华腕表，36毫米及以上，专为现代绅士打造。",
     "count": "款腕表"
   },
 
   "forHer": {
     "subtitle": "女士系列",
     "title": "致她。",
-    "description": "优雅，恰到好处。探索我们精选的39毫米以下精致腕表，为品味独到的女性而生。",
+    "description": "优雅，恰到好处。探索我们精选的劳力士及其他奢华腕表，36毫米及以下，为品味独到的女性而生。",
     "count": "款腕表"
   },
 
@@ -228,5 +228,29 @@
     "title": "您可能还喜欢"
   },
 
-  "currency": "AED"
+  "blog": {
+    "journal": "期刊",
+    "title": "奢华腕表博客",
+    "subtitle": "来自迪拜值得信赖的奢华腕表经销商的专家指南、品牌聚焦、购买建议和市场洞察。",
+    "all": "全部",
+    "readMore": "阅读更多",
+    "minRead": "分钟阅读",
+    "noPosts": "暂无文章",
+    "noPostsDesc": "请稍后回来查看专业的奢华腕表内容。",
+    "contents": "目录",
+    "share": "分享",
+    "copyLink": "复制链接",
+    "questionsTitle": "有关于奢华腕表的问题？",
+    "questionsDesc": "我们的专家随时为您服务。通过WhatsApp与我们聊天。",
+    "chatWhatsApp": "WhatsApp聊天",
+    "relatedArticles": "相关文章",
+    "backToBlog": "返回博客",
+    "by": "作者"
+  },
+
+  "payment": {
+    "bankTransfer": "接受银行转账——确认付款后，我们将送货上门。通过WhatsApp或致电 +971 50 745 2323 安排。"
+  },
+
+  "currency": "CNY"
 }

@@ -161,7 +161,7 @@ export default function HomePage() {
             <div className="relative z-10 w-full flex items-end justify-between">
               <div>
                 <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHim")}</h3>
-                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.above39mm")}</p>
+                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.above36mm")}</p>
               </div>
               <div className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center text-foreground group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
                 <ArrowRight className="w-5 h-5" />
@@ -182,7 +182,7 @@ export default function HomePage() {
             <div className="relative z-10 w-full flex items-end justify-between">
               <div>
                 <h3 className="font-serif italic text-4xl text-foreground mb-2">{t("home.forHer")}</h3>
-                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.under39mm")}</p>
+                <p className="font-mono text-xs text-foreground/50 tracking-widest uppercase">{t("home.under36mm")}</p>
               </div>
               <div className="w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center text-foreground group-hover:bg-primary group-hover:border-primary group-hover:text-background transition-colors">
                 <ArrowRight className="w-5 h-5" />

@@ -14,7 +14,7 @@ export default function ForHerPage() {
         fetch("/api/watches")
             .then((r) => r.json())
             .then((watches: Watch[]) =>
-                setForHerWatches(watches.filter((w) => parseInt(w.specs.caseSize) < 39))
+                setForHerWatches(watches.filter((w) => parseInt(w.specs.caseSize) <= 36))
             )
     }, [])
 

@@ -7,10 +7,11 @@ import { RelatedWatches } from "@/components/watches/related-watches"
 import { ConditionBadge } from "@/components/watches/condition-badge"
 import { WhatsAppOrder } from "@/components/watches/whatsapp-order"
 import { useTranslation } from "@/lib/i18n/context"
+import { formatPrice, getCurrencyCode } from "@/lib/currency"
 import type { Watch } from "@/lib/types"
 
 export function WatchDetailContent({ watch }: { watch: Watch }) {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -58,8 +59,8 @@ export function WatchDetailContent({ watch }: { watch: Watch }) {
 
           <div className="border-t border-foreground/10 pt-6">
             <p className="font-serif italic text-4xl text-foreground flex items-center gap-2">
-              <span className="font-sans text-lg text-foreground/70 not-italic">AED</span>
-              {watch.price.toLocaleString()}
+              <span className="font-sans text-lg text-foreground/70 not-italic">{getCurrencyCode(locale)}</span>
+              {formatPrice(watch.price, locale)}
             </p>
           </div>
 

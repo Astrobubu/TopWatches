@@ -28,8 +28,8 @@
     "findYourFit": "Find Your Fit",
     "forHim": "For Him",
     "forHer": "For Her",
-    "above39mm": "39mm and above",
-    "under39mm": "Under 39mm",
+    "above36mm": "36mm and above",
+    "under36mm": "36mm and under",
     "authorizedBrands": "Authorized Brands",
     "featuredWatches": "Featured Watches"
   },
@@ -144,14 +144,14 @@
   "forHim": {
     "subtitle": "Gents Collection",
     "title": "For Him.",
-    "description": "Substantial presence. Engineering excellence. Explore our hand-picked selection of timepieces 39mm and above, designed for the modern gentleman.",
+    "description": "Substantial presence. Engineering excellence. Explore our hand-picked selection of Rolex and luxury timepieces 36mm and above, designed for the modern gentleman.",
     "count": "Timepieces"
   },
 
   "forHer": {
     "subtitle": "Ladies Collection",
     "title": "For Her.",
-    "description": "Elegance perfectly proportioned. Discover our selection of refined timepieces under 39mm, crafted for the discerning woman.",
+    "description": "Elegance perfectly proportioned. Discover our selection of refined Rolex and luxury timepieces 36mm and under, crafted for the discerning woman.",
     "count": "Timepieces"
   },
 
@@ -228,5 +228,29 @@
     "title": "You May Also Like"
   },
 
-  "currency": "AED"
+  "blog": {
+    "journal": "Journal",
+    "title": "Luxury Watch Blog",
+    "subtitle": "Expert guides, brand spotlights, buying tips, and market insights from Dubai's trusted luxury watch dealer.",
+    "all": "All",
+    "readMore": "Read more",
+    "minRead": "min read",
+    "noPosts": "No posts yet",
+    "noPostsDesc": "Check back soon for expert luxury watch content.",
+    "contents": "Contents",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "questionsTitle": "Have questions about luxury watches?",
+    "questionsDesc": "Our experts are here to help. Chat with us on WhatsApp.",
+    "chatWhatsApp": "Chat on WhatsApp",
+    "relatedArticles": "Related Articles",
+    "backToBlog": "Back to Blog",
+    "by": "By"
+  },
+
+  "payment": {
+    "bankTransfer": "Bank transfer accepted — once payment is confirmed, we deliver to your door. Chat on WhatsApp or call +971 50 745 2323 to arrange."
+  },
+
+  "currency": "USD"
 }

@@ -44,19 +44,16 @@ export const GENDER_OPTIONS = [
 ]
 
 export const CASE_SIZE_OPTIONS = [
+  { value: "26", label: "26mm" },
   { value: "28", label: "28mm" },
   { value: "31", label: "31mm" },
-  { value: "34", label: "34mm" },
   { value: "36", label: "36mm" },
-  { value: "38", label: "38mm" },
-  { value: "39", label: "39mm" },
   { value: "40", label: "40mm" },
   { value: "41", label: "41mm" },
   { value: "42", label: "42mm" },
   { value: "43", label: "43mm" },
   { value: "44", label: "44mm" },
   { value: "45", label: "45mm" },
-  { value: "46", label: "46mm" },
 ]
 
 export function getDefaultFilters(): FilterState {

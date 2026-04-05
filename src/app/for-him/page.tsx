@@ -14,7 +14,7 @@ export default function ForHimPage() {
         fetch("/api/watches")
             .then((r) => r.json())
             .then((watches: Watch[]) =>
-                setForHimWatches(watches.filter((w) => parseInt(w.specs.caseSize) >= 39))
+                setForHimWatches(watches.filter((w) => parseInt(w.specs.caseSize) >= 36))
             )
     }, [])
 

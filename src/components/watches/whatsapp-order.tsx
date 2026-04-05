@@ -2,6 +2,7 @@
 
 import { MessageCircle, Heart, Share2 } from "lucide-react"
 import { trackEvent } from "@/components/analytics"
+import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
 
 interface WhatsAppOrderProps {
@@ -17,6 +18,8 @@ function generateOrderNumber() {
 }
 
 export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
+  const { t } = useTranslation()
+
   function handleOrder() {
     const orderNumber = generateOrderNumber()
     const message = [
@@ -35,21 +38,26 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
   }
 
   return (
-    <div className="flex gap-3">
-      <button
-        onClick={handleOrder}
-        className="magnetic-btn flex-1 bg-primary hover:bg-foreground text-primary-foreground hover:text-background py-4 font-sans font-bold text-sm flex items-center justify-center gap-2 transition-colors"
-        style={{ borderRadius: 'var(--card-radius)' }}
-      >
-        <MessageCircle className="w-4 h-4" />
-        Order via WhatsApp
-      </button>
-      <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
-        <Heart className="w-4 h-4" />
-      </button>
-      <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
-        <Share2 className="w-4 h-4" />
-      </button>
+    <div className="space-y-3">
+      <div className="flex gap-3">
+        <button
+          onClick={handleOrder}
+          className="magnetic-btn flex-1 bg-primary hover:bg-foreground text-primary-foreground hover:text-background py-4 font-sans font-bold text-sm flex items-center justify-center gap-2 transition-colors"
+          style={{ borderRadius: 'var(--card-radius)' }}
+        >
+          <MessageCircle className="w-4 h-4" />
+          Order via WhatsApp
+        </button>
+        <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+          <Heart className="w-4 h-4" />
+        </button>
+        <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
+          <Share2 className="w-4 h-4" />
+        </button>
+      </div>
+      <p className="text-xs text-foreground/50 font-sans leading-relaxed">
+        {t("payment.bankTransfer")}
+      </p>
     </div>
   )
 }

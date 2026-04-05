@@ -28,8 +28,8 @@
     "findYourFit": "Find Wetin Fit You",
     "forHim": "For Bros",
     "forHer": "For Sisi",
-    "above39mm": "39mm and above",
-    "under39mm": "Under 39mm",
+    "above36mm": "36mm and above",
+    "under36mm": "36mm and under",
     "authorizedBrands": "Brands Wey We Carry",
     "featuredWatches": "Golden Planet Watches Wey Dey"
   },
@@ -144,14 +144,14 @@
   "forHim": {
     "subtitle": "Men Collection",
     "title": "For Bros.",
-    "description": "Strong presence. Top-level engineering. Check out our hand-picked timepieces wey dey 39mm and above, wey we design for the modern gentleman.",
+    "description": "Strong presence. Top-level engineering. Check out our hand-picked Rolex and luxury timepieces wey dey 36mm and above, wey we design for the modern gentleman.",
     "count": "Timepieces"
   },
 
   "forHer": {
     "subtitle": "Ladies Collection",
     "title": "For Sisi.",
-    "description": "Elegance wey dey well proportioned. Discover our refined timepieces wey dey under 39mm, wey dem craft for woman wey get eye for quality.",
+    "description": "Elegance wey dey well proportioned. Discover our refined Rolex and luxury timepieces wey dey 36mm and under, wey dem craft for woman wey get eye for quality.",
     "count": "Timepieces"
   },
 
@@ -228,5 +228,29 @@
     "title": "You Fit Also Like"
   },
 
-  "currency": "AED"
+  "blog": {
+    "journal": "Journal",
+    "title": "Luxury Watch Blog",
+    "subtitle": "Expert guides, brand gist, buying tips, and market talk from Dubai trusted luxury watch dealer.",
+    "all": "All",
+    "readMore": "Read more",
+    "minRead": "min read",
+    "noPosts": "No post dey yet",
+    "noPostsDesc": "Come back later for expert luxury watch content.",
+    "contents": "Contents",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "questionsTitle": "You get question about luxury watches?",
+    "questionsDesc": "Our experts dey here to help. Chat with us for WhatsApp.",
+    "chatWhatsApp": "Chat for WhatsApp",
+    "relatedArticles": "Related Articles",
+    "backToBlog": "Go Back to Blog",
+    "by": "By"
+  },
+
+  "payment": {
+    "bankTransfer": "We dey accept bank transfer — once payment don confirm, we go deliver am to your door. Chat for WhatsApp or call +971 50 745 2323 to arrange."
+  },
+
+  "currency": "NGN"
 }

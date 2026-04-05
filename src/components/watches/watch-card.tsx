@@ -3,6 +3,7 @@
 import Link from "next/link"
 import type { Watch } from "@/lib/types"
 import { useTranslation } from "@/lib/i18n/context"
+import { formatPrice, getCurrencyCode } from "@/lib/currency"
 
 interface WatchCardProps {
   watch: Watch
@@ -15,7 +16,7 @@ function extractMM(caseSize: string | undefined): string | null {
 }
 
 export function WatchCard({ watch }: WatchCardProps) {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
   const mm = extractMM(watch.specs?.caseSize)
   const details = [
     watch.reference ? `Ref. ${watch.reference}` : null,
@@ -61,8 +62,8 @@ export function WatchCard({ watch }: WatchCardProps) {
             </p>
           )}
           <p className="font-serif italic text-xl text-foreground flex items-center gap-1">
-            <span className="font-sans text-sm text-foreground/70 not-italic">{t("currency")}</span>
-            {watch.price.toLocaleString()}
+            <span className="font-sans text-sm text-foreground/70 not-italic">{getCurrencyCode(locale)}</span>
+            {formatPrice(watch.price, locale)}
           </p>
         </div>
       </div>
