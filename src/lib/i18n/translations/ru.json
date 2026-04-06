@@ -245,7 +245,12 @@
     "chatWhatsApp": "Написать в WhatsApp",
     "relatedArticles": "Похожие статьи",
     "backToBlog": "Назад в блог",
-    "by": "Автор"
+    "by": "Автор",
+    "catGuides": "Руководства",
+    "catNews": "Новости",
+    "catBrandSpotlight": "Бренд в центре внимания",
+    "catBuyingTips": "Советы по покупке",
+    "catMarketInsights": "Аналитика рынка"
   },
 
   "payment": {

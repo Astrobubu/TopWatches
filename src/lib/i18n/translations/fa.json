@@ -245,7 +245,12 @@
     "chatWhatsApp": "گفتگو در واتساپ",
     "relatedArticles": "مقالات مرتبط",
     "backToBlog": "بازگشت به وبلاگ",
-    "by": "نوشته"
+    "by": "نوشته",
+    "catGuides": "راهنماها",
+    "catNews": "اخبار",
+    "catBrandSpotlight": "معرفی برند",
+    "catBuyingTips": "نکات خرید",
+    "catMarketInsights": "بینش بازار"
   },
 
   "payment": {

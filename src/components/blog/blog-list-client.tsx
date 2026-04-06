@@ -56,7 +56,7 @@ export function BlogListClient({ posts, categories, category, page, totalPages }
             }`}
             style={{ borderRadius: "var(--pill-radius)" }}
           >
-            {cat.label}
+            {t(`blog.cat${cat.value.split("-").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join("")}`)}
           </Link>
         ))}
       </div>
@@ -85,7 +85,7 @@ export function BlogListClient({ posts, categories, category, page, totalPages }
                 )}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="font-mono text-[10px] tracking-widest uppercase text-primary/70">
-                    {post.category.replace("-", " ")}
+                    {t(`blog.cat${post.category.split("-").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join("")}`)}
                   </span>
                   <span className="text-foreground/20">|</span>
                   <span className="flex items-center gap-1 text-foreground/40 text-xs">

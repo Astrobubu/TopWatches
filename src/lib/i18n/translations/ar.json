@@ -245,7 +245,12 @@
     "chatWhatsApp": "تحدّث عبر واتساب",
     "relatedArticles": "مقالات ذات صلة",
     "backToBlog": "العودة للمدوّنة",
-    "by": "بقلم"
+    "by": "بقلم",
+    "catGuides": "الأدلّة",
+    "catNews": "الأخبار",
+    "catBrandSpotlight": "تسليط الضوء",
+    "catBuyingTips": "نصائح الشراء",
+    "catMarketInsights": "رؤى السوق"
   },
 
   "payment": {

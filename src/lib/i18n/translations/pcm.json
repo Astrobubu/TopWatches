@@ -245,7 +245,12 @@
     "chatWhatsApp": "Chat for WhatsApp",
     "relatedArticles": "Related Articles",
     "backToBlog": "Go Back to Blog",
-    "by": "By"
+    "by": "By",
+    "catGuides": "Guides",
+    "catNews": "News",
+    "catBrandSpotlight": "Brand Spotlight",
+    "catBuyingTips": "Buying Tips",
+    "catMarketInsights": "Market Insights"
   },
 
   "payment": {

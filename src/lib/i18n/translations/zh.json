@@ -245,7 +245,12 @@
     "chatWhatsApp": "WhatsApp聊天",
     "relatedArticles": "相关文章",
     "backToBlog": "返回博客",
-    "by": "作者"
+    "by": "作者",
+    "catGuides": "指南",
+    "catNews": "新闻",
+    "catBrandSpotlight": "品牌聚焦",
+    "catBuyingTips": "购买建议",
+    "catMarketInsights": "市场洞察"
   },
 
   "payment": {

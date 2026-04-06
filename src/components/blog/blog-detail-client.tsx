@@ -68,7 +68,7 @@ export function BlogDetailClient({ post, related }: BlogDetailClientProps) {
       <header className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <span className="font-mono text-[10px] tracking-widest uppercase text-primary/70">
-            {post.category.replace("-", " ")}
+            {t(`blog.cat${post.category.split("-").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join("")}`)}
           </span>
           <span className="text-foreground/20">|</span>
           <span className="flex items-center gap-1 text-foreground/40 text-xs">
