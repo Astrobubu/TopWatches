@@ -1045,6 +1045,132 @@ const BLOG_POSTS = [
     featured: true,
     published_at: "2026-04-01T10:00:00Z",
   },
+  {
+    title: "The Rolex Lady-Datejust 69173: The Ultimate Buying Guide",
+    slug: "rolex-lady-datejust-69173",
+    content: `<h2>Introduction</h2>
+<p>In the world of luxury timepieces, few watches combine elegance, prestige, and investment value quite like the Rolex Lady-Datejust 69173. This iconic women's watch has graced the wrists of influential women for decades, from political figures to Hollywood stars. With its distinctive two-tone design and perfect proportions, the 69173 represents a significant milestone in Rolex's illustrious history of creating timepieces specifically for women. Whether you're considering your first luxury watch purchase or adding to an established collection, understanding what makes the Lady-Datejust 69173 special is essential for making an informed decision.</p>
+
+<h2>The Heritage and History of the Lady-Datejust</h2>
+<h3>The Evolution of a Feminine Icon</h3>
+<p>The Lady-Datejust story begins with the original Datejust, which Rolex introduced in 1945 to celebrate the company's 40th anniversary. The Datejust revolutionized watchmaking as the first self-winding, waterproof wristwatch with a date display window. However, it wasn't until 1957 that Rolex created a smaller, more feminine version specifically designed for women—the Lady-Datejust.</p>
+<p>The reference 69173 specifically belongs to the five-digit reference generation of Lady-Datejust models that Rolex produced primarily during the 1980s and 1990s. This reference has become particularly coveted for its perfect balance of vintage charm and modern wearability.</p>
+
+<h3>The Significance of the Two-Tone Design</h3>
+<p>The 69173 is most recognized for its "Rolesor" construction—Rolex's term for the combination of gold and stainless steel on a single watch. This two-tone approach (typically yellow gold and stainless steel) was not merely an aesthetic choice; it represented a brilliant marketing strategy that positioned the watch between the purely steel models and the more exclusive solid gold versions. This made luxury more accessible while maintaining the prestige of gold in the design.</p>
+
+<h2>Technical Specifications and Design Features</h2>
+<h3>Case and Dimensions</h3>
+<p>The Lady-Datejust 69173 features a compact 26mm case diameter—the classic size for the Lady-Datejust during this era. While this may seem small by today's standards, the proportion is perfect for more delicate wrists and represents the traditional sizing for women's watch of the period. The case construction offers 100 meters of water resistance, providing practical everyday durability despite its elegant appearance.</p>
+
+<h3>The Distinctive Fluted Bezel</h3>
+<p>One of the most recognizable features of the 69173 is its fluted yellow gold bezel. Originally designed with a practical purpose—to grip and screw the bezel to the case, enhancing water resistance—the fluted pattern has evolved to become one of Rolex's signature aesthetic elements. On the 69173, this 18k yellow gold bezel catches light beautifully, creating a distinctive shimmer that draws attention to the watch face.</p>
+
+<h3>Bracelet Options</h3>
+<p>The 69173 typically comes fitted with the iconic Jubilee bracelet—created specifically for the original Datejust in 1945. This five-link bracelet combines brushed outer links in stainless steel with polished center links in 18k yellow gold. The combination provides both comfort and visual interest, with the gold center links creating a continuous golden line from the bezel through the bracelet.</p>
+<p>Some variants of the 69173 were also offered with the three-link Oyster bracelet, which presents a more sporty, less ornate alternative while maintaining the two-tone aesthetic.</p>
+
+<h3>Dial Variations</h3>
+<p>The 69173 was available with an impressive array of dial options, including:</p>
+<ul>
+<li><strong>Champagne:</strong> A warm, golden-hued dial that complements the yellow gold elements</li>
+<li><strong>White:</strong> A crisp, clean option that creates maximum contrast with gold hour markers</li>
+<li><strong>Black:</strong> A bold choice that provides dramatic contrast and a more contemporary feel</li>
+<li><strong>Blue:</strong> A distinctive option often featuring a "sunburst" finish</li>
+<li><strong>Silver:</strong> A versatile, subtle option that works with virtually any outfit</li>
+</ul>
+<p>Many dials also featured different hour marker configurations, from simple stick markers to diamond-set hour markers or even Roman numerals.</p>
+
+<h3>Movement and Performance</h3>
+<p>The 69173 typically houses the Rolex Caliber 2135, a self-winding mechanical movement with a date function. While this movement doesn't have the latest technological advancements found in contemporary Rolex watch, it remains renowned for its reliability and precision. The movement is certified as a Superlative Chronometer, meeting Rolex's stringent timekeeping standards.</p>
+
+<h2>Market Value and Investment Potential</h2>
+<h3>Current Price Range</h3>
+<p>As of 2025, the market value for a Rolex Lady-Datejust 69173 typically ranges between AED 15,000 and AED 25,000, depending on condition, dial configuration, and whether it includes original box and papers. Models with diamond-set dials or other special features can command premium prices.</p>
+<p>This price point makes the 69173 one of the more accessible entry points into Rolex ownership, particularly for vintage models. Compared to current production Lady-Datejust watches, which start at significantly higher prices, the 69173 represents excellent value while still delivering authentic Rolex craftsmanship.</p>
+
+<h3>Investment Considerations</h3>
+<p>While all Rolex watches tend to hold their value better than most luxury timepieces, it's worth noting that historically, women's models have appreciated more slowly than their larger counterparts. However, this trend has begun to shift in recent years as more women recognize the beautiful appearance of the Rolex Lady-Datejust.</p>
+<p>The 69173 has several factors in its favor as an investment piece:</p>
+<ul>
+<li>Two-tone designs have experienced a significant revival in popularity</li>
+<li>The 26mm case size represents a truly vintage aesthetic that cannot be found in current collections</li>
+<li>As a discontinued reference, the supply is inherently limited</li>
+<li>The quality and durability ensure that well-maintained examples will continue to function for decades</li>
+</ul>
+
+<h2>Authentication and Avoiding Counterfeits</h2>
+<h3>Key Authentication Points</h3>
+<p>The Rolex Lady-Datejust 69173 is unfortunately a frequent target for counterfeiters due to its popularity. Here are essential verification points to consider:</p>
+<ol>
+<li><strong>Serial and Reference Numbers:</strong> Located between the lugs at the 6 o'clock and 12 o'clock positions, respectively. On the 69173, these should be deeply and precisely engraved, not etched or poorly stamped.</li>
+<li><strong>Cyclops Magnification:</strong> The date magnifier should enlarge the date by 2.5x, making it appear to almost fill the cyclops lens. Counterfeits often have weak magnification.</li>
+<li><strong>Weight and Feel:</strong> The combination of steel and 18k gold gives the 69173 a substantial weight that's difficult to replicate in counterfeits.</li>
+<li><strong>Bracelet Quality:</strong> The Jubilee bracelet should have minimal play between links and a solid feel. The gold portions should have a rich, warm tone that fake gold cannot match.</li>
+<li><strong>Movement:</strong> If possible, have the caseback opened by a qualified watchmaker to verify the authentic Rolex caliber 2135 movement.</li>
+</ol>
+
+<h3>Importance of Documentation</h3>
+<p>Original box and papers significantly enhance both authenticity confidence and resale value. The complete set should include:</p>
+<ul>
+<li>Original Rolex green box (outer and inner)</li>
+<li>Guarantee paper/certificate</li>
+<li>Hang tag</li>
+<li>Instruction booklet</li>
+<li>Green leather wallet</li>
+</ul>
+<p>A complete set can add 15-30% to the value of an otherwise identical watch without documentation.</p>
+
+<h3>Daily Care Tips</h3>
+<p>Between services, proper care will help maintain your Lady-Datejust 69173:</p>
+<ul>
+<li>Rinse with fresh water after exposure to saltwater</li>
+<li>Clean periodically with a soft cloth and mild soap solution</li>
+<li>Store in a watch box or pouch when not worn</li>
+<li>Keep away from strong magnetic fields</li>
+<li>Ensure the crown is fully screwed down before contact with water</li>
+</ul>
+
+<h2>Styling and Wearability</h2>
+<h3>Versatility Factor</h3>
+<p>One of the Lady-Datejust 69173's greatest strengths is its remarkable versatility. The two-tone configuration bridges the gap between casual and formal occasions:</p>
+<ul>
+<li>For business attire, it provides just the right amount of refinement without ostentation</li>
+<li>With evening wear, it adds a touch of luxury that complements rather than competes</li>
+<li>Even with casual outfits, it elevates the ensemble without appearing out of place</li>
+</ul>
+<p>This versatility makes the 69173 an excellent choice for women seeking one fine timepiece that can serve virtually all occasions.</p>
+
+<h3>Modern Relevance</h3>
+<p>While the 26mm case size was standard for decades, current Rolex Lady-Datejust models are offered in 28mm or 31mm configurations, reflecting changing preferences for slightly larger watches. However, the 26mm 69173 has recently seen renewed interest as vintage aesthetics have returned to fashion. The smaller size presents a distinctly classic look that stands out in an era of larger timepieces.</p>
+<p>The two-tone look has also experienced a significant revival, appearing in collections from numerous luxury brands after years of white metals dominating the market.</p>
+
+<h3>Condition Assessment</h3>
+<p>When evaluating a Lady-Datejust 69173, pay particular attention to these aspects:</p>
+<ul>
+<li><strong>Case Condition:</strong> Look for excessive polishing that has altered the case shape or sharp edges</li>
+<li><strong>Bracelet Stretch:</strong> Examine for looseness between links that indicates wear</li>
+<li><strong>Dial Condition:</strong> Check for discoloration, spotting, or unprofessional refinishing</li>
+<li><strong>Hands and Hour Markers:</strong> Ensure original luminous material is intact and matching across all elements</li>
+<li><strong>Bezel Sharpness:</strong> The fluting should be crisp and well-defined, not rounded from excessive polishing</li>
+</ul>
+
+<h2>Conclusion: Is the Lady-Datejust 69173 Right for You?</h2>
+<p>The Rolex Lady-Datejust 69173 represents a perfect entry point into the world of luxury watches—combining iconic design, prestigious heritage, and remarkable value retention in a wearable, versatile package. Its 26mm case size, though smaller than current offerings, provides a distinctively vintage aesthetic that has recently returned to favor.</p>
+<p>For women seeking a single fine timepiece that can transition seamlessly from business meetings to formal events to weekend activities, the 69173 is difficult to surpass. Its two-tone configuration balances luxury with wearability, making it appropriate for virtually any occasion.</p>
+<p>As a discontinued model with decades of proven reliability, the Lady-Datejust 69173 offers the opportunity to own a piece of Rolex heritage at a more accessible price point than current production models. For the discerning buyer who values both style and substance, this iconic reference checks all the essential boxes.</p>`,
+    excerpt: "The complete guide to the Rolex Lady-Datejust 69173. Learn about its heritage, technical specs, market value, authentication tips, and why it makes a perfect entry point into luxury watch collecting.",
+    cover_image: "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=1200&q=80",
+    category: "rolex",
+    tags: ["rolex", "lady-datejust", "vintage", "women-watches", "two-tone", "rolesor", "buying-guide"],
+    author: "Golden Planet Watches",
+    status: "published",
+    seo_title: "Rolex Lady-Datejust 69173 Buying Guide | Golden Planet Watches Dubai",
+    seo_description: "Complete guide to buying a Rolex Lady-Datejust 69173. Heritage, specs, pricing, authentication, and investment potential. Expert advice from Dubai's Gold Souq.",
+    reading_time: 7,
+    featured: false,
+    published_at: "2025-05-12T10:00:00Z",
+  },
 ]
 
 async function seed() {
