@@ -38,9 +38,9 @@ export function Header() {
           <Link href="/collections" className="hover:text-primary transition-colors" style={navFont}>
             {t("nav.collections")}
           </Link>
-          <Link href="/blog" className="hover:text-primary transition-colors" style={navFont}>
+          {/* <Link href="/blog" className="hover:text-primary transition-colors" style={navFont}>
             {t("nav.blog")}
-          </Link>
+          </Link> */}
           <Link href="/about" className="hover:text-primary transition-colors" style={navFont}>
             {t("nav.about")}
           </Link>
@@ -74,9 +74,9 @@ export function Header() {
           <Link href="/collections" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors" style={navFont}>
             {t("nav.collections")}
           </Link>
-          <Link href="/blog" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors" style={navFont}>
+          {/* <Link href="/blog" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors" style={navFont}>
             {t("nav.blog")}
-          </Link>
+          </Link> */}
           <Link href="/about" onClick={() => setMobileOpen(false)} className="hover:text-primary transition-colors" style={navFont}>
             {t("nav.about")}
           </Link>
