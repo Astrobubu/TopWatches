@@ -3,7 +3,7 @@
 import Link from "next/link"
 import type { Watch } from "@/lib/types"
 import { useTranslation } from "@/lib/i18n/context"
-import { formatPrice, getCurrencyCode } from "@/lib/currency"
+import { useCurrency } from "@/lib/currency-context"
 
 interface WatchCardProps {
   watch: Watch
@@ -16,17 +16,19 @@ function extractMM(caseSize: string | undefined): string | null {
 }
 
 export function WatchCard({ watch }: WatchCardProps) {
-  const { t, locale } = useTranslation()
+  const { t } = useTranslation()
+  const { currency, formatPrice } = useCurrency()
   const mm = extractMM(watch.specs?.caseSize)
   const details = [
     watch.reference ? `Ref. ${watch.reference}` : null,
     watch.specs?.year ? `${watch.specs.year}` : null,
   ].filter(Boolean)
 
+  const price = formatPrice(watch.price)
+
   return (
     <Link href={`/watches/${watch.id}`} className="group block">
       <div className="bg-card overflow-hidden transition-all duration-500 hover:-translate-y-1" style={{ borderRadius: 'var(--card-radius)', boxShadow: 'var(--soft-shadow, 0 2px 20px rgba(44,40,36,0.08))' }}>
-        {/* Image */}
         <div className="relative overflow-hidden aspect-square bg-card">
           <img
             src={watch.imageVariants?.[0]?.url_thumb || watch.images[0]}
@@ -36,11 +38,9 @@ export function WatchCard({ watch }: WatchCardProps) {
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
-          {/* Condition badge */}
           <span className="absolute top-2 right-2 md:top-3 md:right-3 text-foreground text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans font-bold px-1.5 py-0.5 md:px-2.5 md:py-1">
             {t(`conditions.${watch.condition}`)}
           </span>
-          {/* MM size badge */}
           {mm && (
             <span className="absolute top-2 left-2 md:top-3 md:left-3 text-foreground text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans font-bold px-1.5 py-0.5 md:px-2.5 md:py-1">
               {mm}
@@ -48,7 +48,6 @@ export function WatchCard({ watch }: WatchCardProps) {
           )}
         </div>
 
-        {/* Info */}
         <div className="p-4">
           <p className="font-sans text-xs text-primary tracking-widest uppercase mb-1">
             {watch.brand}
@@ -62,12 +61,11 @@ export function WatchCard({ watch }: WatchCardProps) {
             </p>
           )}
           <p className="font-serif italic text-xl text-foreground flex items-center gap-1">
-            <span className="font-sans text-sm text-foreground/70 not-italic">{getCurrencyCode(locale)}</span>
-            {formatPrice(watch.price, locale)}
+            <span className="font-sans text-sm text-foreground/70 not-italic">{currency}</span>
+            {price}
           </p>
         </div>
       </div>
     </Link>
   )
 }
-

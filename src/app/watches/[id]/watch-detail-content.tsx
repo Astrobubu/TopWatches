@@ -7,15 +7,17 @@ import { RelatedWatches } from "@/components/watches/related-watches"
 import { ConditionBadge } from "@/components/watches/condition-badge"
 import { WhatsAppOrder } from "@/components/watches/whatsapp-order"
 import { useTranslation } from "@/lib/i18n/context"
-import { formatPrice, getCurrencyCode } from "@/lib/currency"
+import { useCurrency } from "@/lib/currency-context"
 import type { Watch } from "@/lib/types"
 
 export function WatchDetailContent({ watch }: { watch: Watch }) {
-  const { t, locale } = useTranslation()
+  const { t } = useTranslation()
+  const { currency, formatPrice, isApproximate, getWarning } = useCurrency()
+
+  const price = formatPrice(watch.price)
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm font-sans text-foreground/60 mb-8">
         <Link href="/" className="hover:text-primary transition-colors">{t("detail.home")}</Link>
         <span className="text-border">/</span>
@@ -31,12 +33,9 @@ export function WatchDetailContent({ watch }: { watch: Watch }) {
         <span className="text-foreground/70">{watch.model}</span>
       </nav>
 
-      {/* Main product section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-        {/* Left: Image Gallery */}
         <ImageGallery images={watch.images} imageVariants={watch.imageVariants} modelName={`${watch.brand} ${watch.model}`} />
 
-        {/* Right: Product Info */}
         <div className="space-y-6">
           <div>
             <p className="font-sans text-sm text-primary tracking-[0.2em] uppercase mb-2">
@@ -59,9 +58,12 @@ export function WatchDetailContent({ watch }: { watch: Watch }) {
 
           <div className="border-t border-foreground/10 pt-6">
             <p className="font-serif italic text-4xl text-foreground flex items-center gap-2">
-              <span className="font-sans text-lg text-foreground/70 not-italic">{getCurrencyCode(locale)}</span>
-              {formatPrice(watch.price, locale)}
+              <span className="font-sans text-lg text-foreground/70 not-italic">{currency}</span>
+              {price}
             </p>
+            {isApproximate() && (
+              <p className="text-xs text-amber-600/80 mt-1">{getWarning()}</p>
+            )}
           </div>
 
           <WhatsAppOrder watch={watch} />
@@ -80,7 +82,6 @@ export function WatchDetailContent({ watch }: { watch: Watch }) {
         </div>
       </div>
 
-      {/* Related watches */}
       <RelatedWatches currentWatch={watch} />
     </div>
   )

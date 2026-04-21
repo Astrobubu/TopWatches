@@ -8,6 +8,8 @@ import { Analytics } from "@/components/analytics";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/json-ld";
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/lib/i18n/context"
+import { CurrencyProvider } from "@/lib/currency-context"
+import { InitialSetup } from "@/components/initial-setup"
 import "./globals.css";
 
 const NoiseOverlay = () => (
@@ -89,14 +91,17 @@ export default function RootLayout({
           enableSystem={false}
         >
           <I18nProvider>
-            <NoiseOverlay />
-            <Header />
-            <main className="min-h-screen pt-20">{children}</main>
-            <Footer />
-            <ReviewPrompt />
-            <WhatsAppButton />
-            <Analytics />
-            <ScrollToTop />
+            <CurrencyProvider>
+              <InitialSetup />
+              <NoiseOverlay />
+              <Header />
+              <main className="min-h-screen pt-20">{children}</main>
+              <Footer />
+              <ReviewPrompt />
+              <WhatsAppButton />
+              <Analytics />
+              <ScrollToTop />
+            </CurrencyProvider>
           </I18nProvider>
         </ThemeProvider>
       </body>
