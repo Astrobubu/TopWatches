@@ -1059,6 +1059,8 @@ const BLOG_POSTS = [
 <h3>The Significance of the Two-Tone Design</h3>
 <p>The 69173 is most recognized for its "Rolesor" construction—Rolex's term for the combination of gold and stainless steel on a single watch. This two-tone approach (typically yellow gold and stainless steel) was not merely an aesthetic choice; it represented a brilliant marketing strategy that positioned the watch between the purely steel models and the more exclusive solid gold versions. This made luxury more accessible while maintaining the prestige of gold in the design.</p>
 
+<img src="https://langedykvintagewatches.com/wp-content/uploads/2025/05/9C97A6C5-D4C2-4E30-978A-AABE715F3232_1_201_a-1024x614.jpeg" alt="Rolex Lady-Datejust 69173" style="width:100%;max-width:800px;height:auto;border-radius:8px;margin:20px 0;" />
+
 <h2>Technical Specifications and Design Features</h2>
 <h3>Case and Dimensions</h3>
 <p>The Lady-Datejust 69173 features a compact 26mm case diameter—the classic size for the Lady-Datejust during this era. While this may seem small by today's standards, the proportion is perfect for more delicate wrists and represents the traditional sizing for women's watch of the period. The case construction offers 100 meters of water resistance, providing practical everyday durability despite its elegant appearance.</p>
@@ -1079,7 +1081,8 @@ const BLOG_POSTS = [
 <li><strong>Blue:</strong> A distinctive option often featuring a "sunburst" finish</li>
 <li><strong>Silver:</strong> A versatile, subtle option that works with virtually any outfit</li>
 </ul>
-<p>Many dials also featured different hour marker configurations, from simple stick markers to diamond-set hour markers or even Roman numerals.</p>
+
+<img src="https://langedykvintagewatches.com/wp-content/uploads/2025/05/Rolex-Lady-Datejust-69173-1-1024x678.jpg" alt="Rolex Lady-Datejust 69173 Dial" style="width:100%;max-width:800px;height:auto;border-radius:8px;margin:20px 0;" />
 
 <h3>Movement and Performance</h3>
 <p>The 69173 typically houses the Rolex Caliber 2135, a self-winding mechanical movement with a date function. While this movement doesn't have the latest technological advancements found in contemporary Rolex watch, it remains renowned for its reliability and precision. The movement is certified as a Superlative Chronometer, meeting Rolex's stringent timekeeping standards.</p>
@@ -1121,6 +1124,8 @@ const BLOG_POSTS = [
 </ul>
 <p>A complete set can add 15-30% to the value of an otherwise identical watch without documentation.</p>
 
+<img src="https://langedykvintagewatches.com/wp-content/uploads/2025/05/C192207A-92B8-4583-8F4E-2132526CD30C_1_201_a-1024x614.jpeg" alt="Rolex Lady-Datejust 69173 Full Set" style="width:100%;max-width:800px;height:auto;border-radius:8px;margin:20px 0;" />
+
 <h3>Daily Care Tips</h3>
 <p>Between services, proper care will help maintain your Lady-Datejust 69173:</p>
 <ul>
@@ -1160,7 +1165,7 @@ const BLOG_POSTS = [
 <p>For women seeking a single fine timepiece that can transition seamlessly from business meetings to formal events to weekend activities, the 69173 is difficult to surpass. Its two-tone configuration balances luxury with wearability, making it appropriate for virtually any occasion.</p>
 <p>As a discontinued model with decades of proven reliability, the Lady-Datejust 69173 offers the opportunity to own a piece of Rolex heritage at a more accessible price point than current production models. For the discerning buyer who values both style and substance, this iconic reference checks all the essential boxes.</p>`,
     excerpt: "The complete guide to the Rolex Lady-Datejust 69173. Learn about its heritage, technical specs, market value, authentication tips, and why it makes a perfect entry point into luxury watch collecting.",
-    cover_image: "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?w=1200&q=80",
+    cover_image: "https://langedykvintagewatches.com/wp-content/uploads/2025/05/EAEFB319-E3EE-4AF3-97F3-D0C7E40A09E0_1_201_a-1024x614.jpeg",
     category: "rolex",
     tags: ["rolex", "lady-datejust", "vintage", "women-watches", "two-tone", "rolesor", "buying-guide"],
     author: "Golden Planet Watches",
