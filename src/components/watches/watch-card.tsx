@@ -26,6 +26,8 @@ export function WatchCard({ watch }: WatchCardProps) {
 
   const price = formatPrice(watch.price)
 
+  const soldOut = watch.soldOut === true
+
   return (
     <Link href={`/watches/${watch.id}`} className="group block">
       <div className="bg-card overflow-hidden transition-all duration-500 hover:-translate-y-1" style={{ borderRadius: 'var(--card-radius)', boxShadow: 'var(--soft-shadow, 0 2px 20px rgba(44,40,36,0.08))' }}>
@@ -36,8 +38,18 @@ export function WatchCard({ watch }: WatchCardProps) {
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            style={soldOut ? { filter: 'grayscale(0.85) brightness(0.88)' } : undefined}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
+          {soldOut && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="bg-background/85 backdrop-blur-md px-3 py-1 md:px-4 md:py-1.5 shadow-sm" style={{ borderRadius: 'var(--pill-radius)', border: 'var(--border-w) solid var(--border)' }}>
+                <span className="font-sans text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase text-foreground/80">
+                  Sold Out
+                </span>
+              </div>
+            </div>
+          )}
           <span className="absolute top-2 right-2 md:top-3 md:right-3 text-foreground text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans font-bold px-1.5 py-0.5 md:px-2.5 md:py-1">
             {t(`conditions.${watch.condition}`)}
           </span>
