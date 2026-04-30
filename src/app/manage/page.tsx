@@ -62,6 +62,7 @@ export default function ManagePage() {
     condition: "unworn" as Watch["condition"],
     gender: "men" as Watch["gender"],
     featured: false,
+    soldOut: false,
     specs: {
       movement: "",
       caseMaterial: "",
@@ -147,6 +148,7 @@ export default function ManagePage() {
       condition: "unworn",
       gender: "men",
       featured: false,
+      soldOut: false,
       specs: {
         movement: "",
         caseMaterial: "",
@@ -428,6 +430,7 @@ export default function ManagePage() {
       condition: watch.condition,
       gender: watch.gender || "men",
       featured: watch.featured,
+      soldOut: watch.soldOut ?? false,
       specs: { ...watch.specs },
     })
     setSelectedImages([...watch.images])
@@ -798,6 +801,11 @@ export default function ManagePage() {
                       {watch.featured && (
                         <Star className="w-3 h-3 text-primary fill-primary" />
                       )}
+                      {watch.soldOut && (
+                        <span className="font-mono text-[9px] text-destructive tracking-widest uppercase px-1.5 py-0.5 bg-destructive/10 rounded">
+                          Sold
+                        </span>
+                      )}
                     </div>
                     <p className="font-sans font-semibold text-sm text-foreground truncate group-hover/info:text-primary transition-colors">
                       {watch.model}
@@ -1158,22 +1166,40 @@ export default function ManagePage() {
                 </select>
               </div>
               <div className="flex items-end pb-1">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.featured}
-                    onChange={(e) =>
-                      setFormData((p) => ({
-                        ...p,
-                        featured: e.target.checked,
-                      }))
-                    }
-                    className="w-4 h-4 accent-primary"
-                  />
-                  <span className="font-mono text-xs text-foreground/60">
-                    Featured
-                  </span>
-                </label>
+                <div className="flex flex-col gap-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.featured}
+                      onChange={(e) =>
+                        setFormData((p) => ({
+                          ...p,
+                          featured: e.target.checked,
+                        }))
+                      }
+                      className="w-4 h-4 accent-primary"
+                    />
+                    <span className="font-mono text-xs text-foreground/60">
+                      Featured
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.soldOut}
+                      onChange={(e) =>
+                        setFormData((p) => ({
+                          ...p,
+                          soldOut: e.target.checked,
+                        }))
+                      }
+                      className="w-4 h-4 accent-destructive"
+                    />
+                    <span className="font-mono text-xs text-foreground/60">
+                      Sold Out
+                    </span>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
