@@ -34,6 +34,7 @@ export async function POST() {
         category: watch.category,
         condition: watch.condition,
         featured: watch.featured,
+        sold_out: watch.soldOut ?? false,
       }))
 
       const { error: batchError } = await admin.from("watches").insert(rows)

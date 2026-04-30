@@ -37,17 +37,30 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
     window.open(url, "_blank")
   }
 
+  const soldOut = watch.soldOut === true
+
   return (
     <div className="space-y-3">
       <div className="flex gap-3">
-        <button
-          onClick={handleOrder}
-          className="magnetic-btn flex-1 bg-primary hover:bg-foreground text-primary-foreground hover:text-background py-4 font-sans font-bold text-sm flex items-center justify-center gap-2 transition-colors"
-          style={{ borderRadius: 'var(--card-radius)' }}
-        >
-          <MessageCircle className="w-4 h-4" />
-          Order via WhatsApp
-        </button>
+        {soldOut ? (
+          <button
+            disabled
+            aria-disabled="true"
+            className="flex-1 bg-foreground/10 text-foreground/50 py-4 font-sans font-bold text-sm flex items-center justify-center gap-2 cursor-not-allowed tracking-[0.15em] uppercase"
+            style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}
+          >
+            Sold Out
+          </button>
+        ) : (
+          <button
+            onClick={handleOrder}
+            className="magnetic-btn flex-1 bg-primary hover:bg-foreground text-primary-foreground hover:text-background py-4 font-sans font-bold text-sm flex items-center justify-center gap-2 transition-colors"
+            style={{ borderRadius: 'var(--card-radius)' }}
+          >
+            <MessageCircle className="w-4 h-4" />
+            Order via WhatsApp
+          </button>
+        )}
         <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
           <Heart className="w-4 h-4" />
         </button>
@@ -55,9 +68,11 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
           <Share2 className="w-4 h-4" />
         </button>
       </div>
-      <p className="text-xs text-foreground/50 font-sans leading-relaxed">
-        {t("payment.bankTransfer")}
-      </p>
+      {!soldOut && (
+        <p className="text-xs text-foreground/50 font-sans leading-relaxed">
+          {t("payment.bankTransfer")}
+        </p>
+      )}
     </div>
   )
 }

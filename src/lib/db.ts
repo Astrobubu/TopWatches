@@ -25,6 +25,7 @@ function toWatch(row: any, images: any[]): Watch {
     gender: row.gender || undefined,
     scope: row.scope || undefined,
     featured: row.featured,
+    soldOut: row.sold_out === true,
   }
 }
 
@@ -95,6 +96,7 @@ export async function createWatch(
     gender: watch.gender || null,
     scope: watch.scope || null,
     featured: watch.featured,
+    sold_out: watch.soldOut ?? false,
   }, { onConflict: "id" })
 
   if (watchError) throw watchError

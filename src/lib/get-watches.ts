@@ -24,6 +24,7 @@ function toWatch(row: any, images: any[]): Watch {
     gender: row.gender || undefined,
     scope: row.scope || undefined,
     featured: row.featured,
+    soldOut: row.sold_out === true,
   }
 }
 

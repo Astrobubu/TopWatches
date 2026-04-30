@@ -26,6 +26,7 @@ export interface Watch {
   gender?: "men" | "women" | "unisex"
   scope?: string
   featured: boolean
+  soldOut?: boolean
 }
 
 export interface Brand {
