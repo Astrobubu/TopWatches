@@ -122,7 +122,9 @@ export async function updateWatch(
   const admin = createAdminClient()
   if (!admin) throw new Error("Supabase not configured")
 
-  const { images, ...watchData } = data
+  const { images, soldOut, ...rest } = data
+  const watchData: Record<string, unknown> = { ...rest }
+  if (soldOut !== undefined) watchData.sold_out = soldOut
 
   if (Object.keys(watchData).length > 0) {
     const { error } = await admin.from("watches").update(watchData).eq("id", id)
