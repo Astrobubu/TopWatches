@@ -1,6 +1,6 @@
 "use client"
 
-import { MessageCircle, Heart, Share2 } from "lucide-react"
+import { MessageCircle, Share2 } from "lucide-react"
 import { trackEvent } from "@/components/analytics"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
@@ -77,9 +77,6 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
             Order via WhatsApp
           </button>
         )}
-        <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
-          <Heart className="w-4 h-4" />
-        </button>
         <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
           <Share2 className="w-4 h-4" />
         </button>

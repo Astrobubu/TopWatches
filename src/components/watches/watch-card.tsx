@@ -47,11 +47,11 @@ export function WatchCard({ watch }: WatchCardProps) {
               </span>
             </div>
           )}
-          <span className="absolute top-2 right-2 md:top-3 md:right-3 text-foreground text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans font-bold px-1.5 py-0.5 md:px-2.5 md:py-1">
+          <span className="absolute top-2 right-2 md:top-3 md:right-3 text-white text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans font-bold px-1.5 py-0.5 md:px-2.5 md:py-1" style={{ mixBlendMode: 'difference' }}>
             {t(`conditions.${watch.condition}`)}
           </span>
           {mm && (
-            <span className="absolute top-2 left-2 md:top-3 md:left-3 text-foreground text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans font-bold px-1.5 py-0.5 md:px-2.5 md:py-1">
+            <span className="absolute top-2 left-2 md:top-3 md:left-3 text-white text-[10px] md:text-xs uppercase tracking-wider md:tracking-widest font-sans font-bold px-1.5 py-0.5 md:px-2.5 md:py-1" style={{ mixBlendMode: 'difference' }}>
               {mm}
             </span>
           )}
