@@ -91,16 +91,13 @@ export function ImageGallery({ images, imageVariants, modelName, soldOut = false
             src={currentSrc}
             alt={modelName}
             className="w-full h-full object-contain transition-transform duration-200 ease-out"
-            style={soldOut ? { filter: 'grayscale(0.85) brightness(0.85)' } : undefined}
           />
 
           {soldOut && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-              <div className="bg-background/85 backdrop-blur-md px-6 py-2.5 shadow-sm" style={{ borderRadius: 'var(--pill-radius)', border: 'var(--border-w) solid var(--border)' }}>
-                <span className="font-sans text-sm font-bold tracking-[0.25em] uppercase text-foreground/80">
-                  Sold Out
-                </span>
-              </div>
+            <div className="absolute top-3 right-3 z-10 bg-background/90 backdrop-blur-md px-3 py-1 shadow-sm pointer-events-none" style={{ borderRadius: 'var(--pill-radius)', border: 'var(--border-w) solid var(--border)' }}>
+              <span className="font-sans text-[10px] font-bold tracking-[0.25em] uppercase text-foreground/80">
+                Sold Out
+              </span>
             </div>
           )}
 

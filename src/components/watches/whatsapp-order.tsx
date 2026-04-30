@@ -20,6 +20,8 @@ function generateOrderNumber() {
 export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
   const { t } = useTranslation()
 
+  const soldOut = watch.soldOut === true
+
   function handleOrder() {
     const orderNumber = generateOrderNumber()
     const message = [
@@ -37,19 +39,33 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
     window.open(url, "_blank")
   }
 
-  const soldOut = watch.soldOut === true
+  function handleSourceRequest() {
+    const orderNumber = generateOrderNumber()
+    const message = [
+      `Sourcing Request #${orderNumber}`,
+      ``,
+      `Watch: ${watch.brand} ${watch.model}`,
+      `Ref: ${watch.reference}`,
+      ``,
+      `I see this watch is sold out, but I'm interested in it. Can you source one for me or let me know if a similar piece becomes available? Thank you.`,
+    ].join("\n")
+
+    const url = `https://wa.me/${SHOP_PHONE}?text=${encodeURIComponent(message)}`
+    trackEvent("click", "WhatsApp", `source_request_${watch.brand}_${watch.model}`)
+    window.open(url, "_blank")
+  }
 
   return (
     <div className="space-y-3">
       <div className="flex gap-3">
         {soldOut ? (
           <button
-            disabled
-            aria-disabled="true"
-            className="flex-1 bg-foreground/10 text-foreground/50 py-4 font-sans font-bold text-sm flex items-center justify-center gap-2 cursor-not-allowed tracking-[0.15em] uppercase"
-            style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}
+            onClick={handleSourceRequest}
+            className="magnetic-btn flex-1 bg-foreground hover:bg-primary text-background hover:text-primary-foreground py-4 font-sans font-bold text-sm flex items-center justify-center gap-2 transition-colors"
+            style={{ borderRadius: 'var(--card-radius)' }}
           >
-            Sold Out
+            <MessageCircle className="w-4 h-4" />
+            Request to Source via WhatsApp
           </button>
         ) : (
           <button
@@ -68,11 +84,11 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
           <Share2 className="w-4 h-4" />
         </button>
       </div>
-      {!soldOut && (
-        <p className="text-xs text-foreground/50 font-sans leading-relaxed">
-          {t("payment.bankTransfer")}
-        </p>
-      )}
+      <p className="text-xs text-foreground/50 font-sans leading-relaxed">
+        {soldOut
+          ? "This piece has been sold. Tap above to let us know you're interested — we can often source similar examples."
+          : t("payment.bankTransfer")}
+      </p>
     </div>
   )
 }
