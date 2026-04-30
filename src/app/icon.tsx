@@ -25,7 +25,8 @@ export default function Icon() {
             fontWeight: 700,
             fontFamily: "Georgia, serif",
             lineHeight: 1,
-            marginTop: 1,
+            marginTop: -2,
+            marginLeft: -2,
           }}
         >
           G
