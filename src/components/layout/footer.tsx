@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Shield, Truck, RotateCcw, MapPin, Phone } from "lucide-react"
+import { Shield, MapPin, Phone } from "lucide-react"
 import { useTranslation } from "@/lib/i18n/context"
 
 export function Footer() {
@@ -9,26 +9,22 @@ export function Footer() {
 
   const pillars = [
     { icon: Shield, title: t("footer.authenticated"), desc: t("footer.authDesc") },
-    { icon: Truck, title: t("footer.insuredShipping"), desc: t("footer.shippingDesc") },
-    { icon: RotateCcw, title: t("footer.returns"), desc: t("footer.returnsDesc") },
   ]
 
   return (
     <footer className="bg-background px-6 md:px-16 mt-0">
       {/* Trust Pillars */}
       <div className="max-w-7xl mx-auto py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {pillars.map(p => (
-            <div key={p.title} className="flex items-start gap-4">
-              <div className="w-10 h-10 shrink-0 bg-primary/10 flex items-center justify-center text-primary" style={{ borderRadius: 'var(--pill-radius)' }}>
-                <p.icon className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-sans font-semibold text-sm mb-1">{p.title}</h3>
-                <p className="text-foreground/50 text-xs leading-relaxed">{p.desc}</p>
-              </div>
+        <div className="flex justify-center">
+          <div className="flex items-start gap-4 max-w-md">
+            <div className="w-10 h-10 shrink-0 bg-primary/10 flex items-center justify-center text-primary" style={{ borderRadius: 'var(--pill-radius)' }}>
+              <Shield className="w-5 h-5" />
             </div>
-          ))}
+            <div>
+              <h3 className="font-sans font-semibold text-sm mb-1">{pillars[0].title}</h3>
+              <p className="text-foreground/50 text-xs leading-relaxed">{pillars[0].desc}</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -57,8 +53,6 @@ export function Footer() {
             <h4 className="font-mono text-foreground text-xs tracking-widest mb-5 opacity-50 uppercase">{t("footer.navigation")}</h4>
             <ul className="space-y-3 font-sans text-sm text-foreground/50">
               <li><Link href="/collections" className="hover:text-primary transition-colors">{t("nav.allWatches")}</Link></li>
-              <li><Link href="/blog" className="hover:text-primary transition-colors">{t("nav.blog")}</Link></li>
-              <li><Link href="/guides" className="hover:text-primary transition-colors">{t("nav.guides")}</Link></li>
               <li><Link href="/about" className="hover:text-primary transition-colors">{t("nav.aboutUs")}</Link></li>
             </ul>
           </div>
