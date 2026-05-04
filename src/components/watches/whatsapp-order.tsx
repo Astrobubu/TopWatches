@@ -1,6 +1,7 @@
 "use client"
 
-import { MessageCircle, Share2 } from "lucide-react"
+import { useState } from "react"
+import { MessageCircle, Share2, Check } from "lucide-react"
 import { trackEvent } from "@/components/analytics"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
@@ -19,6 +20,7 @@ function generateOrderNumber() {
 
 export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
   const { t } = useTranslation()
+  const [copied, setCopied] = useState(false)
 
   const soldOut = watch.soldOut === true
 
@@ -37,6 +39,26 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
     const url = `https://wa.me/${SHOP_PHONE}?text=${encodeURIComponent(message)}`
     trackEvent("click", "WhatsApp", `order_${watch.brand}_${watch.model}`)
     window.open(url, "_blank")
+  }
+
+  async function handleShare() {
+    const url = window.location.href
+    const title = `${watch.brand} ${watch.model}`
+    const text = `${watch.brand} ${watch.model} — ${watch.reference}`
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url })
+        trackEvent("click", "Share", `share_${watch.brand}_${watch.model}`)
+      } catch {
+        // user cancelled or unsupported — fall through
+      }
+    } else {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      trackEvent("click", "Share", `copy_link_${watch.brand}_${watch.model}`)
+      setTimeout(() => setCopied(false), 2000)
+    }
   }
 
   function handleSourceRequest() {
@@ -77,8 +99,13 @@ export function WhatsAppOrder({ watch }: WhatsAppOrderProps) {
             Order via WhatsApp
           </button>
         )}
-        <button className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors" style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}>
-          <Share2 className="w-4 h-4" />
+        <button
+          onClick={handleShare}
+          title={copied ? "Link copied!" : "Share"}
+          className="w-12 h-12 flex items-center justify-center text-foreground/70 hover:text-primary hover:border-primary/40 transition-colors"
+          style={{ borderRadius: 'var(--card-radius)', border: 'var(--border-w) solid var(--border)' }}
+        >
+          {copied ? <Check className="w-4 h-4 text-primary" /> : <Share2 className="w-4 h-4" />}
         </button>
       </div>
       <p className="text-xs text-foreground/50 font-sans leading-relaxed">
