@@ -13,6 +13,7 @@ export async function GET() {
       .from("reviews")
       .select("*")
       .order("created_at", { ascending: false })
+      .limit(6)
 
     if (error) throw error
 
