@@ -15,25 +15,45 @@ interface Review {
   avatar_url?: string | null
 }
 
-// Fallback reviews from Google Maps listing
+const PLACE_RATING = "4.8"
+const PLACE_TOTAL = 19
+
 const FALLBACK_REVIEWS: Review[] = [
   {
-    name: "Ahmed Alghamdi",
+    name: "Ahmd S",
     rating: 5,
-    date: "1 month ago",
-    text: "Top-notch dealings and trust",
+    date: "3 days ago",
+    text: "Excellent experience... The team was professional and very patient while giving details on Rolex models. Really appreciate the transparent pricing and no-pressure approach, helped me choose the right piece. Highly recommended!!",
   },
   {
-    name: "Yunis Swidi",
+    name: "Masood Abedi",
     rating: 5,
-    date: "2 years ago",
-    text: "",
+    date: "a month ago",
+    text: "Trusted Rolex watch specialist in Gold souk with many years of experience. Best collection of authentic Rolex and other brand watches with fair pricing, and professional service. Highly recommended.",
   },
   {
-    name: "Pretty Becky",
-    rating: 3,
-    date: "4 years ago",
-    text: "",
+    name: "Saleem Shabandri",
+    rating: 5,
+    date: "2 weeks ago",
+    text: "If you want 100% genuine brand watches, like Rolex, Cartier, and other such brands, this is the best place to visit.",
+  },
+  {
+    name: "MOHAMMED NUFAI",
+    rating: 5,
+    date: "6 days ago",
+    text: "You will get all genuine watches here at good price.",
+  },
+  {
+    name: "Lamin Sannoh",
+    rating: 5,
+    date: "6 days ago",
+    text: "It's very good and affordable.",
+  },
+  {
+    name: "anita ebrahimi",
+    rating: 5,
+    date: "a month ago",
+    text: "I'm so happy with this store for the second time 🙏🏻",
   },
 ]
 
@@ -65,9 +85,7 @@ export function GoogleReviews() {
       .catch(() => {})
   }, [])
 
-  const avgRating = reviews.length > 0
-    ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
-    : "5.0"
+  const avgRating = PLACE_RATING
 
   return (
     <section
@@ -87,7 +105,7 @@ export function GoogleReviews() {
             </svg>
             <span className="font-sans font-bold text-lg">{avgRating}</span>
             <StarRating rating={Math.round(Number(avgRating))} />
-            <span className="opacity-40 text-sm font-sans">({reviews.length} {t("reviews.reviewsCount")})</span>
+            <span className="opacity-40 text-sm font-sans">({PLACE_TOTAL} {t("reviews.reviewsCount")})</span>
           </div>
         </div>
         <p className="font-mono text-[11px] opacity-40 mt-3">

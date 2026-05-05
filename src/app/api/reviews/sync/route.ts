@@ -18,6 +18,10 @@ function timeAgo(isoDate: string): string {
   return `${years} year${years > 1 ? "s" : ""} ago`
 }
 
+export async function GET() {
+  return POST()
+}
+
 export async function POST() {
   if (!GOOGLE_API_KEY || !GOOGLE_PLACE_ID) {
     return NextResponse.json(
