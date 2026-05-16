@@ -1,27 +1,27 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo } from "react"
+import { useEffect, useState, useMemo } from "react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ArrowRight, Camera, ClipboardList } from "lucide-react"
 import { brands } from "@/data/brands"
 import { WatchCard } from "@/components/watches/watch-card"
 import { WatchCardSkeleton } from "@/components/watches/watch-card-skeleton"
-import { ConciergeSystem } from "@/components/home/concierge-system"
 import { GoogleReviews } from "@/components/home/google-reviews"
 import { useTranslation } from "@/lib/i18n/context"
 import type { Watch } from "@/lib/types"
 
-gsap.registerPlugin(ScrollTrigger)
+const ConciergeSystem = dynamic(
+  () => import("@/components/home/concierge-system").then((mod) => mod.ConciergeSystem),
+  { ssr: false }
+)
 
 export default function HomePage() {
-  const mainRef = useRef<HTMLDivElement>(null)
   const [watches, setWatches] = useState<Watch[]>([])
   const { t } = useTranslation()
 
   useEffect(() => {
-    fetch("/api/watches")
+    fetch("/api/watches?view=summary")
       .then((res) => res.json())
       .then((data) => { if (Array.isArray(data)) setWatches(data) })
       .catch(() => {})
@@ -49,32 +49,8 @@ export default function HomePage() {
   const [conciergeOpen, setConciergeOpen] = useState(false)
   const [conciergeFlow, setConciergeFlow] = useState<"upload" | "questions" | null>(null)
 
-  // Hero animation — runs once on mount
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".hero-elem", {
-        y: 50, opacity: 0, stagger: 0.1, duration: 1.4, ease: "power3.out", delay: 0.2,
-      })
-    }, mainRef)
-    return () => ctx.revert()
-  }, [])
-
-  // Section animations — re-run when watches load (layout shifts)
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      ScrollTrigger.refresh()
-      document.querySelectorAll(".anim-section").forEach(el => {
-        gsap.from(el.querySelectorAll(".anim-item"), {
-          scrollTrigger: { trigger: el, start: "top 85%" },
-          y: 40, opacity: 0, stagger: 0.15, duration: 1, ease: "power3.out",
-        })
-      })
-    }, mainRef)
-    return () => ctx.revert()
-  }, [curatedWatches])
-
   return (
-    <div ref={mainRef}>
+    <div>
       {/* ═══════════════════ HERO ═══════════════════ */}
       <section className="relative h-[100dvh] w-full flex items-end -mt-20 select-none">
         <div className="absolute inset-0 w-full h-full z-0">

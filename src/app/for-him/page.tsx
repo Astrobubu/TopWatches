@@ -11,7 +11,7 @@ export default function ForHimPage() {
     const [forHimWatches, setForHimWatches] = useState<Watch[]>([])
 
     useEffect(() => {
-        fetch("/api/watches")
+        fetch("/api/watches?view=summary")
             .then((r) => r.json())
             .then((watches: Watch[]) =>
                 setForHimWatches(watches.filter((w) => parseInt(w.specs.caseSize) >= 36))

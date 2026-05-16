@@ -11,7 +11,7 @@ export default function ForHerPage() {
     const [forHerWatches, setForHerWatches] = useState<Watch[]>([])
 
     useEffect(() => {
-        fetch("/api/watches")
+        fetch("/api/watches?view=summary")
             .then((r) => r.json())
             .then((watches: Watch[]) =>
                 setForHerWatches(watches.filter((w) => parseInt(w.specs.caseSize) <= 36))

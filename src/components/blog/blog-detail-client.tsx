@@ -106,6 +106,7 @@ export function BlogDetailClient({ post, related }: BlogDetailClientProps) {
             fill
             className="object-cover"
             sizes="(max-width: 896px) 100vw, 896px"
+            quality={70}
             priority
           />
         </div>
@@ -193,6 +194,7 @@ export function BlogDetailClient({ post, related }: BlogDetailClientProps) {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={60}
                     />
                   </div>
                 )}

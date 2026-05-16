@@ -2,16 +2,17 @@ import type { MetadataRoute } from "next"
 import { supabase } from "@/lib/supabase"
 
 const BASE_URL = "https://goldenplanetwatches.com"
+const STATIC_LAST_MODIFIED = new Date("2026-04-01T00:00:00.000Z")
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
-    { url: `${BASE_URL}/collections`, lastModified: new Date(), changeFrequency: "daily", priority: 0.9 },
-    { url: `${BASE_URL}/for-him`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/for-her`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE_URL}/condition-guide`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE_URL}/review`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
+    { url: BASE_URL, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "daily", priority: 1.0 },
+    { url: `${BASE_URL}/collections`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE_URL}/for-him`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/for-her`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/about`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/condition-guide`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/review`, lastModified: STATIC_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.4 },
   ]
 
   // Watch detail pages

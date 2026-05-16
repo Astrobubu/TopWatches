@@ -65,7 +65,7 @@ function CollectionsContent() {
   const [loadingWatches, setLoadingWatches] = useState(true)
 
   useEffect(() => {
-    fetch("/api/watches")
+    fetch("/api/watches?view=summary")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setWatches(data)

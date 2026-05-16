@@ -14,7 +14,7 @@ export function RelatedWatches({ currentWatch }: RelatedWatchesProps) {
   const [related, setRelated] = useState<Watch[]>([])
 
   useEffect(() => {
-    fetch("/api/watches")
+    fetch("/api/watches?view=summary")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

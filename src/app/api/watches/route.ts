@@ -1,16 +1,48 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getWatches, createWatch, updateWatch, deleteWatch } from "@/lib/db"
+import type { Watch } from "@/lib/types"
 
-export async function GET() {
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : "Unknown error"
+}
+
+function summarizeWatch(watch: Watch) {
+  return {
+    id: watch.id,
+    brand: watch.brand,
+    model: watch.model,
+    reference: watch.reference,
+    price: watch.price,
+    images: watch.images?.slice(0, 1) ?? [],
+    imageVariants: watch.imageVariants?.slice(0, 1) ?? [],
+    specs: {
+      caseSize: watch.specs?.caseSize,
+      year: watch.specs?.year,
+    },
+    category: watch.category,
+    condition: watch.condition,
+    gender: watch.gender,
+    scope: watch.scope,
+    featured: watch.featured,
+    soldOut: watch.soldOut,
+  }
+}
+
+export async function GET(req: NextRequest) {
   try {
     const watches = await getWatches()
-    return NextResponse.json(watches, {
+    const view = req.nextUrl.searchParams.get("view")
+    const payload = view === "summary" ? watches.map(summarizeWatch) : watches
+
+    return NextResponse.json(payload, {
       headers: {
-        "Cache-Control": "s-maxage=60, stale-while-revalidate=300",
+        "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
+        "CDN-Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+        "Vercel-CDN-Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
       },
     })
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  } catch (error: unknown) {
+    return NextResponse.json({ error: getErrorMessage(error) }, { status: 500 })
   }
 }
 
@@ -19,8 +51,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const watch = await createWatch(body)
     return NextResponse.json(watch, { status: 201 })
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  } catch (error: unknown) {
+    return NextResponse.json({ error: getErrorMessage(error) }, { status: 500 })
   }
 }
 
@@ -31,8 +63,8 @@ export async function PUT(req: NextRequest) {
     if (!id) return NextResponse.json({ error: "id is required" }, { status: 400 })
     const watch = await updateWatch(id, data)
     return NextResponse.json(watch)
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  } catch (error: unknown) {
+    return NextResponse.json({ error: getErrorMessage(error) }, { status: 500 })
   }
 }
 
@@ -43,7 +75,7 @@ export async function DELETE(req: NextRequest) {
     if (!id) return NextResponse.json({ error: "id is required" }, { status: 400 })
     await deleteWatch(id)
     return NextResponse.json({ success: true })
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  } catch (error: unknown) {
+    return NextResponse.json({ error: getErrorMessage(error) }, { status: 500 })
   }
 }

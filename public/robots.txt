@@ -5,14 +5,22 @@ Disallow: /api/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /manage/
+Disallow: /api/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /manage/
+Disallow: /api/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /manage/
+Disallow: /api/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /manage/
+Disallow: /api/
 
 Sitemap: https://goldenplanetwatches.com/sitemap.xml

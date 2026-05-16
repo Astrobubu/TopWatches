@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    deviceSizes: [360, 640, 768, 1024, 1280, 1536],
+    imageSizes: [64, 128, 256, 384],
+    formats: ["image/avif", "image/webp"],
+    qualities: [60, 65, 70, 75],
+    minimumCacheTTL: 604800,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "kstvsyjfrleyqbgglhjy.supabase.co" },
