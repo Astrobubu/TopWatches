@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import { ReviewPrompt } from "@/components/review-prompt";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { Analytics } from "@/components/analytics";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo/json-ld";
@@ -97,7 +96,6 @@ export default function RootLayout({
               <Header />
               <main className="min-h-screen pt-20">{children}</main>
               <Footer />
-              <ReviewPrompt />
               <WhatsAppButton />
               <Analytics />
               <ScrollToTop />
